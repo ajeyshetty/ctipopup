@@ -1,0 +1,343 @@
+2025-08-21 18:08:59 Event: CallActiveEv
+2025-08-21 18:08:59 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:08:59 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:08:59 Event: ConnCreatedEv 96155702834::2
+2025-08-21 18:08:59 Event: ConnConnectedEv 96155702834::2
+2025-08-21 18:09:00 Incoming call from: 81027226
+2025-08-21 18:09:00 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 18:09:00 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 18:09:06 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 18:09:06 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 18:09:06 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:09:06 Event: CallInvalidEv
+2025-08-21 18:09:06 Event: CallObservationEndedEv
+2025-08-21 18:13:53 Event: CallActiveEv
+2025-08-21 18:13:53 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:13:53 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:13:53 Event: ConnCreatedEv 96155702834::2
+2025-08-21 18:13:53 Event: ConnConnectedEv 96155702834::2
+2025-08-21 18:13:54 Incoming call from: 81027226
+2025-08-21 18:13:55 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 18:13:55 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 18:14:02 Event: CiscoCallInfoChangedEv
+2025-08-21 18:14:02 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:14:02 Event: TermConnActiveEv CSFaxshetty
+2025-08-21 18:14:07 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 18:14:07 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 18:14:07 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:14:07 Event: CallInvalidEv
+2025-08-21 18:14:07 Event: CallObservationEndedEv
+2025-08-21 18:14:33 Event: CallActiveEv
+2025-08-21 18:14:33 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:14:33 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:14:33 Event: ConnCreatedEv 96155702834::2
+2025-08-21 18:14:33 Event: ConnConnectedEv 96155702834::2
+2025-08-21 18:14:34 Incoming call from: 81027226
+2025-08-21 18:14:34 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 18:14:34 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 18:14:37 Event: CiscoCallInfoChangedEv
+2025-08-21 18:14:37 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:14:37 Event: TermConnActiveEv CSFaxshetty
+2025-08-21 18:14:42 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 18:14:42 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 18:14:42 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:14:42 Event: CallInvalidEv
+2025-08-21 18:14:42 Event: CallObservationEndedEv
+2025-08-21 18:18:07 Event: CallActiveEv
+2025-08-21 18:18:07 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5286313)->ACTIVE
+2025-08-21 18:18:07 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:18:07 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5286313)->ACTIVE
+2025-08-21 18:18:07 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5286313)->ACTIVE]->ESTABLISHED
+2025-08-21 18:18:08 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:18:08 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 18:18:08 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 18:18:10 Event: CiscoCallInfoChangedEv
+2025-08-21 18:18:10 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-popupjtapi) GCID=(2,5286313)->ACTIVE]->ESTABLISHED
+2025-08-21 18:18:10 Event: TermConnActiveEv CSFaxshetty
+2025-08-21 18:18:14 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 18:18:14 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 18:18:14 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:18:14 Event: CallInvalidEv
+2025-08-21 18:22:12 Event: CallActiveEv
+2025-08-21 18:22:12 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5286599)->ACTIVE
+2025-08-21 18:22:12 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:22:12 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5286599)->ACTIVE
+2025-08-21 18:22:12 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5286599)->ACTIVE]->ESTABLISHED
+2025-08-21 18:22:13 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:22:13 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 18:22:13 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 18:22:18 Event: CiscoCallInfoChangedEv
+2025-08-21 18:22:18 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-popupjtapi) GCID=(2,5286599)->ACTIVE]->ESTABLISHED
+2025-08-21 18:22:18 Event: TermConnActiveEv CSFaxshetty
+2025-08-21 18:22:26 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 18:22:26 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 18:22:26 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:22:26 Event: CallInvalidEv
+2025-08-21 18:44:48 Event: CallActiveEv
+2025-08-21 18:44:48 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5288738)->ACTIVE
+2025-08-21 18:44:48 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:44:48 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5288738)->ACTIVE
+2025-08-21 18:44:48 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5288738)->ACTIVE]->ESTABLISHED
+2025-08-21 18:44:49 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:44:49 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 18:44:49 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 18:44:54 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 18:44:54 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 18:44:54 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:44:54 Event: CallInvalidEv
+2025-08-21 18:49:12 Event: CallActiveEv
+2025-08-21 18:49:12 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5289286)->ACTIVE
+2025-08-21 18:49:12 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:49:12 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5289286)->ACTIVE
+2025-08-21 18:49:12 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5289286)->ACTIVE]->ESTABLISHED
+2025-08-21 18:49:13 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:49:13 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 18:49:13 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 18:49:18 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 18:49:18 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 18:49:19 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:49:19 Event: CallInvalidEv
+2025-08-21 18:53:27 Event: CallActiveEv
+2025-08-21 18:53:27 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5289841)->ACTIVE
+2025-08-21 18:53:27 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:53:27 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5289841)->ACTIVE
+2025-08-21 18:53:27 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5289841)->ACTIVE]->ESTABLISHED
+2025-08-21 18:53:28 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:53:28 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 18:53:28 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 18:53:31 Event: CiscoCallInfoChangedEv
+2025-08-21 18:53:31 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-popupjtapi) GCID=(2,5289841)->ACTIVE]->ESTABLISHED
+2025-08-21 18:53:31 Event: TermConnActiveEv CSFaxshetty
+2025-08-21 18:53:39 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 18:53:39 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 18:53:39 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:53:39 Event: CallInvalidEv
+2025-08-21 18:53:53 Event: CallActiveEv
+2025-08-21 18:53:53 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5289906)->ACTIVE
+2025-08-21 18:53:53 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:53:53 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5289906)->ACTIVE
+2025-08-21 18:53:53 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5289906)->ACTIVE]->ESTABLISHED
+2025-08-21 18:53:53 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:53:53 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 18:53:53 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 18:54:00 Event: CiscoCallInfoChangedEv
+2025-08-21 18:54:00 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-popupjtapi) GCID=(2,5289906)->ACTIVE]->ESTABLISHED
+2025-08-21 18:54:01 Event: TermConnActiveEv CSFaxshetty
+2025-08-21 18:54:04 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 18:54:04 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 18:54:04 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:54:04 Event: CallInvalidEv
+2025-08-21 18:58:22 Event: CallActiveEv
+2025-08-21 18:58:22 ConnCreatedEv observed caller=81027226 call=(P2-popupjtapi) GCID=(2,5290562)->ACTIVE
+2025-08-21 18:58:22 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:58:22 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:58:22 ConnCreatedEv observed caller=96155702834 call=(P2-popupjtapi) GCID=(2,5290562)->ACTIVE
+2025-08-21 18:58:22 Event: ConnCreatedEv 96155702834::2
+2025-08-21 18:58:22 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P2-popupjtapi) GCID=(2,5290562)->ACTIVE]->ESTABLISHED
+2025-08-21 18:58:23 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:58:23 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 18:58:23 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 18:58:25 Event: CiscoCallInfoChangedEv
+2025-08-21 18:58:25 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P2-popupjtapi) GCID=(2,5290562)->ACTIVE]->ESTABLISHED
+2025-08-21 18:58:25 Event: TermConnActiveEv CSFaxshetty
+2025-08-21 18:58:31 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 18:58:31 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 18:58:31 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 18:58:31 Event: CallInvalidEv
+2025-08-21 19:26:38 Event: CallActiveEv
+2025-08-21 19:26:38 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5294700)->ACTIVE
+2025-08-21 19:26:38 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 19:26:38 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 19:26:38 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5294700)->ACTIVE
+2025-08-21 19:26:38 Event: ConnCreatedEv 96155702834::2
+2025-08-21 19:26:38 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5294700)->ACTIVE]->ESTABLISHED
+2025-08-21 19:26:38 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 19:26:39 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 19:26:39 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 19:26:40 Event: CiscoCallInfoChangedEv
+2025-08-21 19:26:40 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-popupjtapi) GCID=(2,5294700)->ACTIVE]->ESTABLISHED
+2025-08-21 19:26:40 Event: TermConnActiveEv CSFaxshetty
+2025-08-21 19:27:03 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 19:27:03 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 19:27:03 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 19:27:03 Event: CallInvalidEv
+2025-08-21 19:27:17 Event: CallActiveEv
+2025-08-21 19:27:17 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5294772)->ACTIVE
+2025-08-21 19:27:17 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 19:27:17 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 19:27:17 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5294772)->ACTIVE
+2025-08-21 19:27:17 Event: ConnCreatedEv 96155702834::2
+2025-08-21 19:27:17 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5294772)->ACTIVE]->ESTABLISHED
+2025-08-21 19:27:17 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 19:27:17 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 19:27:17 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 19:27:22 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 19:27:22 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 19:27:22 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 19:27:22 Event: CallInvalidEv
+2025-08-21 20:13:05 Event: CallActiveEv
+2025-08-21 20:13:05 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5302471)->ACTIVE
+2025-08-21 20:13:05 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 20:13:05 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 20:13:05 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5302471)->ACTIVE
+2025-08-21 20:13:05 Event: ConnCreatedEv 96155702834::2
+2025-08-21 20:13:05 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5302471)->ACTIVE]->ESTABLISHED
+2025-08-21 20:13:05 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 20:13:05 Event: TermConnCreatedEv CSFaxshetty
+2025-08-21 20:13:05 Event: TermConnRingingEv CSFaxshetty
+2025-08-21 20:13:10 Event: CiscoCallInfoChangedEv
+2025-08-21 20:13:10 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-popupjtapi) GCID=(2,5302471)->ACTIVE]->ESTABLISHED
+2025-08-21 20:13:10 Event: TermConnActiveEv CSFaxshetty
+2025-08-21 20:13:13 Event: ConnDisconnectedEv 96155702834::2
+2025-08-21 20:13:13 Event: TermConnDroppedEv CSFaxshetty
+2025-08-21 20:13:13 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-21 20:13:13 Event: CallInvalidEv
+2025-08-22 15:03:46 Event: CallActiveEv
+2025-08-22 15:03:46 ConnCreatedEv observed caller=81027226 call=(P1-axshetty) GCID=(2,5389303)->ACTIVE
+2025-08-22 15:03:46 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:03:46 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:03:46 ConnCreatedEv observed caller=96155702834 call=(P1-axshetty) GCID=(2,5389303)->ACTIVE
+2025-08-22 15:03:46 Event: ConnCreatedEv 96155702834::2
+2025-08-22 15:03:46 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5389303)->ACTIVE]->ESTABLISHED
+2025-08-22 15:03:48 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:03:48 Event: TermConnCreatedEv CSFaxshetty
+2025-08-22 15:03:48 Event: TermConnRingingEv CSFaxshetty
+2025-08-22 15:03:51 Event: CiscoCallInfoChangedEv
+2025-08-22 15:03:51 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389303)->ACTIVE]->ESTABLISHED
+2025-08-22 15:03:51 Event: TermConnActiveEv CSFaxshetty
+2025-08-22 15:03:55 Event: ConnDisconnectedEv 96155702834::2
+2025-08-22 15:03:55 Event: TermConnDroppedEv CSFaxshetty
+2025-08-22 15:03:55 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:03:55 Event: CallInvalidEv
+2025-08-22 15:05:36 Event: CallActiveEv
+2025-08-22 15:05:36 ConnCreatedEv observed caller=81027226 call=(P2-axshetty) GCID=(2,5389304)->ACTIVE
+2025-08-22 15:05:36 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:05:36 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:05:36 ConnCreatedEv observed caller=96155702834 call=(P2-axshetty) GCID=(2,5389304)->ACTIVE
+2025-08-22 15:05:36 Event: ConnCreatedEv 96155702834::2
+2025-08-22 15:05:36 Event: ConnConnectedEv 96155702834::2
+2025-08-22 15:05:36 ConnAlertingEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P2-axshetty) GCID=(2,5389304)->ACTIVE]->ALERTING
+2025-08-22 15:05:36 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:05:36 Event: TermConnCreatedEv CSFaxshetty
+2025-08-22 15:05:36 Event: TermConnRingingEv CSFaxshetty
+2025-08-22 15:05:40 Event: CiscoCallInfoChangedEv
+2025-08-22 15:05:40 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:05:40 Event: TermConnActiveEv CSFaxshetty
+2025-08-22 15:05:45 Event: ConnDisconnectedEv 96155702834::2
+2025-08-22 15:05:45 Event: TermConnDroppedEv CSFaxshetty
+2025-08-22 15:05:45 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:05:45 Event: CallInvalidEv
+2025-08-22 15:08:33 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5389308)->ACTIVE
+2025-08-22 15:08:33 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5389308)->ACTIVE
+2025-08-22 15:08:33 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5389308)->ACTIVE]->ESTABLISHED
+2025-08-22 15:11:00 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5389309)->ACTIVE
+2025-08-22 15:11:00 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5389309)->ACTIVE
+2025-08-22 15:11:00 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5389309)->ACTIVE]->ESTABLISHED
+2025-08-22 15:11:00 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-22 15:11:02 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-popupjtapi) GCID=(2,5389309)->ACTIVE]->ESTABLISHED
+2025-08-22 15:11:04 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-popupjtapi) GCID=(2,5389309)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-22 15:11:43 ConnCreatedEv observed caller=81027226 call=(P2-popupjtapi) GCID=(2,5389310)->ACTIVE
+2025-08-22 15:11:43 ConnCreatedEv observed caller=96155702834 call=(P2-popupjtapi) GCID=(2,5389310)->ACTIVE
+2025-08-22 15:11:43 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P2-popupjtapi) GCID=(2,5389310)->ACTIVE]->ESTABLISHED
+2025-08-22 15:11:43 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-22 15:11:46 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P2-popupjtapi) GCID=(2,5389310)->ACTIVE]->ESTABLISHED
+2025-08-22 15:11:46 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P2-popupjtapi) GCID=(2,5389310)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-22 15:15:17 ConnCreatedEv observed caller=81027226 call=(P1-popupjtapi) GCID=(2,5389312)->ACTIVE
+2025-08-22 15:15:17 ConnCreatedEv observed caller=96155702834 call=(P1-popupjtapi) GCID=(2,5389312)->ACTIVE
+2025-08-22 15:15:17 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-popupjtapi) GCID=(2,5389312)->ACTIVE]->ESTABLISHED
+2025-08-22 15:15:17 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-22 15:15:19 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-popupjtapi) GCID=(2,5389312)->ACTIVE]->ESTABLISHED
+2025-08-22 15:15:20 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-popupjtapi) GCID=(2,5389312)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-22 15:28:16 ConnCreatedEv observed caller=81027226 call=(P1-axshetty) GCID=(2,5389314)->ACTIVE
+2025-08-22 15:28:16 ConnCreatedEv observed caller=96155702834 call=(P1-axshetty) GCID=(2,5389314)->ACTIVE
+2025-08-22 15:28:16 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5389314)->ACTIVE]->ESTABLISHED
+2025-08-22 15:28:16 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-22 15:28:19 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389314)->ACTIVE]->ESTABLISHED
+2025-08-22 15:28:21 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389314)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-22 15:28:43 Event: CallActiveEv
+2025-08-22 15:28:43 ConnCreatedEv observed caller=81027226 call=(P2-axshetty) GCID=(2,5389317)->ACTIVE
+2025-08-22 15:28:43 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:28:43 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:28:43 ConnCreatedEv observed caller=96155702834 call=(P2-axshetty) GCID=(2,5389317)->ACTIVE
+2025-08-22 15:28:43 Event: ConnCreatedEv 96155702834::2
+2025-08-22 15:28:43 Event: ConnConnectedEv 96155702834::2
+2025-08-22 15:28:43 ConnAlertingEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P2-axshetty) GCID=(2,5389317)->ACTIVE]->ALERTING
+2025-08-22 15:28:43 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:28:43 Event: TermConnCreatedEv CSFaxshetty
+2025-08-22 15:28:43 TermConnRingingEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P2-axshetty) GCID=(2,5389317)->ACTIVE]->ALERTING]->RINGING
+2025-08-22 15:28:43 Event: TermConnRingingEv CSFaxshetty
+2025-08-22 15:28:49 Event: CiscoCallInfoChangedEv
+2025-08-22 15:28:49 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:28:49 Event: TermConnActiveEv CSFaxshetty
+2025-08-22 15:28:54 Event: ConnDisconnectedEv 96155702834::2
+2025-08-22 15:28:54 Event: TermConnDroppedEv CSFaxshetty
+2025-08-22 15:28:54 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:28:54 Event: CallInvalidEv
+2025-08-22 15:29:07 Event: CallActiveEv
+2025-08-22 15:29:07 ConnCreatedEv observed caller=81027226 call=(P2-axshetty) GCID=(2,5389318)->ACTIVE
+2025-08-22 15:29:07 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:29:07 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:29:07 ConnCreatedEv observed caller=96155702834 call=(P2-axshetty) GCID=(2,5389318)->ACTIVE
+2025-08-22 15:29:07 Event: ConnCreatedEv 96155702834::2
+2025-08-22 15:29:07 Event: ConnConnectedEv 96155702834::2
+2025-08-22 15:29:08 ConnAlertingEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P2-axshetty) GCID=(2,5389318)->ACTIVE]->ALERTING
+2025-08-22 15:29:08 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:29:08 Event: TermConnCreatedEv CSFaxshetty
+2025-08-22 15:29:08 TermConnRingingEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P2-axshetty) GCID=(2,5389318)->ACTIVE]->ALERTING]->RINGING
+2025-08-22 15:29:08 Event: TermConnRingingEv CSFaxshetty
+2025-08-22 15:29:13 Event: ConnDisconnectedEv 96155702834::2
+2025-08-22 15:29:13 Event: TermConnDroppedEv CSFaxshetty
+2025-08-22 15:29:13 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 15:29:13 Event: CallInvalidEv
+2025-08-22 15:57:05 ConnCreatedEv observed caller=81027226 call=(P2-axshetty) GCID=(2,5389336)->ACTIVE
+2025-08-22 15:57:05 ConnCreatedEv observed caller=96155702834 call=(P2-axshetty) GCID=(2,5389336)->ACTIVE
+2025-08-22 15:57:05 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P2-axshetty) GCID=(2,5389336)->ACTIVE]->ESTABLISHED
+2025-08-22 15:57:05 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-22 15:57:10 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P2-axshetty) GCID=(2,5389336)->ACTIVE]->ESTABLISHED
+2025-08-22 15:57:12 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P2-axshetty) GCID=(2,5389336)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-22 16:31:16 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5389348)->ACTIVE]->ESTABLISHED
+2025-08-22 16:31:16 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-22 16:31:19 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389348)->ACTIVE]->ESTABLISHED
+2025-08-22 16:31:19 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389348)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-22 16:32:06 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5389349)->ACTIVE]->ESTABLISHED
+2025-08-22 16:32:06 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-22 16:32:08 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389349)->ACTIVE]->ESTABLISHED
+2025-08-22 16:32:08 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389349)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-22 16:36:19 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5389351)->ACTIVE]->ESTABLISHED
+2025-08-22 16:36:19 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-22 16:36:21 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389351)->ACTIVE]->ESTABLISHED
+2025-08-22 16:36:21 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-22 16:36:23 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389351)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-22 16:38:59 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5389352)->ACTIVE]->ESTABLISHED
+2025-08-22 16:38:59 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-22 16:39:01 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389352)->ACTIVE]->ESTABLISHED
+2025-08-22 16:39:01 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-22 16:39:03 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389352)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-22 16:44:09 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5389354)->ACTIVE]->ESTABLISHED
+2025-08-22 16:44:09 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-22 16:44:15 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389354)->ACTIVE]->ESTABLISHED
+2025-08-22 16:44:15 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-22 16:44:17 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389354)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-22 16:44:33 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5389355)->ACTIVE]->ESTABLISHED
+2025-08-22 16:44:33 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-22 16:44:35 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389355)->ACTIVE]->ESTABLISHED
+2025-08-22 16:44:35 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-22 16:44:35 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5389355)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-22 16:45:28 Event: CallActiveEv
+2025-08-22 16:45:28 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 16:45:28 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 16:45:28 Event: ConnCreatedEv 96155702834::2
+2025-08-22 16:45:28 Event: ConnConnectedEv 96155702834::2
+2025-08-22 16:45:28 ConnAlertingEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P2-axshetty) GCID=(2,5389356)->ACTIVE]->ALERTING
+2025-08-22 16:45:28 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-22 16:45:28 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 16:45:28 Event: TermConnCreatedEv CSFaxshetty
+2025-08-22 16:45:28 TermConnRingingEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P2-axshetty) GCID=(2,5389356)->ACTIVE]->ALERTING]->RINGING
+2025-08-22 16:45:28 Event: TermConnRingingEv CSFaxshetty
+2025-08-22 16:45:31 Event: CiscoCallInfoChangedEv
+2025-08-22 16:45:31 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 16:45:31 Event: TermConnActiveEv CSFaxshetty
+2025-08-22 16:45:34 Event: ConnDisconnectedEv 96155702834::2
+2025-08-22 16:45:34 Event: TermConnDroppedEv CSFaxshetty
+2025-08-22 16:45:34 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-22 16:45:34 Event: CallInvalidEv
