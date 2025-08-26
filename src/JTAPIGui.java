@@ -46,6 +46,28 @@ public class JTAPIGui {
         frame.setLayout(new BorderLayout());
         frame.getContentPane().setBackground(new Color(34, 34, 34)); // Dark gray background
 
+        // Set custom icon for the application
+        try {
+            // Try to load the icon from the classpath (when running from JAR)
+            java.net.URL iconURL = getClass().getClassLoader().getResource("icon.png");
+            if (iconURL != null) {
+                ImageIcon icon = new ImageIcon(iconURL);
+                frame.setIconImage(icon.getImage());
+            } else {
+                // Fallback: try to load from file system (when running from IDE)
+                try {
+                    ImageIcon icon = new ImageIcon("src/icon.png");
+                    if (icon.getImageLoadStatus() == MediaTracker.COMPLETE) {
+                        frame.setIconImage(icon.getImage());
+                    }
+                } catch (Exception e) {
+                    System.out.println("Could not load icon from file system: " + e.getMessage());
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Could not set custom icon: " + e.getMessage());
+        }
+
         // Initialize all fields first
         userField = createTextField("Enter Username", "");
         passField = new JPasswordField();
@@ -302,32 +324,27 @@ public class JTAPIGui {
 
         saveSettings(); // Save settings if "Remember Me" is checked
 
-        // Disable all fields
-        userField.setEnabled(false);
-        passField.setEnabled(false);
-        phoneField.setEnabled(false);
-        cucmHostField.setEnabled(false);
-        urlField.setEnabled(false);
-        triggerCombo.setEnabled(false);
-        rememberMeCheck.setEnabled(false);
-        startBtn.setEnabled(false);
-        stopBtn.setEnabled(true);
-
         updateStatus("Trying to Connect to " + host, new Color(255, 193, 7)); // Yellow
 
         String providerString = host + ";login=" + user + ";passwd=" + pass;
 
         final String providerStringFinal = providerString;
-        final String hostFinal = host;
-        final String userFinal = user;
         final String phoneFinal = phone;
         final String urlTemplateFinal = urlTemplate;
         final String triggerFinal = (triggerCombo.getSelectedItem() != null ? triggerCombo.getSelectedItem().toString() : "CONNECTED");
 
+        // Disable only the start button to prevent multiple clicks
+        startBtn.setEnabled(false);
+
         workerThread = new Thread(() -> {
+            boolean connectionSuccessful = false;
+            boolean subscriptionSuccessful = false;
+            
             try {
                 JtapiPeer peer = JtapiPeerFactory.getJtapiPeer(null);
                 provider = peer.getProvider(providerStringFinal);
+                connectionSuccessful = true;
+                
                 if ("ALL".equalsIgnoreCase(phoneFinal)) {
                     JTAPICallerInfo allListener = new JTAPICallerInfo(urlTemplateFinal, triggerFinal, null);
                     Address[] all = provider.getAddresses();
@@ -338,46 +355,85 @@ public class JTAPIGui {
                             updateStatus("Connected: Subscribe failed for some addresses - " + ex.getMessage(), new Color(40, 167, 69));
                         }
                     }
+                    subscriptionSuccessful = true;
                     updateStatus("Connected: Subscribed to ALL (" + (all != null ? all.length : 0) + " addresses)", new Color(40, 167, 69));
                 } else {
                     try {
                         Address a = provider.getAddress(phoneFinal);
                         JTAPICallerInfo addrListener = new JTAPICallerInfo(urlTemplateFinal, triggerFinal, a.getName());
                         a.addCallObserver(addrListener);
+                        subscriptionSuccessful = true;
                         updateStatus("Connected: Subscribed to " + a.getName(), new Color(40, 167, 69));
                     } catch (Exception ex) {
                         updateStatus("Disconnected: Failed to subscribe to '" + phoneFinal + "' - " + ex.getMessage(), new Color(220, 53, 69));
                         try {
                             Address[] available = provider.getAddresses();
+                            boolean foundFuzzy = false;
                             for (Address av : (available != null ? available : new Address[0])) {
                                 try {
                                     if (av.getName().contains(phoneFinal)) {
                                         JTAPICallerInfo fuzzyListener = new JTAPICallerInfo(urlTemplateFinal, triggerFinal, av.getName());
                                         av.addCallObserver(fuzzyListener);
+                                        subscriptionSuccessful = true;
+                                        foundFuzzy = true;
                                         updateStatus("Connected: Subscribed fuzzy to " + av.getName(), new Color(40, 167, 69));
+                                        break; // Exit after first successful fuzzy match
                                     }
                                 } catch (Exception e) {
-                                    updateStatus("Connected: Fuzzy subscribe failed for " + av.getName() + " - " + e.getMessage(), new Color(40, 167, 69));
+                                    updateStatus("Disconnected: Fuzzy subscribe failed for " + av.getName() + " - " + e.getMessage(), new Color(220, 53, 69));
                                 }
+                            }
+                            if (!foundFuzzy) {
+                                updateStatus("Disconnected: No matching phone number found", new Color(220, 53, 69));
                             }
                         } catch (Exception e2) {
                             updateStatus("Disconnected: Failed to list addresses - " + e2.getMessage(), new Color(220, 53, 69));
                         }
                     }
                 }
+                
+                // Only disable fields and enable stop button if both connection and subscription were successful
+                if (connectionSuccessful && subscriptionSuccessful) {
+                    SwingUtilities.invokeLater(() -> {
+                        userField.setEnabled(false);
+                        passField.setEnabled(false);
+                        phoneField.setEnabled(false);
+                        cucmHostField.setEnabled(false);
+                        urlField.setEnabled(false);
+                        triggerCombo.setEnabled(false);
+                        rememberMeCheck.setEnabled(false);
+                        startBtn.setEnabled(false);
+                        stopBtn.setEnabled(true);
+                    });
+                } else {
+                    // Re-enable start button if connection or subscription failed
+                    SwingUtilities.invokeLater(() -> {
+                        startBtn.setEnabled(true);
+                    });
+                    // Clean up provider if subscription failed
+                    if (connectionSuccessful && !subscriptionSuccessful && provider != null) {
+                        try {
+                            provider.shutdown();
+                        } catch (Exception e) {
+                            // Ignore shutdown errors
+                        }
+                        provider = null;
+                    }
+                }
             } catch (Exception ex) {
                 updateStatus("Disconnected: Failed to start listener - " + ex.getMessage(), new Color(220, 53, 69));
                 SwingUtilities.invokeLater(() -> {
-                    userField.setEnabled(true);
-                    passField.setEnabled(true);
-                    phoneField.setEnabled(true);
-                    cucmHostField.setEnabled(true);
-                    urlField.setEnabled(true);
-                    triggerCombo.setEnabled(true);
-                    rememberMeCheck.setEnabled(true);
                     startBtn.setEnabled(true);
-                    stopBtn.setEnabled(false);
                 });
+                // Clean up provider on connection failure
+                if (provider != null) {
+                    try {
+                        provider.shutdown();
+                    } catch (Exception e) {
+                        // Ignore shutdown errors
+                    }
+                    provider = null;
+                }
             }
         }, "jtapi-worker");
         workerThread.setDaemon(true);

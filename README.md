@@ -22,3 +22,8 @@ java -cp ".;out;lib\jtapi.jar" JTAPICallerInfo "cucm1;login=USER;passwd=PASS" "S
 Notes
 - Replace the provider string and address with values for your CUCM environment.
 - The program needs network access to the CUCM JTAPI service and correct credentials.
+
+CMD
+cd "c:\Users\axshetty\OneDrive - LKQ\Projects\CTIPopup-JTAPI\installer-inno"; powershell -NoProfile -ExecutionPolicy Bypass -File "c:\Users\axshetty\OneDrive - LKQ\Projects\CTIPopup-JTAPI\installer-inno\build_installer.ps1" -AutoDownload -Arch x64
+
+cd "c:\Users\axshetty\OneDrive - LKQ\Projects\CTIPopup-JTAPI"; java -cp "bin;lib/jtapi.jar" JTAPIGui
