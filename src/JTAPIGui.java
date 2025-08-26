@@ -393,9 +393,10 @@ public class JTAPIGui {
 
         saveSettings(); // Save settings if "Remember Me" is checked
 
-    // Disable only the Start button to prevent double-click; keep inputs editable until subscription confirmed
+    // Disable only the Start button to prevent double-click; show connecting text and wait cursor
     startBtn.setEnabled(false);
-    stopBtn.setEnabled(false);
+    SwingUtilities.invokeLater(() -> startBtn.setText("Connecting…"));
+    if (frame != null) frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
     updateStatus("Trying to Connect to " + host, new Color(255, 193, 7)); // Yellow
 
@@ -465,7 +466,9 @@ public class JTAPIGui {
                         triggerCombo.setEnabled(false);
                         rememberMeCheck.setEnabled(false);
                         startBtn.setEnabled(false);
+                        startBtn.setText("Start");
                         stopBtn.setEnabled(true);
+                        if (frame != null) frame.setCursor(Cursor.getDefaultCursor());
                     });
                 } else {
                     SwingUtilities.invokeLater(() -> {
@@ -478,7 +481,9 @@ public class JTAPIGui {
                         triggerCombo.setEnabled(true);
                         rememberMeCheck.setEnabled(true);
                         startBtn.setEnabled(true);
+                        startBtn.setText("Start");
                         stopBtn.setEnabled(false);
+                        if (frame != null) frame.setCursor(Cursor.getDefaultCursor());
                     });
                 }
             } catch (Exception ex) {
@@ -492,7 +497,9 @@ public class JTAPIGui {
                     triggerCombo.setEnabled(true);
                     rememberMeCheck.setEnabled(true);
                     startBtn.setEnabled(true);
+                    startBtn.setText("Start");
                     stopBtn.setEnabled(false);
+                    if (frame != null) frame.setCursor(Cursor.getDefaultCursor());
                 });
             }
         }, "jtapi-worker");
