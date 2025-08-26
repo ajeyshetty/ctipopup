@@ -3,8 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.telephony.*;
 import java.io.*;
+import java.net.*;
 import java.nio.file.*;
-import java.util.regex.Pattern;
 import java.util.Properties;
 
 public class JTAPIGui {
@@ -29,6 +29,20 @@ public class JTAPIGui {
     private static final String CONFIG_FILE = CONFIG_DIR + "/config.properties";
 
     public static void main(String[] args) {
+        // Try to bind the single-instance port. If bind succeeds we are primary.
+        try {
+            primaryServerSocket = new ServerSocket(SINGLE_INSTANCE_PORT, 0, InetAddress.getByName("127.0.0.1"));
+            primaryServerSocket.setReuseAddress(true);
+            // Start server thread to accept SHOW requests; it will reference INSTANCE after UI starts
+            startSingleInstanceServer(primaryServerSocket);
+        } catch (IOException bindEx) {
+            // Could not bind - assume another instance is running. Signal it and exit.
+            try {
+                if (sendShowRequest()) return;
+            } catch (Exception ignored) {}
+            // If signaling failed, continue to start UI as a fallback
+        }
+
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -37,7 +51,34 @@ public class JTAPIGui {
                 }
             }
         } catch (Exception ignored) {}
-        SwingUtilities.invokeLater(() -> new JTAPIGui().buildAndShow());
+        SwingUtilities.invokeLater(() -> {
+            INSTANCE = new JTAPIGui();
+            INSTANCE.buildAndShow();
+        });
+    }
+
+    // Port used for single-instance communication on localhost. Pick a port unlikely to conflict.
+    private static final int SINGLE_INSTANCE_PORT = 45678;
+
+    // Server socket for the primary instance (if we successfully bind)
+    private static ServerSocket primaryServerSocket = null;
+
+    // Reference to the GUI instance so the server thread can bring it to front
+    private static volatile JTAPIGui INSTANCE = null;
+
+    // Try to connect to an existing instance and send a SHOW command. Returns true if succeeded.
+    private static boolean sendShowRequest() {
+        try (Socket s = new Socket()) {
+            s.connect(new InetSocketAddress("127.0.0.1", SINGLE_INSTANCE_PORT), 250);
+            try (OutputStream os = s.getOutputStream();
+                 Writer w = new OutputStreamWriter(os, "UTF-8")) {
+                w.write("SHOW\n");
+                w.flush();
+            }
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 
     private void buildAndShow() {
@@ -168,6 +209,7 @@ public class JTAPIGui {
         frame.setVisible(true);
     // start background cleaner to remove unwanted CiscoJtapi*.log files
     startLogCleaner();
+
     }
 
     private void loadSavedSettings() {
@@ -508,6 +550,43 @@ public class JTAPIGui {
         }, "log-cleaner");
         t.setDaemon(true);
         t.start();
+    }
+
+    // Start a small server socket to allow new launches to tell this instance to show the window
+    private static void startSingleInstanceServer(ServerSocket ss) {
+        Thread t = new Thread(() -> {
+            try {
+                while (!Thread.currentThread().isInterrupted()) {
+                    try (Socket s = ss.accept()) {
+                        BufferedReader r = new BufferedReader(new InputStreamReader(s.getInputStream(), "UTF-8"));
+                        String line = r.readLine();
+                        if ("SHOW".equalsIgnoreCase(line != null ? line.trim() : "")) {
+                            if (INSTANCE != null) INSTANCE.bringToFront();
+                        }
+                    } catch (IOException ioe) {
+                        // ignore per-connection errors
+                    }
+                }
+            } catch (Exception e) {
+                // server terminating
+            } finally {
+                try { ss.close(); } catch (Exception ignore) {}
+            }
+        }, "single-instance-server");
+        t.setDaemon(true);
+        t.start();
+    }
+
+    private void bringToFront() {
+        if (frame == null) return;
+        try {
+            SwingUtilities.invokeLater(() -> {
+                if (frame.getState() == Frame.ICONIFIED) frame.setState(Frame.NORMAL);
+                frame.toFront();
+                frame.requestFocus();
+                frame.repaint();
+            });
+        } catch (Exception ignored) {}
     }
 
     private void addFieldToPanel(JPanel panel, String labelText, JComponent field) {
