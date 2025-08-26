@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import javax.imageio.ImageIO;
 import java.awt.event.*;
 import javax.telephony.*;
 import java.io.*;
@@ -42,6 +43,16 @@ public class JTAPIGui {
 
     private void buildAndShow() {
         frame = new JFrame("LKQ CTI Popup");
+        // Load application icons (look for resources or working-dir files)
+        java.util.List<Image> icons = loadAppIcons();
+        if (icons != null && !icons.isEmpty()) {
+            frame.setIconImages(icons);
+            try {
+                // Taskbar API (Java 9+) improves taskbar icon on Windows
+                java.awt.Taskbar tb = java.awt.Taskbar.getTaskbar();
+                tb.setIconImage(icons.get(0));
+            } catch (Throwable ignored) {}
+        }
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.getContentPane().setBackground(new Color(34, 34, 34)); // Dark gray background
@@ -250,6 +261,40 @@ public class JTAPIGui {
             new Font("SansSerif", Font.BOLD, 16)
         ));
         return panel;
+    }
+
+    // Load application icons from working directory or jar resources.
+    private java.util.List<Image> loadAppIcons() {
+        java.util.List<Image> list = new java.util.ArrayList<>();
+        // Look in working directory for multi-size PNGs or an ICO
+        String[] sizes = new String[] {"256", "48", "32", "16"};
+        try {
+            Path wd = Paths.get(System.getProperty("user.dir"));
+            for (String s : sizes) {
+                Path p = wd.resolve("icon_" + s + ".png");
+                if (Files.exists(p)) {
+                    try { list.add(ImageIO.read(p.toFile())); } catch (Exception ignore) {}
+                }
+            }
+            Path ico = wd.resolve("icon.ico");
+            if (list.isEmpty() && Files.exists(ico)) {
+                try { list.add(Toolkit.getDefaultToolkit().getImage(ico.toString())); } catch (Exception ignore) {}
+            }
+            // Classpath resources fallback
+            if (list.isEmpty()) {
+                java.net.URL res = getClass().getResource("/icon_256.png");
+                if (res != null) try { list.add(ImageIO.read(res)); } catch (Exception ignore) {}
+                res = getClass().getResource("/icon_48.png");
+                if (res != null) try { list.add(ImageIO.read(res)); } catch (Exception ignore) {}
+                res = getClass().getResource("/icon_32.png");
+                if (res != null) try { list.add(ImageIO.read(res)); } catch (Exception ignore) {}
+                res = getClass().getResource("/icon_16.png");
+                if (res != null) try { list.add(ImageIO.read(res)); } catch (Exception ignore) {}
+                res = getClass().getResource("/icon.ico");
+                if (res != null) try { list.add(Toolkit.getDefaultToolkit().getImage(res)); } catch (Exception ignore) {}
+            }
+        } catch (Exception ignore) {}
+        return list;
     }
 
     private JTextField createTextField(String placeholder, String defaultText) {
