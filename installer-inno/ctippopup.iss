@@ -1,11 +1,6 @@
 [Setup]
 AppName=LKQ CTI Popup
 AppVersion=1.0
-;
-; Branding
-AppPublisher=LKQ Corporation
-; Prefer user-provided icon.ico; fall back to ctippopup.ico
-SetupIconFile={#SourcePath}\icon.ico
 DefaultDirName={autopf}\LKQ\CTI Popup
 DefaultGroupName=LKQ CTI Popup
 DisableProgramGroupPage=yes
@@ -31,9 +26,6 @@ Source: "{#SourcePath}\CTIPopup.vbs"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\CTIPopup.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\ctippopup.jar"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\jtapi.jar"; DestDir: "{app}"; Flags: ignoreversion
-; include the ICO if present (user-provided icon.ico or generated ctippopup.ico)
-Source: "{#SourcePath}\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\ctippopup.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; include jre folder if present (not mandatory)
 Source: "{#SourcePath}\jre\*"; DestDir: "{app}\jre"; Flags: recursesubdirs createallsubdirs
 
@@ -43,13 +35,11 @@ Name: "{localappdata}\LKQ\CTIPopup\logs"; Flags: uninsalwaysuninstall
 Name: "{app}\logs"; Flags: uninsalwaysuninstall
 
 [Icons]
-; Use system wscript.exe to run the VBS so the installer doesn't try to CreateProcess the .vbs directly
-Name: "{group}\LKQ CTI Popup"; Filename: "{sys}\wscript.exe"; Parameters: """{app}\CTIPopup.vbs"""; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
-Name: "{userdesktop}\LKQ CTI Popup"; Filename: "{sys}\wscript.exe"; Parameters: """{app}\CTIPopup.vbs"""; Tasks: desktopicon; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
+Name: "{group}\LKQ CTI Popup"; Filename: "{app}\CTIPopup.vbs"; WorkingDir: "{app}"
+Name: "{userdesktop}\LKQ CTI Popup"; Filename: "{app}\CTIPopup.vbs"; Tasks: desktopicon; WorkingDir: "{app}"
 
 [Run]
-; Launch the VBS using wscript so CreateProcess isn't used on the script file itself
-Filename: "{sys}\wscript.exe"; Parameters: """{app}\CTIPopup.vbs"""; Description: "Launch LKQ CTI Popup"; Flags: nowait postinstall skipifsilent; WorkingDir: "{app}"
+Filename: "{app}\CTIPopup.vbs"; Description: "Launch LKQ CTI Popup"; Flags: nowait postinstall skipifsilent; WorkingDir: "{app}"
 
 [Code]
 function InitializeSetup(): Boolean;
