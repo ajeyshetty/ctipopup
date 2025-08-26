@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.awt.event.*;
 import javax.telephony.*;
 import java.io.*;
@@ -276,12 +277,42 @@ public class JTAPIGui {
                     try { list.add(ImageIO.read(p.toFile())); } catch (Exception ignore) {}
                 }
             }
+            // If user provided a single icon.png (e.g., src/icon.png), scale it into multiple sizes
+            Path singleP = wd.resolve("icon.png");
+            Path srcP = wd.resolve("src").resolve("icon.png");
+            Path useSingle = null;
+            if (Files.exists(singleP)) useSingle = singleP;
+            else if (Files.exists(srcP)) useSingle = srcP;
+            if (useSingle != null && list.isEmpty()) {
+                try {
+                    BufferedImage srcImg = ImageIO.read(useSingle.toFile());
+                    if (srcImg != null) {
+                        for (String s : sizes) {
+                            int sz = Integer.parseInt(s);
+                            list.add(scaleImage(srcImg, sz, sz));
+                        }
+                    }
+                } catch (Exception ignore) {}
+            }
             Path ico = wd.resolve("icon.ico");
             if (list.isEmpty() && Files.exists(ico)) {
                 try { list.add(Toolkit.getDefaultToolkit().getImage(ico.toString())); } catch (Exception ignore) {}
             }
             // Classpath resources fallback
             if (list.isEmpty()) {
+                // Also check for a single classpath resource '/icon.png'
+                java.net.URL singleRes = getClass().getResource("/icon.png");
+                if (singleRes != null) {
+                    try {
+                        BufferedImage srcImg = ImageIO.read(singleRes);
+                        if (srcImg != null) {
+                            for (String s : sizes) {
+                                int sz = Integer.parseInt(s);
+                                list.add(scaleImage(srcImg, sz, sz));
+                            }
+                        }
+                    } catch (Exception ignore) {}
+                }
                 java.net.URL res = getClass().getResource("/icon_256.png");
                 if (res != null) try { list.add(ImageIO.read(res)); } catch (Exception ignore) {}
                 res = getClass().getResource("/icon_48.png");
@@ -295,6 +326,21 @@ public class JTAPIGui {
             }
         } catch (Exception ignore) {}
         return list;
+    }
+
+    // Scale a BufferedImage to the requested width/height with high quality
+    private BufferedImage scaleImage(BufferedImage src, int w, int h) {
+        BufferedImage dst = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = dst.createGraphics();
+        try {
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+            g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g.drawImage(src, 0, 0, w, h, null);
+        } finally {
+            g.dispose();
+        }
+        return dst;
     }
 
     private JTextField createTextField(String placeholder, String defaultText) {
@@ -347,24 +393,15 @@ public class JTAPIGui {
 
         saveSettings(); // Save settings if "Remember Me" is checked
 
-        // Disable all fields
-        userField.setEnabled(false);
-        passField.setEnabled(false);
-        phoneField.setEnabled(false);
-        cucmHostField.setEnabled(false);
-        urlField.setEnabled(false);
-        triggerCombo.setEnabled(false);
-        rememberMeCheck.setEnabled(false);
-        startBtn.setEnabled(false);
-        stopBtn.setEnabled(true);
+    // Disable only the Start button to prevent double-click; keep inputs editable until subscription confirmed
+    startBtn.setEnabled(false);
+    stopBtn.setEnabled(false);
 
-        updateStatus("Trying to Connect to " + host, new Color(255, 193, 7)); // Yellow
+    updateStatus("Trying to Connect to " + host, new Color(255, 193, 7)); // Yellow
 
         String providerString = host + ";login=" + user + ";passwd=" + pass;
 
-        final String providerStringFinal = providerString;
-        final String hostFinal = host;
-        final String userFinal = user;
+    final String providerStringFinal = providerString;
         final String phoneFinal = phone;
         final String urlTemplateFinal = urlTemplate;
         final String triggerFinal = (triggerCombo.getSelectedItem() != null ? triggerCombo.getSelectedItem().toString() : "CONNECTED");
@@ -373,22 +410,26 @@ public class JTAPIGui {
             try {
                 JtapiPeer peer = JtapiPeerFactory.getJtapiPeer(null);
                 provider = peer.getProvider(providerStringFinal);
+                boolean subscribed = false;
                 if ("ALL".equalsIgnoreCase(phoneFinal)) {
                     JTAPICallerInfo allListener = new JTAPICallerInfo(urlTemplateFinal, triggerFinal, null);
                     Address[] all = provider.getAddresses();
-                    for (Address a : all) {
+                    for (Address a : (all != null ? all : new Address[0])) {
                         try {
                             a.addCallObserver(allListener);
+                            subscribed = true;
                         } catch (Exception ex) {
                             updateStatus("Connected: Subscribe failed for some addresses - " + ex.getMessage(), new Color(40, 167, 69));
                         }
                     }
-                    updateStatus("Connected: Subscribed to ALL (" + (all != null ? all.length : 0) + " addresses)", new Color(40, 167, 69));
+                    if (subscribed) updateStatus("Connected: Subscribed to ALL (" + (all != null ? all.length : 0) + " addresses)", new Color(40, 167, 69));
+                    else updateStatus("Disconnected: Failed to subscribe to any addresses", new Color(220, 53, 69));
                 } else {
                     try {
                         Address a = provider.getAddress(phoneFinal);
                         JTAPICallerInfo addrListener = new JTAPICallerInfo(urlTemplateFinal, triggerFinal, a.getName());
                         a.addCallObserver(addrListener);
+                        subscribed = true;
                         updateStatus("Connected: Subscribed to " + a.getName(), new Color(40, 167, 69));
                     } catch (Exception ex) {
                         updateStatus("Disconnected: Failed to subscribe to '" + phoneFinal + "' - " + ex.getMessage(), new Color(220, 53, 69));
@@ -399,7 +440,9 @@ public class JTAPIGui {
                                     if (av.getName().contains(phoneFinal)) {
                                         JTAPICallerInfo fuzzyListener = new JTAPICallerInfo(urlTemplateFinal, triggerFinal, av.getName());
                                         av.addCallObserver(fuzzyListener);
+                                        subscribed = true;
                                         updateStatus("Connected: Subscribed fuzzy to " + av.getName(), new Color(40, 167, 69));
+                                        break;
                                     }
                                 } catch (Exception e) {
                                     updateStatus("Connected: Fuzzy subscribe failed for " + av.getName() + " - " + e.getMessage(), new Color(40, 167, 69));
@@ -409,6 +452,34 @@ public class JTAPIGui {
                             updateStatus("Disconnected: Failed to list addresses - " + e2.getMessage(), new Color(220, 53, 69));
                         }
                     }
+                }
+
+                // Apply UI state based on whether we actually subscribed
+                if (subscribed) {
+                    SwingUtilities.invokeLater(() -> {
+                        userField.setEnabled(false);
+                        passField.setEnabled(false);
+                        phoneField.setEnabled(false);
+                        cucmHostField.setEnabled(false);
+                        urlField.setEnabled(false);
+                        triggerCombo.setEnabled(false);
+                        rememberMeCheck.setEnabled(false);
+                        startBtn.setEnabled(false);
+                        stopBtn.setEnabled(true);
+                    });
+                } else {
+                    SwingUtilities.invokeLater(() -> {
+                        // Reset UI so user can correct inputs; ensure Stop is disabled
+                        userField.setEnabled(true);
+                        passField.setEnabled(true);
+                        phoneField.setEnabled(true);
+                        cucmHostField.setEnabled(true);
+                        urlField.setEnabled(true);
+                        triggerCombo.setEnabled(true);
+                        rememberMeCheck.setEnabled(true);
+                        startBtn.setEnabled(true);
+                        stopBtn.setEnabled(false);
+                    });
                 }
             } catch (Exception ex) {
                 updateStatus("Disconnected: Failed to start listener - " + ex.getMessage(), new Color(220, 53, 69));
