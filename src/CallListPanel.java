@@ -18,12 +18,18 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
     // Track talk time for each call
     private final Map<Call, Long> callStartTimes = new HashMap<>();
     private final Map<Call, Timer> talkTimers = new HashMap<>();
+    // Track hold time for each call
+    private final Map<Call, Long> holdStartTimes = new HashMap<>();
+    private final Map<Call, Timer> holdTimers = new HashMap<>();
+    // Track total accumulated times (talk + hold)
+    private final Map<Call, Long> totalTalkTime = new HashMap<>();
+    private final Map<Call, Long> totalHoldTime = new HashMap<>();
     // Button references
     private JButton holdResumeBtn;
 
     public CallListPanel() {
         super(new BorderLayout());
-        model = new CallTableModel();
+        model = new CallTableModel(this);
         table = new JTable(model);
 
         // Configure table appearance
@@ -35,11 +41,13 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         table.setGridColor(Color.LIGHT_GRAY);
         table.setShowGrid(true);
 
-        // Set column widths
-        table.getColumnModel().getColumn(0).setPreferredWidth(120); // From
-        table.getColumnModel().getColumn(1).setPreferredWidth(120); // To
-        table.getColumnModel().getColumn(2).setPreferredWidth(80);  // State
-        table.getColumnModel().getColumn(3).setPreferredWidth(60);  // Time
+        // Set column widths - adjust for new time columns
+        table.getColumnModel().getColumn(0).setPreferredWidth(100); // From
+        table.getColumnModel().getColumn(1).setPreferredWidth(100); // To
+        table.getColumnModel().getColumn(2).setPreferredWidth(70);  // State
+        table.getColumnModel().getColumn(3).setPreferredWidth(70);  // Talk Time
+        table.getColumnModel().getColumn(4).setPreferredWidth(70);  // Hold Time
+        table.getColumnModel().getColumn(5).setPreferredWidth(70);  // Total Time
 
         // Create control panel with better layout
         JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
@@ -277,12 +285,15 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         if (ci == null) return;
 
         stopTalkTimer(ci.call);
+        startHoldTimer(ci.call);
         boolean ok = CallRegistry.getInstance().holdCall(ci.call);
         if (ok) {
             CallRegistry.getInstance().addOrUpdate(ci.call, ci.number, "HOLD", ci.address);
             System.out.println("HOLD: Successfully put call on hold");
         } else {
             System.out.println("HOLD: Failed to put call on hold");
+            // If hold failed, restart talk timer
+            startTalkTimer(ci.call);
         }
         updateHoldResumeButtonText();
     }
@@ -305,6 +316,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
                 // First try to resume the call (which will attempt park retrieval)
                 boolean resumeSuccess = CallRegistry.getInstance().resumeCall(ci.call);
                 if (resumeSuccess) {
+                    stopHoldTimer(ci.call);
                     startTalkTimer(ci.call);
                     System.out.println("RESUME UI: Successfully resumed parked call");
                     return;
@@ -350,6 +362,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         // For non-invalid calls, try normal resume
         boolean ok = CallRegistry.getInstance().resumeCall(ci.call);
         if (ok) {
+            stopHoldTimer(ci.call);
             startTalkTimer(ci.call);
             CallRegistry.getInstance().addOrUpdate(ci.call, ci.number, "CONNECTED", ci.address);
             System.out.println("RESUME UI: Successfully resumed call");
@@ -395,15 +408,100 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         if (timer != null) {
             timer.stop();
         }
-        callStartTimes.remove(call);
+        // Accumulate talk time before stopping
+        Long startTime = callStartTimes.remove(call);
+        if (startTime != null) {
+            long talkDuration = System.currentTimeMillis() - startTime;
+            totalTalkTime.put(call, totalTalkTime.getOrDefault(call, 0L) + talkDuration);
+        }
+    }
+
+    private void startHoldTimer(Call call) {
+        if (call == null) return;
+        stopHoldTimer(call); // Stop any existing hold timer
+        holdStartTimes.put(call, System.currentTimeMillis());
+        Timer timer = new Timer(1000, _ -> {
+            model.fireTableDataChanged(); // Refresh display every second
+        });
+        holdTimers.put(call, timer);
+        timer.start();
+    }
+
+    private void stopHoldTimer(Call call) {
+        if (call == null) return;
+        Timer timer = holdTimers.remove(call);
+        if (timer != null) {
+            timer.stop();
+        }
+        // Accumulate hold time before stopping
+        Long startTime = holdStartTimes.remove(call);
+        if (startTime != null) {
+            long holdDuration = System.currentTimeMillis() - startTime;
+            totalHoldTime.put(call, totalHoldTime.getOrDefault(call, 0L) + holdDuration);
+        }
     }
 
     private String formatTalkTime(Call call) {
-        Long startTime = callStartTimes.get(call);
-        if (startTime == null) return "00:00";
+        if (call == null) return "00:00";
 
-        long elapsed = System.currentTimeMillis() - startTime;
-        long seconds = elapsed / 1000;
+        long talkTime = 0;
+
+        // Show current talk time (only when actively talking)
+        Long talkStart = callStartTimes.get(call);
+        if (talkStart != null && !holdTimers.containsKey(call)) {
+            talkTime = System.currentTimeMillis() - talkStart;
+        }
+
+        long seconds = talkTime / 1000;
+        long minutes = seconds / 60;
+        seconds = seconds % 60;
+
+        return String.format("%02d:%02d", minutes, seconds);
+    }
+
+    private String formatHoldTime(Call call) {
+        if (call == null) return "00:00";
+
+        long holdTime = 0;
+
+        // Show current hold time (only when actively on hold)
+        Long holdStart = holdStartTimes.get(call);
+        if (holdStart != null) {
+            holdTime = System.currentTimeMillis() - holdStart;
+        }
+
+        long seconds = holdTime / 1000;
+        long minutes = seconds / 60;
+        seconds = seconds % 60;
+
+        return String.format("%02d:%02d", minutes, seconds);
+    }
+
+    private String formatTotalTime(Call call) {
+        if (call == null) return "00:00";
+
+        long totalTime = 0;
+
+        // Add accumulated talk time
+        totalTime += totalTalkTime.getOrDefault(call, 0L);
+
+        // Add accumulated hold time
+        totalTime += totalHoldTime.getOrDefault(call, 0L);
+
+        // Add current active time (talk or hold)
+        if (holdTimers.containsKey(call)) {
+            Long holdStart = holdStartTimes.get(call);
+            if (holdStart != null) {
+                totalTime += System.currentTimeMillis() - holdStart;
+            }
+        } else {
+            Long talkStart = callStartTimes.get(call);
+            if (talkStart != null) {
+                totalTime += System.currentTimeMillis() - talkStart;
+            }
+        }
+
+        long seconds = totalTime / 1000;
         long minutes = seconds / 60;
         seconds = seconds % 60;
 
@@ -442,6 +540,10 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         SwingUtilities.invokeLater(() -> {
             stopBlink(info.call);
             stopTalkTimer(info.call);
+            stopHoldTimer(info.call);
+            // Clean up accumulated times
+            totalTalkTime.remove(info.call);
+            totalHoldTime.remove(info.call);
             model.remove(info);
             updateHoldResumeButtonText();
         });
@@ -479,7 +581,12 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
 
     private static class CallTableModel extends AbstractTableModel {
         private final java.util.List<CallRegistry.CallInfo> rows = new java.util.ArrayList<>();
-        private final String[] cols = new String[]{"From", "To", "State", "Time"};
+        private final String[] cols = new String[]{"From", "To", "State", "Talk", "Hold", "Total"};
+        private final CallListPanel panel;
+
+        public CallTableModel(CallListPanel panel) {
+            this.panel = panel;
+        }
 
         public void addOrUpdate(CallRegistry.CallInfo ci) {
             int idx = indexOf(ci.call);
@@ -529,18 +636,14 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         @Override
         public Object getValueAt(int r, int c) {
             CallRegistry.CallInfo ci = rows.get(r);
-            // Get the panel reference from the table
-            JTable table = (JTable) SwingUtilities.getAncestorOfClass(JTable.class, null);
-            CallListPanel panel = null;
-            if (table != null) {
-                panel = (CallListPanel) SwingUtilities.getAncestorOfClass(CallListPanel.class, table);
-            }
 
             switch(c) {
                 case 0: return ci.number != null ? ci.number : ""; // From (calling number)
                 case 1: return ci.address != null ? ci.address : ""; // To (called number/address)
                 case 2: return ci.state != null ? ci.state : ""; // State
-                case 3: return panel != null ? panel.formatTalkTime(ci.call) : "00:00"; // Talk time
+                case 3: return panel.formatTalkTime(ci.call); // Current talk time
+                case 4: return panel.formatHoldTime(ci.call); // Current hold time
+                case 5: return panel.formatTotalTime(ci.call); // Total call time
                 default: return "";
             }
         }
