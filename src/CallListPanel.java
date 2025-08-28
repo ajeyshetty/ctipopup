@@ -12,7 +12,6 @@ import javax.swing.Timer;
 public class CallListPanel extends JPanel implements CallRegistry.Listener {
     private final JTable table;
     private final CallTableModel model;
-    private static final String DEFAULT_VM_NUMBER = "81027226";
     // blinking state for new calls
     private final Map<Call, Timer> blinkTimers = new HashMap<>();
     private final Map<Call, Boolean> blinkOn = new HashMap<>();
@@ -50,17 +49,14 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         JButton pickBtn = createStyledButton("Pick", new Color(40, 167, 69));
         holdResumeBtn = createStyledButton("Hold/Resume", new Color(255, 193, 7));
         JButton hangupBtn = createStyledButton("Hangup", new Color(220, 53, 69));
-        JButton voicemailBtn = createStyledButton("Voicemail", new Color(108, 117, 125));
 
         pickBtn.addActionListener(_ -> doPick());
         holdResumeBtn.addActionListener(_ -> doHoldResume());
         hangupBtn.addActionListener(_ -> doHangup());
-        voicemailBtn.addActionListener(_ -> doVoicemail(null));
 
         controlPanel.add(pickBtn);
         controlPanel.add(holdResumeBtn);
         controlPanel.add(hangupBtn);
-        controlPanel.add(voicemailBtn);
 
         // Add control panel at top
         add(controlPanel, BorderLayout.NORTH);
@@ -380,22 +376,6 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             }
         }
         updateHoldResumeButtonText();
-    }
-
-    private void doVoicemail(String vmNumber) {
-        CallRegistry.CallInfo ci = selectedInfo();
-        if (ci == null) return;
-
-        String targetRaw = DEFAULT_VM_NUMBER;
-        String target = targetRaw.startsWith("*") ? targetRaw : ("*" + targetRaw);
-        boolean ok = CallRegistry.getInstance().transferCall(ci.call, target);
-        if (ok) {
-            stopTalkTimer(ci.call);
-            CallRegistry.getInstance().remove(ci.call);
-            System.out.println("VOICEMAIL: Successfully transferred to voicemail");
-        } else {
-            System.out.println("VOICEMAIL: Failed to transfer to voicemail");
-        }
     }
 
     private void startTalkTimer(Call call) {

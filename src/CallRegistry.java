@@ -288,7 +288,7 @@ public class CallRegistry {
         return false;
     }
 
-    // Best-effort: transfer call to target number (used for voicemail). Tries common transfer methods.
+    // Best-effort: transfer call to target number. Tries common transfer methods.
     public boolean transferCall(Call call, String target) {
         if (call == null || target == null) return false;
         try {
