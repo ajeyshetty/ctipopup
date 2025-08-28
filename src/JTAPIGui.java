@@ -16,6 +16,7 @@ public class JTAPIGui {
     private JTextField urlField;
     private JComboBox<String> triggerCombo;
     private JCheckBox rememberMeCheck;
+    private JCheckBox enablePopCheck;
     private JButton startBtn;
     private JButton stopBtn;
     private JLabel statusLabel;
@@ -24,6 +25,10 @@ public class JTAPIGui {
     private Provider provider;
     private Thread workerThread;
     private JTAPICallerInfo listener;
+
+    // Control whether screen-pop URL opening is enabled. Default true.
+    private static volatile boolean urlPopEnabled = true;
+    public static boolean isUrlPopEnabled() { return urlPopEnabled; }
 
     private static final String CONFIG_DIR = System.getProperty("user.home") + "/.jtapi_config";
     private static final String CONFIG_FILE = CONFIG_DIR + "/config.properties";
@@ -156,7 +161,22 @@ public class JTAPIGui {
         addFieldToPanel(callPanel, "CUCM Host", cucmHostField);
         addFieldToPanel(callPanel, "URL Template", urlField);
         addFieldToPanel(callPanel, "Trigger Event", triggerCombo);
+        enablePopCheck = new JCheckBox("Enable Screen Pop", true);
+        enablePopCheck.setBackground(Color.WHITE);
+        enablePopCheck.addActionListener(e -> {
+            urlPopEnabled = enablePopCheck.isSelected();
+            System.out.println("Screen pop enabled=" + urlPopEnabled);
+        });
+        addFieldToPanel(callPanel, "Screen Pop", enablePopCheck);
         tabbedPane.addTab("Call Settings", callPanel);
+
+            // Active Calls tab
+            try {
+                CallListPanel callsPanel = new CallListPanel();
+                tabbedPane.addTab("Calls", callsPanel);
+            } catch (Throwable t) {
+                System.out.println("Failed to create Calls panel: " + t.getMessage());
+            }
 
         frame.add(tabbedPane, BorderLayout.CENTER);
 
@@ -604,5 +624,100 @@ public class JTAPIGui {
         c.gridx = 1;
         c.weightx = 1;
         panel.add(field, c);
+    }
+
+    // Method to create an outbound call - used by CallListPanel for resuming invalid held calls
+    public static boolean makeOutboundCall(String phoneNumber) {
+        if (INSTANCE == null || INSTANCE.provider == null) {
+            System.out.println("OUTBOUND: No active provider available");
+            return false;
+        }
+
+        try {
+            // Get the current address from the phone field
+            String phone = INSTANCE.phoneField.getText().trim();
+            if (phone.isEmpty()) {
+                System.out.println("OUTBOUND: No phone number configured");
+                return false;
+            }
+
+            Address address = INSTANCE.provider.getAddress(phone);
+            if (address == null) {
+                System.out.println("OUTBOUND: Could not get address for phone: " + phone);
+                return false;
+            }
+
+            System.out.println("OUTBOUND: Creating call from " + address.getName() + " to " + phoneNumber);
+
+            // Create the call using JTAPI - try different methods
+            Call call = null;
+            try {
+                // Try Address.createCall(String)
+                java.lang.reflect.Method createCallMethod = address.getClass().getMethod("createCall", String.class);
+                call = (Call) createCallMethod.invoke(address, phoneNumber);
+            } catch (Exception e) {
+                System.out.println("OUTBOUND: Address.createCall failed, trying Provider.createCall");
+                try {
+                    // Try Provider.createCall() with different signatures
+                    java.lang.reflect.Method[] methods = INSTANCE.provider.getClass().getMethods();
+                    for (java.lang.reflect.Method m : methods) {
+                        if (m.getName().equals("createCall")) {
+                            if (m.getParameterCount() == 0) {
+                                call = (Call) m.invoke(INSTANCE.provider);
+                                break;
+                            }
+                        }
+                    }
+                } catch (Exception e2) {
+                    System.out.println("OUTBOUND: Provider.createCall also failed: " + e2.getMessage());
+                }
+            }
+
+            if (call != null) {
+                System.out.println("OUTBOUND: Call created successfully: " + call);
+                
+                // Try to initiate the call
+                try {
+                    // Try to connect the call
+                    java.lang.reflect.Method connectMethod = call.getClass().getMethod("connect", javax.telephony.Terminal.class, javax.telephony.Address.class, String.class);
+                    connectMethod.invoke(call, address.getTerminals()[0], address, phoneNumber);
+                    System.out.println("OUTBOUND: Call connected successfully");
+                } catch (Exception e) {
+                    System.out.println("OUTBOUND: Connect method failed, trying alternative approaches");
+                    try {
+                        // Try alternative connection methods
+                        java.lang.reflect.Method[] methods = call.getClass().getMethods();
+                        for (java.lang.reflect.Method m : methods) {
+                            String name = m.getName().toLowerCase();
+                            if (name.contains("connect") && m.getParameterCount() >= 2) {
+                                try {
+                                    if (m.getParameterCount() == 2) {
+                                        m.invoke(call, address.getTerminals()[0], address);
+                                    } else if (m.getParameterCount() == 3) {
+                                        m.invoke(call, address.getTerminals()[0], address, phoneNumber);
+                                    }
+                                    System.out.println("OUTBOUND: Call initiated with " + m.getName());
+                                    break;
+                                } catch (Exception e2) {
+                                    // Try next method
+                                }
+                            }
+                        }
+                    } catch (Exception e2) {
+                        System.out.println("OUTBOUND: All connection attempts failed: " + e2.getMessage());
+                    }
+                }
+                
+                // Add to registry so it appears in the UI
+                CallRegistry.getInstance().addOrUpdate(call, phoneNumber, "CREATED", address.getName());
+                return true;
+            } else {
+                System.out.println("OUTBOUND: Failed to create call");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("OUTBOUND: Exception creating call: " + e.getMessage());
+            return false;
+        }
     }
 }

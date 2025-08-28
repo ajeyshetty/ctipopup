@@ -39,6 +39,10 @@ public class JTAPICallerInfo implements CallObserver {
         this.urlTemplate = urlTemplate;
         this.trigger = trigger == null ? "CONNECTED" : trigger.toUpperCase();
         this.monitoredAddress = monitoredAddress;
+    // Diagnostic info to help debug trigger behavior
+    String info = "JTAPICallerInfo init: trigger=" + this.trigger + " monitoredAddress=" + (this.monitoredAddress == null ? "<none>" : this.monitoredAddress) + " urlTemplate=" + (this.urlTemplate == null ? "<none>" : this.urlTemplate);
+    System.out.println(info);
+    writeLog(info);
     }
 
     public JTAPICallerInfo() {
@@ -134,123 +138,173 @@ public class JTAPICallerInfo implements CallObserver {
     @Override
     public void callChangedEvent(CallEv[] events) {
         for (CallEv ev : events) {
-            // Track ConnCreatedEv to capture the initial calling number
-            if (ev instanceof ConnCreatedEv) {
-                Connection conn = ((ConnCreatedEv) ev).getConnection();
-                try {
-                    Address fromAddr = conn.getAddress();
-                    String callingNumber = fromAddr != null ? fromAddr.getName() : null;
-                    if (callingNumber != null) {
-                        Call call = conn.getCall();
-                        callCaller.put(call, callingNumber);
-                        LOGGER.fine("ConnCreatedEv observed caller=" + callingNumber + " call=" + call);
-                    }
-                } catch (Exception e) {
-                    String err = "Failed to handle ConnCreatedEv: " + e.getMessage();
-                    System.out.println(err);
-                    writeLog(err);
-                }
-            }
-            // Open URL on RINGING or CONNECTED depending on trigger.
-            // If a monitoredAddress is specified, prefer Terminal-connection events (TermConnRingingEv / TermConnActiveEv)
-            // so we act only when the monitored terminal actually rings/answers. Otherwise fall back to Connection events.
-            if ("RINGING".equals(this.trigger)) {
-                if (this.monitoredAddress != null && ev instanceof TermConnRingingEv) {
+            try {
+                // Track ConnCreatedEv to capture the initial calling number
+                if (ev instanceof ConnCreatedEv) {
                     try {
-                        TerminalConnection tc = ((TermConnRingingEv) ev).getTerminalConnection();
-                        Terminal t = tc.getTerminal();
-                        String termName = t != null ? t.getName() : null;
-                        String msg = "TermConnRingingEv terminal=" + termName + " tc=" + tc;
-                        System.out.println(msg);
-                        writeLog(msg);
-                        Connection innerConn = tc.getConnection();
-                        Address innerAddr = innerConn != null ? innerConn.getAddress() : null;
-                        String connName = innerAddr != null ? innerAddr.getName() : null;
-                        boolean addressMatches = false;
-                        try {
-                            addressMatches = (termName != null && this.monitoredAddress != null && termName.equalsIgnoreCase(this.monitoredAddress))
-                                || (connName != null && this.monitoredAddress != null && connName.equalsIgnoreCase(this.monitoredAddress))
-                                || (connName != null && this.monitoredAddress != null && connName.toLowerCase().contains(this.monitoredAddress.toLowerCase()));
-                        } catch (Exception _ignore) { addressMatches = false; }
-                        if (addressMatches) {
-                            Call call = innerConn != null ? innerConn.getCall() : null;
-                            String callingNumber = call != null ? callCaller.get(call) : null;
-                            if (callingNumber == null) {
-                                Address a = innerConn != null ? innerConn.getAddress() : null;
-                                callingNumber = a != null ? a.getName() : null;
-                            }
-                            if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty() && !urlOpened.contains(call)) {
-                                openUrlWithNumber(this.urlTemplate, callingNumber);
-                                urlOpened.add(call);
-                            }
+                        Connection conn = ((ConnCreatedEv) ev).getConnection();
+                        Address fromAddr = conn != null ? conn.getAddress() : null;
+                        String callingNumber = fromAddr != null ? fromAddr.getName() : null;
+                        if (callingNumber != null) {
+                            Call call = conn.getCall();
+                            callCaller.put(call, callingNumber);
+                            LOGGER.fine("ConnCreatedEv observed caller=" + callingNumber + " call=" + call);
+                            try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CREATED", fromAddr != null ? fromAddr.getName() : null); } catch (Throwable _ignore) {}
                         }
                     } catch (Exception e) {
-                        String err = "Failed to handle TermConnRingingEv: " + e.getMessage();
+                        String err = "Failed to handle ConnCreatedEv: " + e.getMessage();
                         System.out.println(err);
                         writeLog(err);
                     }
-                } else if (ev instanceof ConnAlertingEv) {
-                    Connection conn = ((ConnAlertingEv) ev).getConnection();
-                    try {
-                        Call call = conn.getCall();
-                        String callingNumber = callCaller.get(call);
-                        if (callingNumber == null) {
-                            Address fromAddr = conn.getAddress();
-                            callingNumber = fromAddr != null ? fromAddr.getName() : null;
-                        }
-                        String msg = "ConnAlertingEv - callingNumber=" + callingNumber + " conn=" + conn;
-                        System.out.println(msg);
-                        writeLog(msg);
-                        if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty()) {
+                }
+
+                // RINGING trigger: prefer terminal events for a monitored address, otherwise use connection alerting
+                if ("RINGING".equals(this.trigger)) {
+                    if (this.monitoredAddress != null && ev instanceof TermConnRingingEv) {
+                        try {
+                            TerminalConnection tc = ((TermConnRingingEv) ev).getTerminalConnection();
+                            Terminal t = tc != null ? tc.getTerminal() : null;
+                            String termName = t != null ? t.getName() : null;
+                            String msg = "TermConnRingingEv terminal=" + termName + " tc=" + tc;
+                            System.out.println(msg);
+                            writeLog(msg);
+                            Connection innerConn = tc != null ? tc.getConnection() : null;
+                            Address innerAddr = innerConn != null ? innerConn.getAddress() : null;
+                            String connName = innerAddr != null ? innerAddr.getName() : null;
+                            boolean addressMatches = false;
                             try {
-                                if (this.monitoredAddress != null) {
-                                    Address connAddr = conn.getAddress();
-                                    String connName = connAddr != null ? connAddr.getName() : null;
-                                    if (connName == null || !connName.equalsIgnoreCase(this.monitoredAddress)) {
-                                        writeLog("Skipping alerting open: connection address=" + connName + " monitored=" + this.monitoredAddress);
-                                        continue;
+                                addressMatches = (termName != null && this.monitoredAddress != null && termName.equalsIgnoreCase(this.monitoredAddress))
+                                        || (connName != null && this.monitoredAddress != null && connName.equalsIgnoreCase(this.monitoredAddress))
+                                        || (connName != null && this.monitoredAddress != null && connName.toLowerCase().contains(this.monitoredAddress.toLowerCase()));
+                            } catch (Exception _ignore) { addressMatches = false; }
+                            if (addressMatches) {
+                                Call call = innerConn != null ? innerConn.getCall() : null;
+                                String callingNumber = call != null ? callCaller.get(call) : null;
+                                if (callingNumber == null) {
+                                    Address a = innerConn != null ? innerConn.getAddress() : null;
+                                    callingNumber = a != null ? a.getName() : null;
+                                    if (callingNumber != null && call != null) {
+                                        callCaller.put(call, callingNumber);
+                                        try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CREATED", a != null ? a.getName() : null); } catch (Throwable _ignore) {}
+                                        LOGGER.fine("TermConnRingingEv observed caller=" + callingNumber + " call=" + call);
                                     }
                                 }
-                            } catch (Exception _ignore) {}
-                            if (!urlOpened.contains(call)) {
-                                openUrlWithNumber(this.urlTemplate, callingNumber);
-                                urlOpened.add(call);
+                                if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty() && !urlOpened.contains(call)) {
+                                    openUrlWithNumber(this.urlTemplate, callingNumber);
+                                    urlOpened.add(call);
+                                    try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "ALERTING", this.monitoredAddress); } catch (Throwable _ignore) {}
+                                }
                             }
+                        } catch (Exception e) {
+                            String err = "Failed to handle TermConnRingingEv: " + e.getMessage();
+                            System.out.println(err);
+                            writeLog(err);
                         }
-                    } catch (Exception e) {
-                        String err = "Failed to handle ConnAlertingEv: " + e.getMessage();
-                        System.out.println(err);
-                        writeLog(err);
-                    }
-                }
-            }
-
-            if ("CONNECTED".equals(this.trigger)) {
-                if (this.monitoredAddress != null && ev instanceof TermConnActiveEv) {
-                    try {
-                        TerminalConnection tc = ((TermConnActiveEv) ev).getTerminalConnection();
-                        Terminal t = tc.getTerminal();
-                        String termName = t != null ? t.getName() : null;
-                        String msg = "TermConnActiveEv terminal=" + termName + " tc=" + tc;
-                        System.out.println(msg);
-                        writeLog(msg);
-                        Connection innerConn = tc.getConnection();
-                        Address innerAddr = innerConn != null ? innerConn.getAddress() : null;
-                        String connName = innerAddr != null ? innerAddr.getName() : null;
-                        boolean addressMatches = false;
+                    } else if (ev instanceof ConnAlertingEv) {
                         try {
-                            addressMatches = (termName != null && this.monitoredAddress != null && termName.equalsIgnoreCase(this.monitoredAddress))
-                                || (connName != null && this.monitoredAddress != null && connName.equalsIgnoreCase(this.monitoredAddress))
-                                || (connName != null && this.monitoredAddress != null && connName.toLowerCase().contains(this.monitoredAddress.toLowerCase()));
-                        } catch (Exception _ignore) { addressMatches = false; }
-                        if (addressMatches) {
-                            Call call = innerConn != null ? innerConn.getCall() : null;
+                            Connection conn = ((ConnAlertingEv) ev).getConnection();
+                            Call call = conn != null ? conn.getCall() : null;
                             String callingNumber = call != null ? callCaller.get(call) : null;
                             if (callingNumber == null) {
-                                Address a = innerConn != null ? innerConn.getAddress() : null;
-                                callingNumber = a != null ? a.getName() : null;
+                                Address fromAddr = conn != null ? conn.getAddress() : null;
+                                callingNumber = fromAddr != null ? fromAddr.getName() : null;
                             }
+                            String msg = "ConnAlertingEv - callingNumber=" + callingNumber + " conn=" + conn;
+                            System.out.println(msg);
+                            writeLog(msg);
                             if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty()) {
+                                try {
+                                    if (this.monitoredAddress != null) {
+                                        Address connAddr = conn != null ? conn.getAddress() : null;
+                                        String connName = connAddr != null ? connAddr.getName() : null;
+                                        if (connName == null || !connName.equalsIgnoreCase(this.monitoredAddress)) {
+                                                writeLog("Skipping alerting open: connection address=" + connName + " monitored=" + this.monitoredAddress);
+                                                // monitored address doesn't match — skip this event
+                                                continue;
+                                            }
+                                    }
+                                } catch (Exception _ignore) {}
+                                if (!urlOpened.contains(call)) {
+                                    openUrlWithNumber(this.urlTemplate, callingNumber);
+                                    urlOpened.add(call);
+                                    try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "ALERTING", conn != null && conn.getAddress() != null ? conn.getAddress().getName() : null); } catch (Throwable _ignore) {}
+                                } else {
+                                    System.out.println("URL already opened for call: " + call);
+                                }
+                            }
+                        } catch (Exception e) {
+                            String err = "Failed to handle ConnAlertingEv: " + e.getMessage();
+                            System.out.println(err);
+                            writeLog(err);
+                        }
+                    }
+                }
+
+                // CONNECTED trigger: prefer terminal active events for monitored address, otherwise connection connected
+                if ("CONNECTED".equals(this.trigger)) {
+                    if (this.monitoredAddress != null && ev instanceof TermConnActiveEv) {
+                        try {
+                            TerminalConnection tc = ((TermConnActiveEv) ev).getTerminalConnection();
+                            Terminal t = tc != null ? tc.getTerminal() : null;
+                            String termName = t != null ? t.getName() : null;
+                            String msg = "TermConnActiveEv terminal=" + termName + " tc=" + tc;
+                            System.out.println(msg);
+                            writeLog(msg);
+                            Connection innerConn = tc != null ? tc.getConnection() : null;
+                            Address innerAddr = innerConn != null ? innerConn.getAddress() : null;
+                            String connName = innerAddr != null ? innerAddr.getName() : null;
+                            boolean addressMatches = false;
+                            try {
+                                addressMatches = (termName != null && this.monitoredAddress != null && termName.equalsIgnoreCase(this.monitoredAddress))
+                                        || (connName != null && this.monitoredAddress != null && connName.equalsIgnoreCase(this.monitoredAddress))
+                                        || (connName != null && this.monitoredAddress != null && connName.toLowerCase().contains(this.monitoredAddress.toLowerCase()));
+                            } catch (Exception _ignore) { addressMatches = false; }
+                            if (addressMatches) {
+                                Call call = innerConn != null ? innerConn.getCall() : null;
+                                String callingNumber = call != null ? callCaller.get(call) : null;
+                                if (callingNumber == null) {
+                                    Address a = innerConn != null ? innerConn.getAddress() : null;
+                                    callingNumber = a != null ? a.getName() : null;
+                                }
+                                if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty()) {
+                                    if (!urlOpened.contains(call)) {
+                                        openUrlWithNumber(this.urlTemplate, callingNumber);
+                                        urlOpened.add(call);
+                                        try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CONNECTED", this.monitoredAddress); } catch (Throwable _ignore) {}
+                                    } else {
+                                        System.out.println("URL already opened for call: " + call);
+                                    }
+                                }
+                            }
+                        } catch (Exception e) {
+                            String err = "Failed to handle TermConnActiveEv: " + e.getMessage();
+                            System.out.println(err);
+                            writeLog(err);
+                        }
+                    } else if (ev instanceof ConnConnectedEv) {
+                        try {
+                            Connection conn = ((ConnConnectedEv) ev).getConnection();
+                            Call call = conn != null ? conn.getCall() : null;
+                            String callingNumber = call != null ? callCaller.get(call) : null;
+                            if (callingNumber == null) {
+                                Address fromAddr = conn != null ? conn.getAddress() : null;
+                                callingNumber = fromAddr != null ? fromAddr.getName() : null;
+                            }
+                            String msg = "ConnConnectedEv - callingNumber=" + callingNumber + " conn=" + conn;
+                            System.out.println(msg);
+                            writeLog(msg);
+                            if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty()) {
+                                try {
+                                    if (this.monitoredAddress != null) {
+                                        Address connAddr = conn != null ? conn.getAddress() : null;
+                                        String connName = connAddr != null ? connAddr.getName() : null;
+                                        if (connName == null || !connName.equalsIgnoreCase(this.monitoredAddress)) {
+                                                writeLog("Skipping connected open: connection address=" + connName + " monitored=" + this.monitoredAddress);
+                                                // monitored address doesn't match — skip this event
+                                                continue;
+                                            }
+                                    }
+                                } catch (Exception _ignore) {}
                                 if (!urlOpened.contains(call)) {
                                     openUrlWithNumber(this.urlTemplate, callingNumber);
                                     urlOpened.add(call);
@@ -258,66 +312,46 @@ public class JTAPICallerInfo implements CallObserver {
                                     System.out.println("URL already opened for call: " + call);
                                 }
                             }
+                        } catch (Exception e) {
+                            String err = "Failed to handle ConnConnectedEv: " + e.getMessage();
+                            System.out.println(err);
+                            writeLog(err);
                         }
-                    } catch (Exception e) {
-                        String err = "Failed to handle TermConnActiveEv: " + e.getMessage();
-                        System.out.println(err);
-                        writeLog(err);
-                    }
-                } else if (ev instanceof ConnConnectedEv) {
-                    Connection conn = ((ConnConnectedEv) ev).getConnection();
-                    try {
-                        Call call = conn.getCall();
-                        String callingNumber = callCaller.get(call);
-                        if (callingNumber == null) {
-                            // fallback to connection address
-                            Address fromAddr = conn.getAddress();
-                            callingNumber = fromAddr != null ? fromAddr.getName() : null;
-                        }
-                        String msg = "ConnConnectedEv - callingNumber=" + callingNumber + " conn=" + conn;
-                        System.out.println(msg);
-                        writeLog(msg);
-                        // open URL only once per Call
-                        if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty()) {
-                            try {
-                                if (this.monitoredAddress != null) {
-                                    Address connAddr = conn.getAddress();
-                                    String connName = connAddr != null ? connAddr.getName() : null;
-                                    if (connName == null || !connName.equalsIgnoreCase(this.monitoredAddress)) {
-                                        writeLog("Skipping connected open: connection address=" + connName + " monitored=" + this.monitoredAddress);
-                                        continue;
-                                    }
-                                }
-                            } catch (Exception _ignore) {}
-                            if (!urlOpened.contains(call)) {
-                                openUrlWithNumber(this.urlTemplate, callingNumber);
-                                urlOpened.add(call);
-                            } else {
-                                System.out.println("URL already opened for call: " + call);
-                            }
-                        }
-                    } catch (Exception e) {
-                        String err = "Failed to handle ConnConnectedEv: " + e.getMessage();
-                        System.out.println(err);
-                        writeLog(err);
                     }
                 }
-            } else if (ev instanceof CallObservationEndedEv) {
-                try {
-                    Call call = ((CallObservationEndedEv) ev).getCall();
-                    callCaller.remove(call);
-                    urlOpened.remove(call);
-                } catch (Exception ignore) {}
-            } else {
-                // Log other events at DEBUG level
-                String other = "Event: " + ev;
-                System.out.println(other);
-                writeLog(other);
+
+                // Call ended -> cleanup
+                if (ev instanceof CallObservationEndedEv) {
+                    try {
+                        Call call = ((CallObservationEndedEv) ev).getCall();
+                        callCaller.remove(call);
+                        urlOpened.remove(call);
+                        try { CallRegistry.getInstance().remove(call); } catch (Throwable _ignore) {}
+                    } catch (Exception ignore) {}
+                } else {
+                    // Log other events at DEBUG level
+                    String other = "Event: " + ev;
+                    System.out.println(other);
+                    writeLog(other);
+                }
+            } catch (Exception outer) {
+                String err = "Unhandled exception processing event " + ev + ": " + outer.getMessage();
+                System.err.println(err);
+                writeLog(err);
             }
         }
     }
 
     private void openUrlWithNumber(String template, String number) {
+        // Respect global UI setting to enable/disable screen pops
+        try {
+            if (!JTAPIGui.isUrlPopEnabled()) {
+                writeLog("Screen pop disabled by user; not opening URL for " + number);
+                return;
+            }
+        } catch (Throwable _ignore) {
+            // if JTAPIGui not available, fall back to opening
+        }
         try {
             String encoded = URLEncoder.encode(number, StandardCharsets.UTF_8.toString());
             String url = template.replace("{number}", encoded).replace("%s", encoded);

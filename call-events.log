@@ -341,3 +341,1337 @@
 2025-08-22 16:45:34 Event: TermConnDroppedEv CSFaxshetty
 2025-08-22 16:45:34 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
 2025-08-22 16:45:34 Event: CallInvalidEv
+2025-08-26 19:46:50 Event: CallActiveEv
+2025-08-26 19:46:50 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:46:50 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:46:50 Event: ConnCreatedEv 96155702834::2
+2025-08-26 19:46:50 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5549018)->ACTIVE]->ESTABLISHED
+2025-08-26 19:46:50 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 19:46:50 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 19:46:51 Event: ConnConnectedEv 96155702834::2
+2025-08-26 19:46:51 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:46:51 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 19:46:51 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 19:46:56 Event: CiscoCallInfoChangedEv
+2025-08-26 19:46:56 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5549018)->ACTIVE]->ESTABLISHED
+2025-08-26 19:46:56 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:46:56 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5549018)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 19:46:56 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 19:47:11 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 19:47:11 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 19:47:11 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:47:11 Event: CallInvalidEv
+2025-08-26 19:47:28 Event: CallActiveEv
+2025-08-26 19:47:28 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:47:28 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:47:28 Event: ConnCreatedEv 96155702834::2
+2025-08-26 19:47:28 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5549153)->ACTIVE]->ESTABLISHED
+2025-08-26 19:47:28 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 19:47:28 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 19:47:28 Event: ConnConnectedEv 96155702834::2
+2025-08-26 19:47:29 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:47:29 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 19:47:29 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 19:47:39 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 19:47:39 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 19:47:39 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:47:39 Event: CallInvalidEv
+2025-08-26 19:48:00 Event: CallActiveEv
+2025-08-26 19:48:00 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:48:00 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:48:00 Event: ConnCreatedEv 96155702834::2
+2025-08-26 19:48:00 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5549246)->ACTIVE]->ESTABLISHED
+2025-08-26 19:48:00 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 19:48:00 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 19:48:00 Event: ConnConnectedEv 96155702834::2
+2025-08-26 19:48:00 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:48:00 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 19:48:00 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 19:48:04 Event: CiscoCallInfoChangedEv
+2025-08-26 19:48:04 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5549246)->ACTIVE]->ESTABLISHED
+2025-08-26 19:48:04 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:48:04 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5549246)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 19:48:04 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 19:48:11 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 19:48:11 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 19:48:11 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:48:11 Event: CallInvalidEv
+2025-08-26 19:48:23 Event: CallActiveEv
+2025-08-26 19:48:23 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:48:23 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:48:23 Event: ConnCreatedEv 96155702834::2
+2025-08-26 19:48:23 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5549330)->ACTIVE]->ESTABLISHED
+2025-08-26 19:48:23 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 19:48:23 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 19:48:23 Event: ConnConnectedEv 96155702834::2
+2025-08-26 19:48:23 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:48:23 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 19:48:23 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 19:48:27 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 19:48:27 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 19:48:27 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:48:27 Event: CallInvalidEv
+2025-08-26 19:51:54 Event: CallActiveEv
+2025-08-26 19:51:54 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:51:54 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:51:54 Event: ConnCreatedEv 96155702834::2
+2025-08-26 19:51:54 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5550036)->ACTIVE]->ESTABLISHED
+2025-08-26 19:51:54 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 19:51:54 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 19:51:55 Event: ConnConnectedEv 96155702834::2
+2025-08-26 19:51:55 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:51:55 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 19:51:55 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 19:51:59 Event: CiscoCallInfoChangedEv
+2025-08-26 19:51:59 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5550036)->ACTIVE]->ESTABLISHED
+2025-08-26 19:51:59 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:51:59 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5550036)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 19:51:59 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 19:52:08 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 19:52:08 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 19:52:08 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:52:08 Event: CallInvalidEv
+2025-08-26 19:52:44 Event: CallActiveEv
+2025-08-26 19:52:44 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:52:44 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:52:44 Event: ConnCreatedEv 96155702834::2
+2025-08-26 19:52:44 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5550182)->ACTIVE]->ESTABLISHED
+2025-08-26 19:52:44 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 19:52:44 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 19:52:44 Event: ConnConnectedEv 96155702834::2
+2025-08-26 19:52:44 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:52:44 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 19:52:44 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 19:52:49 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 19:52:49 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 19:52:49 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:52:49 Event: CallInvalidEv
+2025-08-26 19:54:17 Event: CallActiveEv
+2025-08-26 19:54:17 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:54:17 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:54:17 Event: ConnCreatedEv 96155702834::2
+2025-08-26 19:54:17 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P2-axshetty) GCID=(2,5550500)->ACTIVE]->ESTABLISHED
+2025-08-26 19:54:17 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 19:54:17 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 19:54:17 Event: ConnConnectedEv 96155702834::2
+2025-08-26 19:54:17 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:54:17 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 19:54:17 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 19:54:28 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 19:54:28 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 19:54:28 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:54:28 Event: CallInvalidEv
+2025-08-26 19:54:52 Event: CallActiveEv
+2025-08-26 19:54:52 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:54:52 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:54:52 Event: ConnCreatedEv 96155702834::2
+2025-08-26 19:54:52 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P3-axshetty) GCID=(2,5550592)->ACTIVE]->ESTABLISHED
+2025-08-26 19:54:52 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 19:54:52 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 19:54:52 Event: ConnConnectedEv 96155702834::2
+2025-08-26 19:54:52 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:54:52 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 19:54:52 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 19:55:03 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 19:55:03 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 19:55:03 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:55:03 Event: CallInvalidEv
+2025-08-26 19:56:39 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 19:56:50 Event: CallActiveEv
+2025-08-26 19:56:50 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:56:50 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:56:50 Event: ConnCreatedEv 96155702834::2
+2025-08-26 19:56:50 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5551013)->ACTIVE]->ESTABLISHED
+2025-08-26 19:56:50 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 19:56:51 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:56:51 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 19:56:51 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 19:56:54 Event: CiscoCallInfoChangedEv
+2025-08-26 19:56:54 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5551013)->ACTIVE]->ESTABLISHED
+2025-08-26 19:56:54 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 19:56:55 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:56:55 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5551013)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 19:56:55 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 19:57:50 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 19:57:50 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 19:57:50 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:57:50 Event: CallInvalidEv
+2025-08-26 19:58:19 Event: CallActiveEv
+2025-08-26 19:58:19 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:58:19 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:58:19 Event: ConnCreatedEv 81023255:Cluster DN Presence Allowed:1
+2025-08-26 19:58:19 ConnConnectedEv - callingNumber=81023255 conn=[81023255:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(14,9757130)->ACTIVE]->ESTABLISHED
+2025-08-26 19:58:19 Skipping connected open: connection address=81023255 monitored=81027226
+2025-08-26 19:58:20 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:58:20 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 19:58:20 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 19:58:26 ConnConnectedEv - callingNumber=81023255 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(14,9757130)->ACTIVE]->ESTABLISHED
+2025-08-26 19:58:26 Opening URL: https://salesassistant.lkqcorp.com/customers/81023255
+2025-08-26 19:58:26 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:58:26 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(14,9757130)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 19:58:26 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 19:58:50 Event: CallActiveEv
+2025-08-26 19:58:50 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:58:50 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:58:50 Event: ConnCreatedEv 96155702834::2
+2025-08-26 19:58:50 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5551461)->ACTIVE]->ESTABLISHED
+2025-08-26 19:58:50 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 19:58:51 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:58:51 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 19:58:51 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 19:58:58 Event: CiscoCallInfoChangedEv
+2025-08-26 19:58:58 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5551461)->ACTIVE]->ESTABLISHED
+2025-08-26 19:58:58 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 19:58:58 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:58:58 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5551461)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 19:58:58 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 19:59:23 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 19:59:23 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 19:59:23 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:59:23 Event: CallInvalidEv
+2025-08-26 19:59:36 Event: ConnDisconnectedEv 81023255:Cluster DN Presence Allowed:1
+2025-08-26 19:59:36 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 19:59:36 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 19:59:36 Event: CallInvalidEv
+2025-08-26 20:03:59 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:04:06 Event: CallActiveEv
+2025-08-26 20:04:06 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:04:06 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:04:06 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:04:06 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5552535)->ACTIVE]->ESTABLISHED
+2025-08-26 20:04:06 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:04:06 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:04:06 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:04:06 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:04:17 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:04:17 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:04:17 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:04:17 Event: CallInvalidEv
+2025-08-26 20:04:35 Event: CallActiveEv
+2025-08-26 20:04:35 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:04:35 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:04:35 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:04:35 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5552627)->ACTIVE]->ESTABLISHED
+2025-08-26 20:04:35 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:04:36 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:04:36 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:04:36 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:04:46 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:04:46 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:04:46 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:04:46 Event: CallInvalidEv
+2025-08-26 20:08:11 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:08:20 Event: CallActiveEv
+2025-08-26 20:08:20 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:08:20 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:08:20 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:08:20 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5553469)->ACTIVE]->ESTABLISHED
+2025-08-26 20:08:20 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:08:20 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:08:20 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:08:20 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:08:23 Event: CiscoCallInfoChangedEv
+2025-08-26 20:08:23 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5553469)->ACTIVE]->ESTABLISHED
+2025-08-26 20:08:23 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:08:24 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:08:24 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5553469)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:08:24 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:09:40 Event: CallActiveEv
+2025-08-26 20:09:40 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:09:40 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:09:40 Event: ConnCreatedEv 81026123:Cluster DN Presence Allowed:1
+2025-08-26 20:09:40 ConnConnectedEv - callingNumber=81026123 conn=[81026123:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(14,9757337)->ACTIVE]->ESTABLISHED
+2025-08-26 20:09:40 Skipping connected open: connection address=81026123 monitored=81027226
+2025-08-26 20:09:40 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:09:40 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:09:40 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:09:46 ConnConnectedEv - callingNumber=81026123 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(14,9757337)->ACTIVE]->ESTABLISHED
+2025-08-26 20:09:46 Opening URL: https://salesassistant.lkqcorp.com/customers/81026123
+2025-08-26 20:09:46 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:09:46 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(14,9757337)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:09:46 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:10:06 Event: CallActiveEv
+2025-08-26 20:10:06 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:10:06 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(14,9757344)->ACTIVE]->INITIATED
+2025-08-26 20:10:06 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-26 20:10:06 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:10:06 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:10:06 Event: TermConnPassiveEv CSFaxshetty
+2025-08-26 20:10:09 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:10:09 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:10:09 Event: CallInvalidEv
+2025-08-26 20:10:15 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:10:15 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:10:15 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:10:15 Event: CallInvalidEv
+2025-08-26 20:10:19 Event: ConnDisconnectedEv 81026123:Cluster DN Presence Allowed:1
+2025-08-26 20:10:19 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:10:19 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:10:19 Event: CallInvalidEv
+2025-08-26 20:14:01 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:14:04 Event: CallActiveEv
+2025-08-26 20:14:04 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:14:04 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:14:04 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:14:04 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5554693)->ACTIVE]->ESTABLISHED
+2025-08-26 20:14:04 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:14:04 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:14:04 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:14:04 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:14:10 Event: CiscoCallInfoChangedEv
+2025-08-26 20:14:10 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5554693)->ACTIVE]->ESTABLISHED
+2025-08-26 20:14:10 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:14:11 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:14:11 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5554693)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:14:11 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:14:29 Event: CallActiveEv
+2025-08-26 20:14:29 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:14:29 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:14:29 Event: ConnCreatedEv 81026123:Cluster DN Presence Allowed:1
+2025-08-26 20:14:29 ConnConnectedEv - callingNumber=81026123 conn=[81026123:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(14,9757428)->ACTIVE]->ESTABLISHED
+2025-08-26 20:14:29 Skipping connected open: connection address=81026123 monitored=81027226
+2025-08-26 20:14:29 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:14:29 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:14:29 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:14:34 ConnConnectedEv - callingNumber=81026123 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(14,9757428)->ACTIVE]->ESTABLISHED
+2025-08-26 20:14:34 Opening URL: https://salesassistant.lkqcorp.com/customers/81026123
+2025-08-26 20:14:34 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:14:34 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(14,9757428)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:14:34 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:14:49 Event: ConnDisconnectedEv 81026123:Cluster DN Presence Allowed:1
+2025-08-26 20:14:49 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:14:49 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:14:49 Event: CallInvalidEv
+2025-08-26 20:14:53 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:14:53 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:14:53 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:14:53 Event: CallInvalidEv
+2025-08-26 20:16:24 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:16:37 Event: CallActiveEv
+2025-08-26 20:16:37 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:16:37 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:16:37 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:16:37 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5555211)->ACTIVE]->ESTABLISHED
+2025-08-26 20:16:37 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:16:38 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:16:38 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:16:38 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:16:48 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:16:48 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:16:48 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:16:48 Event: CallInvalidEv
+2025-08-26 20:18:32 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:18:43 Event: CallActiveEv
+2025-08-26 20:18:43 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:18:43 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:18:43 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:18:43 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5555661)->ACTIVE]->ESTABLISHED
+2025-08-26 20:18:43 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:18:44 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:18:44 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:18:44 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:18:47 Event: CiscoCallInfoChangedEv
+2025-08-26 20:18:47 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5555661)->ACTIVE]->ESTABLISHED
+2025-08-26 20:18:47 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:18:48 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:18:48 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5555661)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:18:48 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:18:52 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:18:52 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:18:52 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:18:52 Event: CallInvalidEv
+2025-08-26 20:19:04 Event: CallActiveEv
+2025-08-26 20:19:04 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:19:04 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9587436)->ACTIVE]->INITIATED
+2025-08-26 20:19:04 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-26 20:19:04 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:19:04 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:19:04 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9587436)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:19:04 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:19:05 Event: CiscoCallChangedEv
+2025-08-26 20:19:05 Event: CallActiveEv
+2025-08-26 20:19:05 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:19:05 Event: ConnCreatedEv 1900::4
+2025-08-26 20:19:05 ConnConnectedEv - callingNumber=1900 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5555661)->ACTIVE]->ESTABLISHED
+2025-08-26 20:19:05 Opening URL: https://salesassistant.lkqcorp.com/customers/1900
+2025-08-26 20:19:05 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:19:05 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:19:05 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5555661)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:19:05 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:19:05 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:19:05 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:19:05 Event: CallInvalidEv
+2025-08-26 20:19:05 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:19:05 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5555661)->ACTIVE]->ESTABLISHED
+2025-08-26 20:19:05 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:19:05 Event: ConnDisconnectedEv 1900::4
+2025-08-26 20:19:05 Event: CiscoCallInfoChangedEv
+2025-08-26 20:19:05 Event: CiscoCallInfoChangedEv
+2025-08-26 20:19:06 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:19:06 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:19:06 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:19:07 Event: CallInvalidEv
+2025-08-26 20:20:38 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:20:40 Event: CallActiveEv
+2025-08-26 20:20:40 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:20:40 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:20:40 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:20:40 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5556108)->ACTIVE]->ESTABLISHED
+2025-08-26 20:20:40 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:20:41 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:20:41 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:20:41 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:20:44 Event: CiscoCallInfoChangedEv
+2025-08-26 20:20:44 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5556108)->ACTIVE]->ESTABLISHED
+2025-08-26 20:20:44 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:20:45 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:20:45 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5556108)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:20:45 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:20:50 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:20:50 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:20:50 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:20:50 Event: CallInvalidEv
+2025-08-26 20:20:56 Event: CallActiveEv
+2025-08-26 20:20:56 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:20:56 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9587479)->ACTIVE]->ESTABLISHED
+2025-08-26 20:20:56 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-26 20:20:56 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:20:56 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:20:56 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9587479)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:20:56 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:20:56 Event: CiscoCallChangedEv
+2025-08-26 20:20:56 Event: CallActiveEv
+2025-08-26 20:20:56 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:20:56 Event: ConnCreatedEv 1900::4
+2025-08-26 20:20:56 ConnConnectedEv - callingNumber=1900 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5556108)->ACTIVE]->ESTABLISHED
+2025-08-26 20:20:56 Opening URL: https://salesassistant.lkqcorp.com/customers/1900
+2025-08-26 20:20:56 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:20:56 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:20:56 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5556108)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:20:56 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:20:56 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:20:56 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:20:56 Event: CallInvalidEv
+2025-08-26 20:20:56 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:20:56 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5556108)->ACTIVE]->ESTABLISHED
+2025-08-26 20:20:56 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:20:56 Event: ConnDisconnectedEv 1900::4
+2025-08-26 20:20:56 Event: CiscoCallInfoChangedEv
+2025-08-26 20:20:56 Event: CiscoCallInfoChangedEv
+2025-08-26 20:20:59 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:20:59 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:20:59 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:20:59 Event: CallInvalidEv
+2025-08-26 20:21:30 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:21:38 Event: CallActiveEv
+2025-08-26 20:21:38 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:21:38 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:21:38 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:21:38 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5556322)->ACTIVE]->ESTABLISHED
+2025-08-26 20:21:38 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:21:39 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:21:39 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:21:39 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:21:41 Event: CiscoCallInfoChangedEv
+2025-08-26 20:21:41 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5556322)->ACTIVE]->ESTABLISHED
+2025-08-26 20:21:41 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:21:42 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:21:42 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5556322)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:21:42 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:21:48 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:21:48 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:21:48 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:21:48 Event: CallInvalidEv
+2025-08-26 20:22:09 Event: CallActiveEv
+2025-08-26 20:22:09 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:22:09 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9587507)->ACTIVE]->INITIATED
+2025-08-26 20:22:09 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-26 20:22:09 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:22:09 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:22:09 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9587507)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:22:09 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:22:09 Event: CiscoCallChangedEv
+2025-08-26 20:22:09 Event: CallActiveEv
+2025-08-26 20:22:09 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:22:09 Event: ConnCreatedEv 1900::4
+2025-08-26 20:22:09 ConnConnectedEv - callingNumber=1900 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5556322)->ACTIVE]->ESTABLISHED
+2025-08-26 20:22:09 Opening URL: https://salesassistant.lkqcorp.com/customers/1900
+2025-08-26 20:22:09 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:22:09 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:22:09 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5556322)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:22:09 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:22:09 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:22:09 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:22:09 Event: CallInvalidEv
+2025-08-26 20:22:09 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:22:09 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5556322)->ACTIVE]->ESTABLISHED
+2025-08-26 20:22:09 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:22:09 Event: ConnDisconnectedEv 1900::4
+2025-08-26 20:22:09 Event: CiscoCallInfoChangedEv
+2025-08-26 20:22:09 Event: CiscoCallInfoChangedEv
+2025-08-26 20:22:10 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:22:10 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:22:10 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:22:10 Event: CallInvalidEv
+2025-08-26 20:24:47 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:25:04 Event: CallActiveEv
+2025-08-26 20:25:04 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:25:04 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:25:04 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:25:04 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5557094)->ACTIVE]->ESTABLISHED
+2025-08-26 20:25:04 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:25:04 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:25:04 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:25:04 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:25:07 Event: CiscoCallInfoChangedEv
+2025-08-26 20:25:07 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5557094)->ACTIVE]->ESTABLISHED
+2025-08-26 20:25:07 Screen pop disabled by user; not opening URL for 96155702834
+2025-08-26 20:25:07 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:25:07 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5557094)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:25:07 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:25:12 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:25:12 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:25:12 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:25:12 Event: CallInvalidEv
+2025-08-26 20:25:37 Event: CallActiveEv
+2025-08-26 20:25:37 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:25:37 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9587588)->ACTIVE]->ESTABLISHED
+2025-08-26 20:25:37 Screen pop disabled by user; not opening URL for 81027226
+2025-08-26 20:25:37 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:25:37 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:25:37 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9587588)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:25:37 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:25:38 Event: CiscoCallChangedEv
+2025-08-26 20:25:38 Event: CallActiveEv
+2025-08-26 20:25:38 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:25:38 Event: ConnCreatedEv 1900::4
+2025-08-26 20:25:38 ConnConnectedEv - callingNumber=1900 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5557094)->ACTIVE]->ESTABLISHED
+2025-08-26 20:25:38 Screen pop disabled by user; not opening URL for 1900
+2025-08-26 20:25:38 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:25:38 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:25:38 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5557094)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:25:38 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:25:38 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:25:38 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:25:38 Event: CallInvalidEv
+2025-08-26 20:25:38 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:25:38 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5557094)->ACTIVE]->ESTABLISHED
+2025-08-26 20:25:38 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:25:38 Event: ConnDisconnectedEv 1900::4
+2025-08-26 20:25:38 Event: CiscoCallInfoChangedEv
+2025-08-26 20:25:38 Event: CiscoCallInfoChangedEv
+2025-08-26 20:25:47 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:25:47 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:25:47 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:25:47 Event: CallInvalidEv
+2025-08-26 20:27:57 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:28:03 Event: CallActiveEv
+2025-08-26 20:28:03 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:28:03 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:28:03 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:28:03 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5557688)->ACTIVE]->ESTABLISHED
+2025-08-26 20:28:03 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:28:04 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:28:04 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:28:04 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:28:06 Event: CiscoCallInfoChangedEv
+2025-08-26 20:28:06 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5557688)->ACTIVE]->ESTABLISHED
+2025-08-26 20:28:06 Screen pop disabled by user; not opening URL for 96155702834
+2025-08-26 20:28:06 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:28:06 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5557688)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:28:06 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:28:12 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:28:12 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:28:12 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:28:12 Event: CallInvalidEv
+2025-08-26 20:28:23 Event: CallActiveEv
+2025-08-26 20:28:23 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:28:23 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9587647)->ACTIVE]->ESTABLISHED
+2025-08-26 20:28:23 Screen pop disabled by user; not opening URL for 81027226
+2025-08-26 20:28:23 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:28:23 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:28:23 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9587647)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:28:23 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:28:23 Event: CiscoCallChangedEv
+2025-08-26 20:28:23 Event: CallActiveEv
+2025-08-26 20:28:23 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:28:23 Event: ConnCreatedEv 1900::4
+2025-08-26 20:28:23 ConnConnectedEv - callingNumber=1900 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5557688)->ACTIVE]->ESTABLISHED
+2025-08-26 20:28:23 Screen pop disabled by user; not opening URL for 1900
+2025-08-26 20:28:23 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:28:23 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:28:23 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5557688)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:28:23 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:28:23 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:28:23 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:28:23 Event: CallInvalidEv
+2025-08-26 20:28:23 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:28:23 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5557688)->ACTIVE]->ESTABLISHED
+2025-08-26 20:28:23 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:28:23 Event: ConnDisconnectedEv 1900::4
+2025-08-26 20:28:23 Event: CiscoCallInfoChangedEv
+2025-08-26 20:28:23 Event: CiscoCallInfoChangedEv
+2025-08-26 20:28:25 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:28:25 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:28:25 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:28:25 Event: CallInvalidEv
+2025-08-26 20:31:22 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:31:26 Event: CallActiveEv
+2025-08-26 20:31:26 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:31:26 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:31:26 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:31:26 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5558421)->ACTIVE]->ESTABLISHED
+2025-08-26 20:31:27 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:31:27 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:31:27 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:31:27 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:31:29 Event: CiscoCallInfoChangedEv
+2025-08-26 20:31:29 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5558421)->ACTIVE]->ESTABLISHED
+2025-08-26 20:31:29 Screen pop disabled by user; not opening URL for 96155702834
+2025-08-26 20:31:29 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:31:29 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5558421)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:31:29 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:31:34 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:31:34 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:31:34 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:31:34 Event: CallInvalidEv
+2025-08-26 20:37:34 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:37:44 Event: CallActiveEv
+2025-08-26 20:37:44 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:37:44 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:37:44 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:37:44 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5559873)->ACTIVE]->ESTABLISHED
+2025-08-26 20:37:44 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:37:45 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:37:45 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:37:45 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:37:46 Event: CiscoCallInfoChangedEv
+2025-08-26 20:37:46 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5559873)->ACTIVE]->ESTABLISHED
+2025-08-26 20:37:46 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:37:47 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:37:47 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5559873)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:37:47 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:37:52 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:37:52 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:37:52 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:37:52 Event: CallInvalidEv
+2025-08-26 20:40:03 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:40:04 Event: CallActiveEv
+2025-08-26 20:40:04 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:40:04 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:40:04 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:40:04 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5560433)->ACTIVE]->ESTABLISHED
+2025-08-26 20:40:04 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:40:05 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:40:05 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:40:05 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:40:08 Event: CiscoCallInfoChangedEv
+2025-08-26 20:40:08 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5560433)->ACTIVE]->ESTABLISHED
+2025-08-26 20:40:08 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:40:09 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:40:09 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5560433)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:40:09 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:40:13 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:40:13 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:40:13 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:40:13 Event: CallInvalidEv
+2025-08-26 20:42:57 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:43:01 Event: CallActiveEv
+2025-08-26 20:43:01 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:43:01 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:43:01 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:43:01 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5561093)->ACTIVE]->ESTABLISHED
+2025-08-26 20:43:01 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:43:01 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:43:01 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:43:01 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:43:04 Event: CiscoCallInfoChangedEv
+2025-08-26 20:43:04 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5561093)->ACTIVE]->ESTABLISHED
+2025-08-26 20:43:04 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:43:05 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:43:05 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5561093)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:43:05 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:43:09 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:43:09 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:43:09 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:43:09 Event: CallInvalidEv
+2025-08-26 20:45:49 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:45:53 Event: CallActiveEv
+2025-08-26 20:45:53 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:45:53 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:45:53 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:45:53 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5561793)->ACTIVE]->ESTABLISHED
+2025-08-26 20:45:53 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:45:54 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:45:54 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:45:54 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:46:04 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:46:04 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:46:04 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:46:04 Event: CallInvalidEv
+2025-08-26 20:46:55 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:47:08 Event: CallActiveEv
+2025-08-26 20:47:08 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:47:08 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:47:08 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:47:08 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5562109)->ACTIVE]->ESTABLISHED
+2025-08-26 20:47:08 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:47:09 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:47:09 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:47:09 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:47:12 Event: CiscoCallInfoChangedEv
+2025-08-26 20:47:12 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5562109)->ACTIVE]->ESTABLISHED
+2025-08-26 20:47:12 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:47:13 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:47:13 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5562109)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:47:13 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:47:39 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:47:39 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:47:39 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:47:39 Event: CallInvalidEv
+2025-08-26 20:48:05 Event: CallActiveEv
+2025-08-26 20:48:05 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:48:05 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:48:05 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:48:05 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5562343)->ACTIVE]->ESTABLISHED
+2025-08-26 20:48:05 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:48:05 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:48:05 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:48:05 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:48:07 Event: CiscoCallInfoChangedEv
+2025-08-26 20:48:07 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5562343)->ACTIVE]->ESTABLISHED
+2025-08-26 20:48:07 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:48:07 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:48:07 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5562343)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:48:07 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:48:27 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:48:27 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:48:27 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:48:27 Event: CallInvalidEv
+2025-08-26 20:48:53 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:48:53 Event: CallActiveEv
+2025-08-26 20:48:53 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:48:53 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:48:53 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:48:53 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5562547)->ACTIVE]->ESTABLISHED
+2025-08-26 20:48:53 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:48:54 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:48:54 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:48:54 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:48:59 Event: CiscoCallInfoChangedEv
+2025-08-26 20:48:59 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5562547)->ACTIVE]->ESTABLISHED
+2025-08-26 20:48:59 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:49:00 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:49:00 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5562547)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:49:00 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:49:07 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:49:07 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:49:07 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:49:07 Event: CallInvalidEv
+2025-08-26 20:51:00 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:51:12 Event: CallActiveEv
+2025-08-26 20:51:12 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:51:12 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:51:12 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:51:12 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5563096)->ACTIVE]->ESTABLISHED
+2025-08-26 20:51:12 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:51:13 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:51:13 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:51:13 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:51:16 Event: CiscoCallInfoChangedEv
+2025-08-26 20:51:16 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5563096)->ACTIVE]->ESTABLISHED
+2025-08-26 20:51:16 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:51:17 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:51:17 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5563096)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:51:17 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:51:23 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:51:23 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:51:23 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:51:23 Event: CallInvalidEv
+2025-08-26 20:53:50 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-26 20:53:55 Event: CallActiveEv
+2025-08-26 20:53:55 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:53:55 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:53:55 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:53:55 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5563792)->ACTIVE]->ESTABLISHED
+2025-08-26 20:53:55 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:53:55 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:53:55 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:53:55 Event: TermConnRingingEv CSFaxshetty
+2025-08-26 20:53:58 Event: CiscoCallInfoChangedEv
+2025-08-26 20:53:58 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5563792)->ACTIVE]->ESTABLISHED
+2025-08-26 20:53:58 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-26 20:53:59 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:53:59 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5563792)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:53:59 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:54:05 Event: ConnDisconnectedEv 96155702834::2
+2025-08-26 20:54:05 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:54:05 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:54:05 Event: CallInvalidEv
+2025-08-26 20:54:18 Event: CallActiveEv
+2025-08-26 20:54:18 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:54:18 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9588248)->ACTIVE]->INITIATED
+2025-08-26 20:54:18 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-26 20:54:18 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:54:18 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:54:18 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9588248)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:54:18 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:54:18 Event: CiscoCallChangedEv
+2025-08-26 20:54:18 Event: CallActiveEv
+2025-08-26 20:54:18 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:54:18 Event: ConnCreatedEv 1900::4
+2025-08-26 20:54:18 ConnConnectedEv - callingNumber=1900 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5563792)->ACTIVE]->ESTABLISHED
+2025-08-26 20:54:18 Opening URL: https://salesassistant.lkqcorp.com/customers/1900
+2025-08-26 20:54:18 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:54:18 Event: TermConnCreatedEv CSFaxshetty
+2025-08-26 20:54:18 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5563792)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-26 20:54:18 Event: TermConnActiveEv CSFaxshetty
+2025-08-26 20:54:18 Event: TermConnDroppedEv CSFaxshetty
+2025-08-26 20:54:18 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-26 20:54:18 Event: CallInvalidEv
+2025-08-26 20:54:18 Event: ConnCreatedEv 96155702834::2
+2025-08-26 20:54:18 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5563792)->ACTIVE]->ESTABLISHED
+2025-08-26 20:54:18 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-26 20:54:18 Event: ConnDisconnectedEv 1900::4
+2025-08-26 20:54:18 Event: CiscoCallInfoChangedEv
+2025-08-26 20:54:18 Event: CiscoCallInfoChangedEv
+2025-08-28 13:31:00 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 13:38:49 Event: CallActiveEv
+2025-08-28 13:38:49 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:38:49 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:38:49 Event: ConnCreatedEv 96155702834::2
+2025-08-28 13:38:49 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774302)->ACTIVE]->ESTABLISHED
+2025-08-28 13:38:49 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 13:38:50 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:38:50 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 13:38:50 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 13:38:52 Event: CiscoCallInfoChangedEv
+2025-08-28 13:38:52 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774302)->ACTIVE]->ESTABLISHED
+2025-08-28 13:38:52 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 13:38:53 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:38:53 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774302)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 13:38:53 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 13:39:00 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 13:39:00 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 13:39:00 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:39:00 Event: CallInvalidEv
+2025-08-28 13:39:22 Event: CallActiveEv
+2025-08-28 13:39:22 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:39:22 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9606928)->ACTIVE]->INITIATED
+2025-08-28 13:39:22 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-28 13:39:22 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:39:22 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 13:39:22 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9606928)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 13:39:22 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 13:39:22 Event: CiscoCallChangedEv
+2025-08-28 13:39:22 Event: CallActiveEv
+2025-08-28 13:39:22 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:39:22 Event: ConnCreatedEv 1900::4
+2025-08-28 13:39:22 ConnConnectedEv - callingNumber=1900 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774302)->ACTIVE]->ESTABLISHED
+2025-08-28 13:39:22 Opening URL: https://salesassistant.lkqcorp.com/customers/1900
+2025-08-28 13:39:22 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:39:22 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 13:39:22 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774302)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 13:39:22 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 13:39:22 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 13:39:22 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:39:22 Event: CallInvalidEv
+2025-08-28 13:39:22 Event: ConnCreatedEv 96155702834::2
+2025-08-28 13:39:22 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774302)->ACTIVE]->ESTABLISHED
+2025-08-28 13:39:22 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 13:39:22 Event: ConnDisconnectedEv 1900::4
+2025-08-28 13:39:22 Event: CiscoCallInfoChangedEv
+2025-08-28 13:39:22 Event: CiscoCallInfoChangedEv
+2025-08-28 13:39:27 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 13:39:27 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 13:39:27 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:39:27 Event: CallInvalidEv
+2025-08-28 13:42:04 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 13:42:12 Event: CallActiveEv
+2025-08-28 13:42:12 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:42:12 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:42:12 Event: ConnCreatedEv 96155702834::2
+2025-08-28 13:42:12 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774303)->ACTIVE]->ESTABLISHED
+2025-08-28 13:42:12 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 13:42:13 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:42:13 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 13:42:13 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 13:42:18 Event: CiscoCallInfoChangedEv
+2025-08-28 13:42:18 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774303)->ACTIVE]->ESTABLISHED
+2025-08-28 13:42:18 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 13:42:19 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:42:19 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774303)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 13:42:19 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 13:42:25 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 13:42:25 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 13:42:25 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:42:25 Event: CallInvalidEv
+2025-08-28 13:45:05 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 13:45:11 Event: CallActiveEv
+2025-08-28 13:45:11 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:45:11 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:45:11 Event: ConnCreatedEv 96155702834::2
+2025-08-28 13:45:11 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774304)->ACTIVE]->ESTABLISHED
+2025-08-28 13:45:11 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 13:45:11 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:45:11 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 13:45:11 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 13:45:14 Event: CiscoCallInfoChangedEv
+2025-08-28 13:45:14 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774304)->ACTIVE]->ESTABLISHED
+2025-08-28 13:45:14 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 13:45:15 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:45:15 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774304)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 13:45:15 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 13:45:20 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 13:45:20 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 13:45:20 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:45:20 Event: CallInvalidEv
+2025-08-28 13:48:39 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 13:48:54 Event: CallActiveEv
+2025-08-28 13:48:54 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:48:54 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:48:54 Event: ConnCreatedEv 96155702834::2
+2025-08-28 13:48:54 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774305)->ACTIVE]->ESTABLISHED
+2025-08-28 13:48:54 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 13:48:54 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:48:54 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 13:48:54 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 13:48:56 Event: CiscoCallInfoChangedEv
+2025-08-28 13:48:56 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774305)->ACTIVE]->ESTABLISHED
+2025-08-28 13:48:56 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 13:48:57 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:48:57 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774305)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 13:48:57 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 13:49:04 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 13:49:04 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 13:49:04 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:49:04 Event: CallInvalidEv
+2025-08-28 13:52:00 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 13:52:12 Event: CallActiveEv
+2025-08-28 13:52:12 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:52:12 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:52:12 Event: ConnCreatedEv 96155702834::2
+2025-08-28 13:52:12 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774306)->ACTIVE]->ESTABLISHED
+2025-08-28 13:52:12 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 13:52:12 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:52:12 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 13:52:12 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 13:52:14 Event: CiscoCallInfoChangedEv
+2025-08-28 13:52:14 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774306)->ACTIVE]->ESTABLISHED
+2025-08-28 13:52:14 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 13:52:15 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:52:15 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774306)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 13:52:15 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 13:52:19 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 13:52:19 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 13:52:19 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:52:19 Event: CallInvalidEv
+2025-08-28 13:54:55 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 13:55:06 Event: CallActiveEv
+2025-08-28 13:55:06 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:55:06 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:55:06 Event: ConnCreatedEv 96155702834::2
+2025-08-28 13:55:06 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774307)->ACTIVE]->ESTABLISHED
+2025-08-28 13:55:06 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 13:55:07 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:55:07 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 13:55:07 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 13:55:10 Event: CiscoCallInfoChangedEv
+2025-08-28 13:55:10 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774307)->ACTIVE]->ESTABLISHED
+2025-08-28 13:55:10 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 13:55:11 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:55:11 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774307)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 13:55:11 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 13:55:17 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 13:55:17 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 13:55:17 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 13:55:17 Event: CallInvalidEv
+2025-08-28 13:58:27 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 14:00:20 Event: CallActiveEv
+2025-08-28 14:00:20 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:00:20 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:00:20 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:00:20 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774308)->ACTIVE]->ESTABLISHED
+2025-08-28 14:00:20 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:00:20 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:00:20 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:00:20 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 14:00:22 Event: CiscoCallInfoChangedEv
+2025-08-28 14:00:22 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774308)->ACTIVE]->ESTABLISHED
+2025-08-28 14:00:22 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 14:00:23 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:00:23 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774308)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:00:23 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:00:28 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:00:28 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:00:28 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:00:28 Event: CallInvalidEv
+2025-08-28 14:02:14 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 14:05:04 Event: CallActiveEv
+2025-08-28 14:05:04 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:05:04 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:05:04 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:05:04 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774310)->ACTIVE]->ESTABLISHED
+2025-08-28 14:05:04 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:05:05 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:05:05 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:05:05 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 14:05:11 Event: CiscoCallInfoChangedEv
+2025-08-28 14:05:11 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774310)->ACTIVE]->ESTABLISHED
+2025-08-28 14:05:11 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 14:05:12 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:05:12 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774310)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:05:12 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:05:20 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:05:20 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:05:20 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:05:20 Event: CallInvalidEv
+2025-08-28 14:12:19 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 14:12:30 Event: CallActiveEv
+2025-08-28 14:12:30 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:12:30 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:12:30 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:12:30 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774311)->ACTIVE]->ESTABLISHED
+2025-08-28 14:12:30 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:12:31 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:12:31 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:12:31 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 14:12:34 Event: CiscoCallInfoChangedEv
+2025-08-28 14:12:34 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774311)->ACTIVE]->ESTABLISHED
+2025-08-28 14:12:34 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 14:12:35 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:12:35 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774311)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:12:35 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:12:40 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:12:40 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:12:40 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:12:40 Event: CallInvalidEv
+2025-08-28 14:14:20 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 14:14:24 Event: CallActiveEv
+2025-08-28 14:14:24 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:14:24 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:14:24 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:14:24 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774312)->ACTIVE]->ESTABLISHED
+2025-08-28 14:14:24 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:14:24 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:14:24 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:14:24 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 14:14:28 Event: CiscoCallInfoChangedEv
+2025-08-28 14:14:28 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774312)->ACTIVE]->ESTABLISHED
+2025-08-28 14:14:28 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 14:14:29 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:14:29 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774312)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:14:29 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:14:33 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:14:33 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:14:33 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:14:33 Event: CallInvalidEv
+2025-08-28 14:14:37 Event: CallActiveEv
+2025-08-28 14:14:37 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:14:37 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(1,604795)->ACTIVE]->INITIATED
+2025-08-28 14:14:37 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-28 14:14:37 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:14:37 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:14:37 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(1,604795)->ACTIVE]->INITIATED]->TALKING
+2025-08-28 14:14:37 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:14:41 Event: ConnCreatedEv 6155702834::2
+2025-08-28 14:14:41 ConnConnectedEv - callingNumber=6155702834 conn=[6155702834::2/(P1-axshetty) GCID=(1,604795)->ACTIVE]->NETWORK_ALERTING
+2025-08-28 14:14:41 Skipping connected open: connection address=6155702834 monitored=81027226
+2025-08-28 14:15:00 Event: ConnDisconnectedEv 6155702834::2
+2025-08-28 14:15:00 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:15:00 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:00 Event: CallInvalidEv
+2025-08-28 14:15:02 Event: CallActiveEv
+2025-08-28 14:15:02 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:02 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9607022)->ACTIVE]->INITIATED
+2025-08-28 14:15:02 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-28 14:15:02 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:02 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:15:02 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9607022)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:15:02 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:15:02 Event: CiscoCallChangedEv
+2025-08-28 14:15:02 Event: CallActiveEv
+2025-08-28 14:15:02 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:02 Event: ConnCreatedEv 1900::4
+2025-08-28 14:15:02 ConnConnectedEv - callingNumber=1900 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774312)->ACTIVE]->ESTABLISHED
+2025-08-28 14:15:02 Opening URL: https://salesassistant.lkqcorp.com/customers/1900
+2025-08-28 14:15:02 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:02 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:15:02 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774312)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:15:02 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:15:02 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:15:02 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:02 Event: CallInvalidEv
+2025-08-28 14:15:02 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:15:02 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774312)->ACTIVE]->ESTABLISHED
+2025-08-28 14:15:02 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:15:02 Event: ConnDisconnectedEv 1900::4
+2025-08-28 14:15:02 Event: CiscoCallInfoChangedEv
+2025-08-28 14:15:02 Event: CiscoCallInfoChangedEv
+2025-08-28 14:15:09 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:15:09 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:15:09 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:09 Event: CallInvalidEv
+2025-08-28 14:15:31 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 14:15:33 Event: CallActiveEv
+2025-08-28 14:15:33 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:33 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:33 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:15:33 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774313)->ACTIVE]->ESTABLISHED
+2025-08-28 14:15:33 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:15:33 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:33 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:15:33 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 14:15:36 Event: CiscoCallInfoChangedEv
+2025-08-28 14:15:36 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774313)->ACTIVE]->ESTABLISHED
+2025-08-28 14:15:36 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 14:15:37 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:37 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774313)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:15:37 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:15:47 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:15:47 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:15:47 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:47 Event: CallInvalidEv
+2025-08-28 14:15:55 Event: CallActiveEv
+2025-08-28 14:15:55 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:55 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(1,604796)->ACTIVE]->INITIATED
+2025-08-28 14:15:55 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-28 14:15:55 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:15:55 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:15:55 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(1,604796)->ACTIVE]->INITIATED]->TALKING
+2025-08-28 14:15:55 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:15:59 Event: ConnCreatedEv 6155702834::2
+2025-08-28 14:15:59 ConnConnectedEv - callingNumber=6155702834 conn=[6155702834::2/(P1-axshetty) GCID=(1,604796)->ACTIVE]->NETWORK_ALERTING
+2025-08-28 14:15:59 Skipping connected open: connection address=6155702834 monitored=81027226
+2025-08-28 14:16:14 Event: ConnDisconnectedEv 6155702834::2
+2025-08-28 14:16:14 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:16:14 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:16:14 Event: CallInvalidEv
+2025-08-28 14:16:15 Event: CallActiveEv
+2025-08-28 14:16:15 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:16:15 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9607033)->ACTIVE]->ESTABLISHED
+2025-08-28 14:16:15 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-28 14:16:15 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:16:15 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:16:15 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9607033)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:16:15 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:16:15 Event: CiscoCallChangedEv
+2025-08-28 14:16:15 Event: CallActiveEv
+2025-08-28 14:16:15 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:16:15 Event: ConnCreatedEv 1900::4
+2025-08-28 14:16:15 ConnConnectedEv - callingNumber=1900 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774313)->ACTIVE]->ESTABLISHED
+2025-08-28 14:16:15 Opening URL: https://salesassistant.lkqcorp.com/customers/1900
+2025-08-28 14:16:15 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:16:15 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:16:15 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774313)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:16:15 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:16:15 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:16:15 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:16:15 Event: CallInvalidEv
+2025-08-28 14:16:15 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:16:15 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774313)->ACTIVE]->ESTABLISHED
+2025-08-28 14:16:15 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:16:15 Event: ConnDisconnectedEv 1900::4
+2025-08-28 14:16:15 Event: CiscoCallInfoChangedEv
+2025-08-28 14:16:15 Event: CiscoCallInfoChangedEv
+2025-08-28 14:16:21 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:16:21 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:16:21 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:16:21 Event: CallInvalidEv
+2025-08-28 14:19:22 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 14:19:25 Event: CallActiveEv
+2025-08-28 14:19:25 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:19:25 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:19:25 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:19:25 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774314)->ACTIVE]->ESTABLISHED
+2025-08-28 14:19:25 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:19:25 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:19:25 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:19:25 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 14:19:27 Event: CiscoCallInfoChangedEv
+2025-08-28 14:19:27 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774314)->ACTIVE]->ESTABLISHED
+2025-08-28 14:19:27 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 14:19:28 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:19:28 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774314)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:19:28 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:19:33 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:19:33 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:19:33 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:19:33 Event: CallInvalidEv
+2025-08-28 14:19:40 Event: CallActiveEv
+2025-08-28 14:19:40 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:19:40 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(1,604797)->ACTIVE]->INITIATED
+2025-08-28 14:19:40 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-28 14:19:40 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:19:40 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:19:40 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(1,604797)->ACTIVE]->INITIATED]->TALKING
+2025-08-28 14:19:40 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:19:44 Event: ConnCreatedEv 6155702834::2
+2025-08-28 14:19:44 ConnConnectedEv - callingNumber=6155702834 conn=[6155702834::2/(P1-axshetty) GCID=(1,604797)->ACTIVE]->NETWORK_ALERTING
+2025-08-28 14:19:44 Skipping connected open: connection address=6155702834 monitored=81027226
+2025-08-28 14:19:46 Event: ConnDisconnectedEv 6155702834::2
+2025-08-28 14:19:46 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:19:46 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:19:47 Event: CallInvalidEv
+2025-08-28 14:27:02 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 14:27:22 Event: CallActiveEv
+2025-08-28 14:27:22 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:27:22 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:27:22 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:27:22 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774319)->ACTIVE]->ESTABLISHED
+2025-08-28 14:27:22 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:27:23 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:27:23 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:27:23 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 14:27:26 Event: CiscoCallInfoChangedEv
+2025-08-28 14:27:26 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774319)->ACTIVE]->ESTABLISHED
+2025-08-28 14:27:26 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 14:27:27 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:27:27 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774319)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:27:27 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:27:33 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:27:33 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:27:33 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:27:33 Event: CallInvalidEv
+2025-08-28 14:27:44 Event: CallActiveEv
+2025-08-28 14:27:44 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:27:44 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9607053)->ACTIVE]->INITIATED
+2025-08-28 14:27:44 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-28 14:27:44 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:27:44 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:27:44 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9607053)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:27:44 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:27:44 Event: CiscoCallChangedEv
+2025-08-28 14:27:44 Event: CallActiveEv
+2025-08-28 14:27:44 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:27:44 Event: ConnCreatedEv 1900::4
+2025-08-28 14:27:44 ConnConnectedEv - callingNumber=1900 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774319)->ACTIVE]->ESTABLISHED
+2025-08-28 14:27:44 Opening URL: https://salesassistant.lkqcorp.com/customers/1900
+2025-08-28 14:27:44 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:27:44 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:27:45 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774319)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:27:45 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:27:45 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:27:45 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:27:45 Event: CallInvalidEv
+2025-08-28 14:27:45 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:27:45 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774319)->ACTIVE]->ESTABLISHED
+2025-08-28 14:27:45 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:27:45 Event: ConnDisconnectedEv 1900::4
+2025-08-28 14:27:45 Event: CiscoCallInfoChangedEv
+2025-08-28 14:27:45 Event: CiscoCallInfoChangedEv
+2025-08-28 14:28:09 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:28:09 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:28:09 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:28:09 Event: CallInvalidEv
+2025-08-28 14:30:45 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 14:30:49 Event: CallActiveEv
+2025-08-28 14:30:49 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:30:49 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:30:49 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:30:49 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774321)->ACTIVE]->ESTABLISHED
+2025-08-28 14:30:49 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:30:49 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:30:49 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:30:49 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 14:30:51 Event: CiscoCallInfoChangedEv
+2025-08-28 14:30:51 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774321)->ACTIVE]->ESTABLISHED
+2025-08-28 14:30:51 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 14:30:52 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:30:52 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774321)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:30:52 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:30:57 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:30:57 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:30:57 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:30:57 Event: CallInvalidEv
+2025-08-28 14:33:41 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 14:33:45 Event: CallActiveEv
+2025-08-28 14:33:45 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:33:45 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:33:45 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:33:45 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774322)->ACTIVE]->ESTABLISHED
+2025-08-28 14:33:45 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:33:46 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:33:46 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:33:46 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 14:33:48 Event: CiscoCallInfoChangedEv
+2025-08-28 14:33:48 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774322)->ACTIVE]->ESTABLISHED
+2025-08-28 14:33:48 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 14:33:49 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:33:49 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774322)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:33:49 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:34:55 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:34:55 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:34:55 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:34:55 Event: CallInvalidEv
+2025-08-28 14:36:56 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 14:36:59 Event: CallActiveEv
+2025-08-28 14:36:59 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:36:59 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:36:59 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:36:59 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774323)->ACTIVE]->ESTABLISHED
+2025-08-28 14:36:59 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:37:00 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:37:00 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:37:00 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 14:37:03 Event: CiscoCallInfoChangedEv
+2025-08-28 14:37:03 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774323)->ACTIVE]->ESTABLISHED
+2025-08-28 14:37:03 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 14:37:04 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:37:04 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774323)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:37:04 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:37:10 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:37:10 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:37:10 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:37:10 Event: CallInvalidEv
+2025-08-28 14:37:21 Event: CallActiveEv
+2025-08-28 14:37:21 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:37:21 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9607083)->ACTIVE]->ESTABLISHED
+2025-08-28 14:37:21 Opening URL: https://salesassistant.lkqcorp.com/customers/81027226
+2025-08-28 14:37:22 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:37:22 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:37:22 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9607083)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:37:22 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:37:22 Event: CiscoCallChangedEv
+2025-08-28 14:37:22 Event: CallActiveEv
+2025-08-28 14:37:22 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:37:22 Event: ConnCreatedEv 1900::4
+2025-08-28 14:37:22 ConnConnectedEv - callingNumber=1900 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774323)->ACTIVE]->ESTABLISHED
+2025-08-28 14:37:22 Opening URL: https://salesassistant.lkqcorp.com/customers/1900
+2025-08-28 14:37:22 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:37:22 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:37:22 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774323)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:37:22 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:37:22 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:37:22 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:37:22 Event: CallInvalidEv
+2025-08-28 14:37:22 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:37:22 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774323)->ACTIVE]->ESTABLISHED
+2025-08-28 14:37:22 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:37:22 Event: ConnDisconnectedEv 1900::4
+2025-08-28 14:37:22 Event: CiscoCallInfoChangedEv
+2025-08-28 14:37:22 Event: CiscoCallInfoChangedEv
+2025-08-28 14:37:46 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:37:46 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:37:46 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:37:46 Event: CallInvalidEv
+2025-08-28 14:38:04 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-08-28 14:38:08 Event: CallActiveEv
+2025-08-28 14:38:08 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:38:08 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:38:08 Event: ConnCreatedEv 96155702834::2
+2025-08-28 14:38:08 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5774325)->ACTIVE]->ESTABLISHED
+2025-08-28 14:38:08 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-08-28 14:38:08 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:38:08 Event: TermConnCreatedEv CSFaxshetty
+2025-08-28 14:38:08 Event: TermConnRingingEv CSFaxshetty
+2025-08-28 14:38:10 Event: CiscoCallInfoChangedEv
+2025-08-28 14:38:10 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774325)->ACTIVE]->ESTABLISHED
+2025-08-28 14:38:10 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-08-28 14:38:11 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:38:11 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5774325)->ACTIVE]->ESTABLISHED]->TALKING
+2025-08-28 14:38:11 Event: TermConnActiveEv CSFaxshetty
+2025-08-28 14:38:15 Event: ConnDisconnectedEv 96155702834::2
+2025-08-28 14:38:15 Event: TermConnDroppedEv CSFaxshetty
+2025-08-28 14:38:15 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-08-28 14:38:15 Event: CallInvalidEv
