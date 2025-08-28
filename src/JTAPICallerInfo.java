@@ -139,6 +139,32 @@ public class JTAPICallerInfo implements CallObserver {
     public void callChangedEvent(CallEv[] events) {
         for (CallEv ev : events) {
             try {
+                // Handle CallCtlTermConnRingingEv - important for knowing when terminal is ready for operations
+                if (ev instanceof CallCtlTermConnRingingEv) {
+                    try {
+                        CallCtlTermConnRingingEv ringingEv = (CallCtlTermConnRingingEv) ev;
+                        TerminalConnection tc = ringingEv.getTerminalConnection();
+                        Terminal t = tc != null ? tc.getTerminal() : null;
+                        String termName = t != null ? t.getName() : null;
+                        String msg = "CallCtlTermConnRingingEv terminal=" + termName + " tc=" + tc;
+                        System.out.println(msg);
+                        writeLog(msg);
+
+                        // Update call registry with ringing state
+                        Connection innerConn = tc != null ? tc.getConnection() : null;
+                        Call call = innerConn != null ? innerConn.getCall() : null;
+                        if (call != null) {
+                            try {
+                                CallRegistry.getInstance().addOrUpdate(call, null, "RINGING", termName);
+                            } catch (Throwable _ignore) {}
+                        }
+                    } catch (Exception e) {
+                        String err = "Failed to handle CallCtlTermConnRingingEv: " + e.getMessage();
+                        System.out.println(err);
+                        writeLog(err);
+                    }
+                }
+
                 // Track ConnCreatedEv to capture the initial calling number
                 if (ev instanceof ConnCreatedEv) {
                     try {

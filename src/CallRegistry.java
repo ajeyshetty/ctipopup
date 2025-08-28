@@ -8,24 +8,8 @@ import java.lang.reflect.Method;
 /**
  * Lightweight registry for active Calls seen by JTAPICallerInfo.
  * GUI components can listen for changes and request control actions.
- */            // Fifth pass: try "park" methods (only as last resort and only if not disabled)
-            if (!DISABLE_PARK_METHODS) {
-                for (Method mm : m) {
-                    String n = mm.getName().toLowerCase();
-                    if (n.contains("park") && !n.startsWith("get") && !n.startsWith("is") && !n.startsWith("can") && mm.getParameterCount() == 0) {
-                        mm.setAccessible(true);
-                        mm.invoke(call);
-                        setState(call, "HOLD");
-                        if (info != null) {
-                            info.wasHeld = true;
-                            System.out.println("HOLD: Set wasHeld=true for call: " + call + " using park method: " + mm.getName());
-                        }
-                        return true;
-                    }
-                }
-            } else {
-                System.out.println("HOLD: Park methods disabled - not using park for hold functionality");
-            } CallRegistry {
+ */
+public class CallRegistry {
     public static class CallInfo {
         public final Call call;
         public volatile String number;
@@ -409,78 +393,78 @@ import java.lang.reflect.Method;
                         }
                         
                         if (paramTypes.length == 1) {
-                            // consult(Terminal) - try with current terminal
+                            // consult(TerminalConnection) - try with current terminal connection
                             Connection[] conns = call.getConnections();
                             if (conns != null && conns.length > 0) {
                                 TerminalConnection[] tcs = conns[0].getTerminalConnections();
                                 if (tcs != null && tcs.length > 0) {
                                     try {
-                                        mm.invoke(call, tcs[0].getTerminal());
+                                        mm.invoke(call, tcs[0]);
                                         setState(call, "HOLD");
                                         if (info != null) {
                                             info.wasHeld = true;
-                                            System.out.println("HOLD: Set wasHeld=true for call: " + call + " using consult(terminal) method: " + mm.getName());
+                                            System.out.println("HOLD: Set wasHeld=true for call: " + call + " using consult(terminalConnection) method: " + mm.getName());
                                         }
                                         return true;
                                     } catch (Exception e) {
-                                        System.out.println("HOLD: consult(terminal) failed: " + e.getMessage());
+                                        System.out.println("HOLD: consult(terminalConnection) failed: " + e.getMessage());
                                     }
                                 }
                             }
                         } else if (paramTypes.length == 2) {
-                            // consult(Terminal, Address) - try with current terminal and address
+                            // consult(TerminalConnection, Address) - try with current terminal connection and address
                             Connection[] conns = call.getConnections();
                             if (conns != null && conns.length > 0) {
                                 TerminalConnection[] tcs = conns[0].getTerminalConnections();
                                 if (tcs != null && tcs.length > 0) {
                                     try {
-                                        mm.invoke(call, tcs[0].getTerminal(), conns[0].getAddress());
+                                        mm.invoke(call, tcs[0], conns[0].getAddress().getName());
                                         setState(call, "HOLD");
                                         if (info != null) {
                                             info.wasHeld = true;
-                                            System.out.println("HOLD: Set wasHeld=true for call: " + call + " using consult(terminal,address) method: " + mm.getName());
+                                            System.out.println("HOLD: Set wasHeld=true for call: " + call + " using consult(terminalConnection,address) method: " + mm.getName());
                                         }
                                         return true;
                                     } catch (Exception e) {
-                                        System.out.println("HOLD: consult(terminal,address) failed: " + e.getMessage());
+                                        System.out.println("HOLD: consult(terminalConnection,address) failed: " + e.getMessage());
                                     }
                                 }
                             }
                         } else if (paramTypes.length == 3) {
-                            // consult(Terminal, Address, String) - try with terminal, address, and empty string
+                            // consult(TerminalConnection, Address, CiscoRTPParams) - try with terminal connection, address, and null RTP params
                             Connection[] conns = call.getConnections();
                             if (conns != null && conns.length > 0) {
                                 TerminalConnection[] tcs = conns[0].getTerminalConnections();
                                 if (tcs != null && tcs.length > 0) {
                                     try {
-                                        mm.invoke(call, tcs[0].getTerminal(), conns[0].getAddress(), "");
+                                        mm.invoke(call, tcs[0], conns[0].getAddress().getName(), null);
                                         setState(call, "HOLD");
                                         if (info != null) {
                                             info.wasHeld = true;
-                                            System.out.println("HOLD: Set wasHeld=true for call: " + call + " using consult(terminal,address,string) method: " + mm.getName());
+                                            System.out.println("HOLD: Set wasHeld=true for call: " + call + " using consult(terminalConnection,address,rtpParams) method: " + mm.getName());
                                         }
                                         return true;
                                     } catch (Exception e) {
-                                        System.out.println("HOLD: consult(terminal,address,string) failed: " + e.getMessage());
+                                        System.out.println("HOLD: consult(terminalConnection,address,rtpParams) failed: " + e.getMessage());
                                     }
                                 }
                             }
                         } else if (paramTypes.length == 4) {
-                            // consult(Terminal, Address, String, boolean) - try with terminal, address, empty string, and false
+                            // consult(TerminalConnection, Address, boolean, CiscoRTPParams) - try with terminal connection, address, false, and null RTP params
                             Connection[] conns = call.getConnections();
                             if (conns != null && conns.length > 0) {
                                 TerminalConnection[] tcs = conns[0].getTerminalConnections();
                                 if (tcs != null && tcs.length > 0) {
                                     try {
-                                        mm.invoke(call, tcs[0].getTerminal(), conns[0].getAddress(), "", false);
+                                        mm.invoke(call, tcs[0], conns[0].getAddress().getName(), false, null);
                                         setState(call, "HOLD");
                                         if (info != null) {
                                             info.wasHeld = true;
-                                            System.out.println("HOLD: Set wasHeld=true for call: " + call + " using consult(terminal,address,string,boolean) method: " + mm.getName());
+                                            System.out.println("HOLD: Set wasHeld=true for call: " + call + " using consult(terminalConnection,address,boolean,rtpParams) method: " + mm.getName());
                                         }
                                         return true;
                                     } catch (Exception e) {
-                                        System.out.println("HOLD: consult(terminal,address,string,boolean) failed: " + e.getMessage());
+                                        System.out.println("HOLD: consult(terminalConnection,address,boolean,rtpParams) failed: " + e.getMessage());
                                     }
                                 }
                             }
@@ -553,19 +537,23 @@ import java.lang.reflect.Method;
                         }
                     }
                     
-                    // Second pass: if no hold method found, try "park" methods
-                    for (Method mm : cm) {
-                        String n = mm.getName().toLowerCase();
-                        if (n.contains("park") && !n.startsWith("get") && !n.startsWith("is") && !n.startsWith("can") && mm.getParameterCount() == 0) {
-                            mm.setAccessible(true);
-                            mm.invoke(c);
-                            setState(call, "HOLD");
-                            if (info != null) {
-                                info.wasHeld = true;
-                                System.out.println("HOLD: Set wasHeld=true for call via connection: " + call + " using park method: " + mm.getName());
+                    // Second pass: if no hold method found, try "park" methods (if not disabled)
+                    if (!DISABLE_PARK_METHODS) {
+                        for (Method mm : cm) {
+                            String n = mm.getName().toLowerCase();
+                            if (n.contains("park") && !n.startsWith("get") && !n.startsWith("is") && !n.startsWith("can") && mm.getParameterCount() == 0) {
+                                mm.setAccessible(true);
+                                mm.invoke(c);
+                                setState(call, "HOLD");
+                                if (info != null) {
+                                    info.wasHeld = true;
+                                    System.out.println("HOLD: Set wasHeld=true for call via connection: " + call + " using park method: " + mm.getName());
+                                }
+                                return true;
                             }
-                            return true;
                         }
+                    } else {
+                        System.out.println("HOLD: Park methods disabled, skipping park methods");
                     }
                     
                     // Third pass: try "consult" methods on connection
@@ -609,6 +597,59 @@ import java.lang.reflect.Method;
                                 System.out.println("HOLD: Set wasHeld=true for call via connection: " + call + " using alternative method: " + mm.getName());
                             }
                             return true;
+                        }
+                    }
+                }
+            }
+            
+            // Try per-TerminalConnection hold methods - this is often the correct way in JTAPI
+            if (conns != null) {
+                for (Connection c : conns) {
+                    TerminalConnection[] tcs = c.getTerminalConnections();
+                    if (tcs != null) {
+                        for (TerminalConnection tc : tcs) {
+                            Method[] tcm = tc.getClass().getMethods();
+                            
+                            // Debug: Log available TerminalConnection methods
+                            System.out.println("HOLD: Available TerminalConnection methods for " + tc.getClass().getName() + " (excluding getters):");
+                            for (Method debugMethod : tcm) {
+                                String methodName = debugMethod.getName().toLowerCase();
+                                if ((methodName.contains("hold") || methodName.contains("setHeld") || methodName.contains("park") ||
+                                     methodName.contains("consult") || methodName.contains("transfer") || methodName.contains("suspend")) &&
+                                    !methodName.startsWith("get") && !methodName.startsWith("is") && !methodName.startsWith("can")) {
+                                    System.out.println("HOLD: Found TerminalConnection action method: " + debugMethod.getName() + " params: " + debugMethod.getParameterCount());
+                                }
+                            }
+                            
+                            // First pass: try setHeld(boolean) method
+                            for (Method mm : tcm) {
+                                String n = mm.getName().toLowerCase();
+                                if (n.equals("setheld") && mm.getParameterCount() == 1 && mm.getParameterTypes()[0] == boolean.class) {
+                                    mm.setAccessible(true);
+                                    mm.invoke(tc, true);
+                                    setState(call, "HOLD");
+                                    if (info != null) {
+                                        info.wasHeld = true;
+                                        System.out.println("HOLD: Set wasHeld=true for call via TerminalConnection: " + call + " using setHeld(true) method: " + mm.getName());
+                                    }
+                                    return true;
+                                }
+                            }
+                            
+                            // Second pass: try hold() method with no parameters
+                            for (Method mm : tcm) {
+                                String n = mm.getName().toLowerCase();
+                                if (n.equals("hold") && !n.startsWith("get") && !n.startsWith("is") && !n.startsWith("can") && mm.getParameterCount() == 0) {
+                                    mm.setAccessible(true);
+                                    mm.invoke(tc);
+                                    setState(call, "HOLD");
+                                    if (info != null) {
+                                        info.wasHeld = true;
+                                        System.out.println("HOLD: Set wasHeld=true for call via TerminalConnection: " + call + " using hold() method: " + mm.getName());
+                                    }
+                                    return true;
+                                }
+                            }
                         }
                     }
                 }
