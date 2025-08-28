@@ -119,9 +119,10 @@ public class JTAPIGui {
         passField = new JPasswordField();
         passField.setBackground(Color.WHITE);
         passField.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(150, 150, 150), 1, true),
-            BorderFactory.createEmptyBorder(5, 5, 5, 5)
+            BorderFactory.createLineBorder(new Color(206, 212, 218), 1, true),
+            BorderFactory.createEmptyBorder(8, 12, 8, 12)
         ));
+        passField.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         phoneField = createTextField("Enter Phone#", "");
         cucmHostField = createTextField("Enter CUCM Host", "ccmaur1vpub.lkqvoice.com");
         urlField = createTextField("Enter URL Template (use {number})", "https://salesassistant.lkqcorp.com/customers/{number}");
@@ -129,9 +130,10 @@ public class JTAPIGui {
         triggerCombo.setSelectedItem("CONNECTED");
         triggerCombo.setBackground(Color.WHITE);
         triggerCombo.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(150, 150, 150), 1, true),
-            BorderFactory.createEmptyBorder(5, 5, 5, 5)
+            BorderFactory.createLineBorder(new Color(206, 212, 218), 1, true),
+            BorderFactory.createEmptyBorder(8, 12, 8, 12)
         ));
+        triggerCombo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         rememberMeCheck = new JCheckBox("Remember Me");
         rememberMeCheck.setBackground(Color.WHITE);
         rememberMeCheck.setFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -143,31 +145,46 @@ public class JTAPIGui {
 
         // Tabbed pane for content
         tabbedPane = new JTabbedPane();
-        tabbedPane.setBackground(new Color(232, 236, 239)); // Soft light gray
-        tabbedPane.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        tabbedPane.setBackground(new Color(245, 248, 250)); // Clean light background
+        tabbedPane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 13));
 
         // Connection tab
         JPanel connPanel = createContentPanel();
-        JPanel connSection = createSectionPanel("Connection Settings");
-        addFieldToPanel(connSection, "Username", userField);
-        addFieldToPanel(connSection, "Password", passField);
-        addFieldToPanel(connSection, "Phone#", phoneField);
-        addFieldToPanel(connSection, "", rememberMeCheck); // Empty label for checkbox
-        connPanel.add(connSection);
+        connPanel.setLayout(new BorderLayout());
+
+        // Header section
+        JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        headerPanel.setBackground(Color.WHITE);
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 15, 20));
+        JLabel headerLabel = new JLabel("Connection Settings");
+        headerLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        headerLabel.setForeground(new Color(33, 37, 41));
+        headerPanel.add(headerLabel);
+        connPanel.add(headerPanel, BorderLayout.NORTH);
+
+        // Form section
+        JPanel formPanel = createFormPanel();
+        connPanel.add(formPanel, BorderLayout.CENTER);
         tabbedPane.addTab("Connection", connPanel);
 
         // Call Settings tab
         JPanel callPanel = createContentPanel();
-        addFieldToPanel(callPanel, "CUCM Host", cucmHostField);
-        addFieldToPanel(callPanel, "URL Template", urlField);
-        addFieldToPanel(callPanel, "Trigger Event", triggerCombo);
-        enablePopCheck = new JCheckBox("Enable Screen Pop", true);
-        enablePopCheck.setBackground(Color.WHITE);
-        enablePopCheck.addActionListener(e -> {
-            urlPopEnabled = enablePopCheck.isSelected();
-            System.out.println("Screen pop enabled=" + urlPopEnabled);
-        });
-        addFieldToPanel(callPanel, "Screen Pop", enablePopCheck);
+        callPanel.setLayout(new BorderLayout());
+
+        // Header section
+        JPanel callHeaderPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        callHeaderPanel.setBackground(Color.WHITE);
+        callHeaderPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 15, 20));
+        JLabel callHeaderLabel = new JLabel("Call Settings");
+        callHeaderLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        callHeaderLabel.setForeground(new Color(33, 37, 41));
+        callHeaderPanel.add(callHeaderLabel);
+        callPanel.add(callHeaderPanel, BorderLayout.NORTH);
+
+        // Form section
+        JPanel callFormPanel = createCallFormPanel();
+        callPanel.add(callFormPanel, BorderLayout.CENTER);
         tabbedPane.addTab("Call Settings", callPanel);
 
             // Active Calls tab
@@ -323,6 +340,106 @@ public class JTAPIGui {
         return panel;
     }
 
+    private JPanel createFormPanel() {
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.WHITE);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(12, 20, 12, 20);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.WEST;
+
+        // Username field
+        gbc.gridx = 0; gbc.gridy = 0; gbc.weightx = 0;
+        JLabel userLabel = new JLabel("Username:");
+        userLabel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        userLabel.setForeground(new Color(73, 80, 87));
+        panel.add(userLabel, gbc);
+
+        gbc.gridx = 1; gbc.weightx = 1;
+        panel.add(userField, gbc);
+
+        // Password field
+        gbc.gridx = 0; gbc.gridy = 1; gbc.weightx = 0;
+        JLabel passLabel = new JLabel("Password:");
+        passLabel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        passLabel.setForeground(new Color(73, 80, 87));
+        panel.add(passLabel, gbc);
+
+        gbc.gridx = 1; gbc.weightx = 1;
+        panel.add(passField, gbc);
+
+        // Phone field
+        gbc.gridx = 0; gbc.gridy = 2; gbc.weightx = 0;
+        JLabel phoneLabel = new JLabel("Phone Number:");
+        phoneLabel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        phoneLabel.setForeground(new Color(73, 80, 87));
+        panel.add(phoneLabel, gbc);
+
+        gbc.gridx = 1; gbc.weightx = 1;
+        panel.add(phoneField, gbc);
+
+        // Remember me checkbox
+        gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2; gbc.weightx = 1;
+        rememberMeCheck.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        rememberMeCheck.setForeground(new Color(73, 80, 87));
+        panel.add(rememberMeCheck, gbc);
+
+        return panel;
+    }
+
+    private JPanel createCallFormPanel() {
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.WHITE);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(12, 20, 12, 20);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.WEST;
+
+        // CUCM Host field
+        gbc.gridx = 0; gbc.gridy = 0; gbc.weightx = 0;
+        JLabel hostLabel = new JLabel("CUCM Host:");
+        hostLabel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        hostLabel.setForeground(new Color(73, 80, 87));
+        panel.add(hostLabel, gbc);
+
+        gbc.gridx = 1; gbc.weightx = 1;
+        panel.add(cucmHostField, gbc);
+
+        // URL Template field
+        gbc.gridx = 0; gbc.gridy = 1; gbc.weightx = 0;
+        JLabel urlLabel = new JLabel("URL Template:");
+        urlLabel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        urlLabel.setForeground(new Color(73, 80, 87));
+        panel.add(urlLabel, gbc);
+
+        gbc.gridx = 1; gbc.weightx = 1;
+        panel.add(urlField, gbc);
+
+        // Trigger Event field
+        gbc.gridx = 0; gbc.gridy = 2; gbc.weightx = 0;
+        JLabel triggerLabel = new JLabel("Trigger Event:");
+        triggerLabel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        triggerLabel.setForeground(new Color(73, 80, 87));
+        panel.add(triggerLabel, gbc);
+
+        gbc.gridx = 1; gbc.weightx = 1;
+        panel.add(triggerCombo, gbc);
+
+        // Enable Screen Pop checkbox
+        gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2; gbc.weightx = 1;
+        enablePopCheck = new JCheckBox("Enable Screen Pop", true);
+        enablePopCheck.setBackground(Color.WHITE);
+        enablePopCheck.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        enablePopCheck.setForeground(new Color(73, 80, 87));
+        enablePopCheck.addActionListener(e -> {
+            urlPopEnabled = enablePopCheck.isSelected();
+            System.out.println("Screen pop enabled=" + urlPopEnabled);
+        });
+        panel.add(enablePopCheck, gbc);
+
+        return panel;
+    }
+
     private JPanel createSectionPanel(String title) {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(Color.WHITE);
@@ -339,23 +456,31 @@ public class JTAPIGui {
     private JTextField createTextField(String placeholder, String defaultText) {
         JTextField field = new JTextField(defaultText);
         field.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(150, 150, 150), 1, true),
-            BorderFactory.createEmptyBorder(5, 5, 5, 5)
+            BorderFactory.createLineBorder(new Color(206, 212, 218), 1, true),
+            BorderFactory.createEmptyBorder(8, 12, 8, 12)
         ));
         field.setBackground(Color.WHITE);
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         field.setToolTipText(placeholder);
         field.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                field.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(0, 123, 255), 2, true),
+                    BorderFactory.createEmptyBorder(7, 11, 7, 11)
+                ));
+            }
             @Override
             public void focusLost(FocusEvent e) {
                 if (field.getText().trim().isEmpty() && (field == userField || field == cucmHostField)) {
                     field.setBorder(BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(new Color(220, 53, 69), 1, true),
-                        BorderFactory.createEmptyBorder(5, 5, 5, 5)
+                        BorderFactory.createLineBorder(new Color(220, 53, 69), 2, true),
+                        BorderFactory.createEmptyBorder(7, 11, 7, 11)
                     ));
                 } else {
                     field.setBorder(BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(new Color(150, 150, 150), 1, true),
-                        BorderFactory.createEmptyBorder(5, 5, 5, 5)
+                        BorderFactory.createLineBorder(new Color(206, 212, 218), 1, true),
+                        BorderFactory.createEmptyBorder(8, 12, 8, 12)
                     ));
                 }
             }
