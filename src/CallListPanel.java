@@ -19,6 +19,8 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
     // Track talk time for each call
     private final Map<Call, Long> callStartTimes = new HashMap<>();
     private final Map<Call, Timer> talkTimers = new HashMap<>();
+    // Button references
+    private JButton holdResumeBtn;
 
     public CallListPanel() {
         super(new BorderLayout());
@@ -46,20 +48,17 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         controlPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         JButton pickBtn = createStyledButton("Pick", new Color(40, 167, 69));
-        JButton holdBtn = createStyledButton("Hold", new Color(255, 193, 7));
-        JButton resumeBtn = createStyledButton("Resume", new Color(0, 123, 255));
+        holdResumeBtn = createStyledButton("Hold/Resume", new Color(255, 193, 7));
         JButton hangupBtn = createStyledButton("Hangup", new Color(220, 53, 69));
         JButton voicemailBtn = createStyledButton("Voicemail", new Color(108, 117, 125));
 
         pickBtn.addActionListener(_ -> doPick());
-        holdBtn.addActionListener(_ -> doHold());
-        resumeBtn.addActionListener(_ -> doResume());
+        holdResumeBtn.addActionListener(_ -> doHoldResume());
         hangupBtn.addActionListener(_ -> doHangup());
         voicemailBtn.addActionListener(_ -> doVoicemail(null));
 
         controlPanel.add(pickBtn);
-        controlPanel.add(holdBtn);
-        controlPanel.add(resumeBtn);
+        controlPanel.add(holdResumeBtn);
         controlPanel.add(hangupBtn);
         controlPanel.add(voicemailBtn);
 
@@ -173,6 +172,9 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
                 startTalkTimer(ci.call);
             }
         }
+
+        // Update button text after loading initial calls
+        updateHoldResumeButtonText();
     }
 
     private JButton createStyledButton(String text, Color color) {
@@ -242,6 +244,38 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         }
     }
 
+    private void doHoldResume() {
+        CallRegistry.CallInfo ci = selectedInfo();
+        if (ci == null) return;
+
+        String state = ci.state != null ? ci.state.toLowerCase() : "";
+        if (state.contains("hold") || state.contains("on hold")) {
+            // Call is on hold, resume it
+            doResume();
+        } else if (state.contains("connected") || state.contains("talking")) {
+            // Call is active, hold it
+            doHold();
+        } else {
+            System.out.println("HOLD/RESUME: Cannot hold/resume call in state: " + ci.state);
+        }
+    }
+
+    private void updateHoldResumeButtonText() {
+        CallRegistry.CallInfo ci = selectedInfo();
+        if (ci != null && ci.state != null) {
+            String state = ci.state.toLowerCase();
+            if (state.contains("hold") || state.contains("on hold")) {
+                holdResumeBtn.setText("Resume");
+            } else if (state.contains("connected") || state.contains("talking")) {
+                holdResumeBtn.setText("Hold");
+            } else {
+                holdResumeBtn.setText("Hold/Resume");
+            }
+        } else {
+            holdResumeBtn.setText("Hold/Resume");
+        }
+    }
+
     private void doHold() {
         CallRegistry.CallInfo ci = selectedInfo();
         if (ci == null) return;
@@ -254,6 +288,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         } else {
             System.out.println("HOLD: Failed to put call on hold");
         }
+        updateHoldResumeButtonText();
     }
 
     private void doResume() {
@@ -344,6 +379,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
                     JOptionPane.WARNING_MESSAGE);
             }
         }
+        updateHoldResumeButtonText();
     }
 
     private void doVoicemail(String vmNumber) {
@@ -402,6 +438,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             if ("CONNECTED".equalsIgnoreCase(info.state) || "TALKING".equalsIgnoreCase(info.state)) {
                 startTalkTimer(info.call);
             }
+            updateHoldResumeButtonText();
         });
     }
 
@@ -416,6 +453,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             } else {
                 stopTalkTimer(info.call);
             }
+            updateHoldResumeButtonText();
         });
     }
 
@@ -425,6 +463,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             stopBlink(info.call);
             stopTalkTimer(info.call);
             model.remove(info);
+            updateHoldResumeButtonText();
         });
     }
 
