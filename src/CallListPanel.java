@@ -225,6 +225,22 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         CallRegistry.CallInfo ci = selectedInfo();
         if (ci == null) return;
 
+        // Automatically put any existing active calls on hold before picking up new call
+        List<CallRegistry.CallInfo> allCalls = CallRegistry.getInstance().snapshot();
+        for (CallRegistry.CallInfo existingCall : allCalls) {
+            if (existingCall.call != ci.call && ("CONNECTED".equalsIgnoreCase(existingCall.state) || "TALKING".equalsIgnoreCase(existingCall.state))) {
+                // Put existing active call on hold
+                stopTalkTimer(existingCall.call);
+                startHoldTimer(existingCall.call);
+                boolean holdOk = CallRegistry.getInstance().holdCall(existingCall.call);
+                if (holdOk) {
+                    CallRegistry.getInstance().addOrUpdate(existingCall.call, existingCall.number, "HOLD", existingCall.address);
+                    System.out.println("AUTO-HOLD: Put existing call on hold before picking up new call");
+                }
+            }
+        }
+
+        // Now pick up the new call
         boolean ok = CallRegistry.getInstance().pickCall(ci.call);
         if (ok) {
             startTalkTimer(ci.call);
@@ -306,6 +322,24 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         }
 
         System.out.println("RESUME UI: Selected call: " + ci.call + ", state: " + ci.state + ", wasHeld: " + ci.wasHeld);
+
+        // 🔄 AUTO-HOLD LOGIC: Put any existing active calls on hold before resuming
+        List<CallRegistry.CallInfo> allCalls = CallRegistry.getInstance().snapshot();
+        for (CallRegistry.CallInfo existingCall : allCalls) {
+            if (existingCall.call != ci.call &&
+                ("CONNECTED".equalsIgnoreCase(existingCall.state) ||
+                 "TALKING".equalsIgnoreCase(existingCall.state))) {
+
+                // Put existing active call on hold
+                stopTalkTimer(existingCall.call);
+                startHoldTimer(existingCall.call);
+                boolean holdOk = CallRegistry.getInstance().holdCall(existingCall.call);
+                if (holdOk) {
+                    CallRegistry.getInstance().addOrUpdate(existingCall.call, existingCall.number, "HOLD", existingCall.address);
+                    System.out.println("AUTO-HOLD: Put existing call on hold before resuming selected call");
+                }
+            }
+        }
 
         // Check if this is a Cisco held call that became invalid
         try {

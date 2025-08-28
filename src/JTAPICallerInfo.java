@@ -175,7 +175,7 @@ public class JTAPICallerInfo implements CallObserver {
                             Call call = conn.getCall();
                             callCaller.put(call, callingNumber);
                             LOGGER.fine("ConnCreatedEv observed caller=" + callingNumber + " call=" + call);
-                            try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CREATED", fromAddr != null ? fromAddr.getName() : null); } catch (Throwable _ignore) {}
+                            try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CREATED", this.monitoredAddress); } catch (Throwable _ignore) {}
                         }
                     } catch (Exception e) {
                         String err = "Failed to handle ConnCreatedEv: " + e.getMessage();
@@ -211,7 +211,7 @@ public class JTAPICallerInfo implements CallObserver {
                                     callingNumber = a != null ? a.getName() : null;
                                     if (callingNumber != null && call != null) {
                                         callCaller.put(call, callingNumber);
-                                        try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CREATED", a != null ? a.getName() : null); } catch (Throwable _ignore) {}
+                                        try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CREATED", this.monitoredAddress); } catch (Throwable _ignore) {}
                                         LOGGER.fine("TermConnRingingEv observed caller=" + callingNumber + " call=" + call);
                                     }
                                 }
@@ -253,7 +253,7 @@ public class JTAPICallerInfo implements CallObserver {
                                 if (!urlOpened.contains(call)) {
                                     openUrlWithNumber(this.urlTemplate, callingNumber);
                                     urlOpened.add(call);
-                                    try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "ALERTING", conn != null && conn.getAddress() != null ? conn.getAddress().getName() : null); } catch (Throwable _ignore) {}
+                                    try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "ALERTING", this.monitoredAddress); } catch (Throwable _ignore) {}
                                 } else {
                                     System.out.println("URL already opened for call: " + call);
                                 }
