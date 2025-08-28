@@ -254,14 +254,42 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         CallRegistry.CallInfo ci = selectedInfo();
         if (ci == null) return;
 
+        System.out.println("HANGUP: Attempting to hang up call: " + ci.call + ", state: " + ci.state);
+
+        // Stop any active timers
         stopTalkTimer(ci.call);
-        boolean ok = CallRegistry.getInstance().disconnectCall(ci.call);
-        if (ok) {
-            CallRegistry.getInstance().remove(ci.call);
-            System.out.println("HANGUP: Successfully hung up call");
-        } else {
-            System.out.println("HANGUP: Failed to hang up call");
+        stopHoldTimer(ci.call);
+
+        // Check if call is on hold - some telephony systems require resuming held calls before disconnecting
+        String state = ci.state != null ? ci.state.toLowerCase() : "";
+        boolean wasHeld = state.contains("hold") || state.contains("on hold");
+
+        if (wasHeld) {
+            System.out.println("HANGUP: Call was on hold, attempting resume before disconnect");
+            // Try to resume the call first (some systems require this for proper disconnection)
+            boolean resumeOk = CallRegistry.getInstance().resumeCall(ci.call);
+            if (resumeOk) {
+                System.out.println("HANGUP: Successfully resumed held call for disconnection");
+                // Small delay to allow resume to complete
+                try { Thread.sleep(100); } catch (InterruptedException e) { /* ignore */ }
+            } else {
+                System.out.println("HANGUP: Failed to resume held call, proceeding with direct disconnect");
+            }
         }
+
+        // Attempt to disconnect the call
+        boolean disconnectOk = CallRegistry.getInstance().disconnectCall(ci.call);
+
+        if (disconnectOk) {
+            System.out.println("HANGUP: Successfully disconnected call from telephony system");
+        } else {
+            System.out.println("HANGUP: Failed to disconnect call from telephony system, but removing from UI");
+        }
+
+        // Always remove from registry and UI, regardless of disconnection success
+        // This ensures the call disappears from the app as the user expects
+        CallRegistry.getInstance().remove(ci.call);
+        System.out.println("HANGUP: Call removed from UI registry");
     }
 
     private void doHoldResume() {
