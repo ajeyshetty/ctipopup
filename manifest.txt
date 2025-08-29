@@ -1,3 +1,2 @@
 Main-Class: JTAPIGui
-Class-Path: jtapi.jar
-
+Class-Path: lib/jtapi.jar

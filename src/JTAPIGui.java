@@ -24,7 +24,6 @@ public class JTAPIGui {
 
     private Provider provider;
     private Thread workerThread;
-    private JTAPICallerInfo listener;
 
     // Control whether screen-pop URL opening is enabled. Default true.
     private static volatile boolean urlPopEnabled = true;
@@ -221,17 +220,17 @@ public class JTAPIGui {
         frame.add(statusPanel, BorderLayout.SOUTH);
 
         // Action listeners
-        startBtn.addActionListener(e -> {
+        startBtn.addActionListener(_ -> {
             System.out.println("Start clicked");
             startListener();
         });
-        stopBtn.addActionListener(e -> {
+        stopBtn.addActionListener(_ -> {
             System.out.println("Stop clicked");
             stopListener();
         });
 
         // Input validation listener
-        ActionListener validateInputs = e -> {
+        ActionListener validateInputs = _ -> {
             String user = userField.getText().trim();
             String host = cucmHostField.getText().trim();
             startBtn.setEnabled(!user.isEmpty() && !host.isEmpty());
@@ -286,28 +285,6 @@ public class JTAPIGui {
         } catch (IOException e) {
             updateStatus("Disconnected: Failed to save settings - " + e.getMessage(), new Color(220, 53, 69));
         }
-    }
-
-    private JButton createSidebarButton(String text, String icon) {
-        JButton button = new JButton(icon + " " + text);
-        button.setBackground(new Color(51, 51, 51));
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
-        button.setAlignmentX(Component.LEFT_ALIGNMENT);
-        button.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
-        button.setFont(new Font("SansSerif", Font.BOLD, 14));
-        button.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                button.setBackground(new Color(80, 80, 80));
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                button.setBackground(new Color(51, 51, 51));
-            }
-        });
-        return button;
     }
 
     private JButton createActionButton(String text, String icon, Color color) {
@@ -431,25 +408,12 @@ public class JTAPIGui {
         enablePopCheck.setBackground(Color.WHITE);
         enablePopCheck.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         enablePopCheck.setForeground(new Color(73, 80, 87));
-        enablePopCheck.addActionListener(e -> {
+        enablePopCheck.addActionListener(_ -> {
             urlPopEnabled = enablePopCheck.isSelected();
             System.out.println("Screen pop enabled=" + urlPopEnabled);
         });
         panel.add(enablePopCheck, gbc);
 
-        return panel;
-    }
-
-    private JPanel createSectionPanel(String title) {
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(Color.WHITE);
-        panel.setBorder(BorderFactory.createTitledBorder(
-            BorderFactory.createLineBorder(new Color(150, 150, 150), 1, true),
-            title,
-            javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-            javax.swing.border.TitledBorder.DEFAULT_POSITION,
-            new Font("SansSerif", Font.BOLD, 16)
-        ));
         return panel;
     }
 
@@ -646,7 +610,6 @@ public class JTAPIGui {
             }
             provider = null;
         }
-        listener = null;
     }
 
     // Remove existing CiscoJtapi*.log files and watch for new ones to delete immediately.
@@ -732,23 +695,6 @@ public class JTAPIGui {
                 frame.repaint();
             });
         } catch (Exception ignored) {}
-    }
-
-    private void addFieldToPanel(JPanel panel, String labelText, JComponent field) {
-        GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(10, 10, 10, 10);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = GridBagConstraints.RELATIVE;
-        c.weightx = 0;
-        if (!labelText.isEmpty()) {
-            JLabel label = new JLabel(labelText);
-            label.setFont(new Font("SansSerif", Font.PLAIN, 14));
-            panel.add(label, c);
-        }
-        c.gridx = 1;
-        c.weightx = 1;
-        panel.add(field, c);
     }
 
     // Method to create an outbound call - used by CallListPanel for resuming invalid held calls

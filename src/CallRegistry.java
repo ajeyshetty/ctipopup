@@ -71,10 +71,6 @@ public class CallRegistry {
         return callStr;
     }
 
-    private void logTrackerState(String context) {
-        System.out.println("TRACKER " + context + " - heldSize=" + heldCallTracker.size() + ", numSize=" + originalNumberTracker.size() + ", heldKeys=" + heldCallTracker.keySet() + ", numKeys=" + originalNumberTracker.keySet());
-    }
-
     private static final CallRegistry INSTANCE = new CallRegistry();
 
     public static CallRegistry getInstance() { return INSTANCE; }

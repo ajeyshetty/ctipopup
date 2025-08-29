@@ -1,6 +1,5 @@
 import javax.telephony.*;
 import javax.telephony.events.*;
-import javax.telephony.callcontrol.*;
 import javax.telephony.callcontrol.events.*;
 
 import java.io.*;
