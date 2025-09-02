@@ -26,6 +26,10 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
     private final Map<Call, Long> totalHoldTime = new HashMap<>();
     // Button references
     private JButton holdResumeBtn;
+    private JButton pickBtn;
+    private JButton hangupBtn;
+    // Status label for user feedback
+    private JLabel statusLabel;
 
     public CallListPanel() {
         super(new BorderLayout());
@@ -41,6 +45,36 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         table.setGridColor(Color.LIGHT_GRAY);
         table.setShowGrid(true);
 
+        // Add table selection listener for better UX
+        table.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                // Only update UI when selection actually changes
+                SwingUtilities.invokeLater(() -> {
+                    updateHoldResumeButtonText();
+                    updateButtonStates();
+                });
+            }
+        });
+
+        // Add mouse listener for double-click to pick up calls
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                if (e.getClickCount() == 2) { // Double-click
+                    int row = table.rowAtPoint(e.getPoint());
+                    if (row >= 0) {
+                        table.setRowSelectionInterval(row, row);
+                        CallRegistry.CallInfo ci = model.getAt(row);
+                        if (ci != null && ("ALERTING".equalsIgnoreCase(ci.state) ||
+                                          "CREATED".equalsIgnoreCase(ci.state) ||
+                                          "RINGING".equalsIgnoreCase(ci.state))) {
+                            doPick();
+                        }
+                    }
+                }
+            }
+        });
+
         // Set column widths - adjust for new time columns
         table.getColumnModel().getColumn(0).setPreferredWidth(100); // From
         table.getColumnModel().getColumn(1).setPreferredWidth(100); // To
@@ -50,21 +84,38 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         table.getColumnModel().getColumn(5).setPreferredWidth(70);  // Total Time
 
         // Create control panel with better layout
-        JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        JPanel controlPanel = new JPanel(new BorderLayout(10, 5));
         controlPanel.setBackground(new Color(240, 240, 240));
         controlPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        // Button panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        buttonPanel.setBackground(new Color(240, 240, 240));
 
         JButton pickBtn = createStyledButton("Pick", new Color(40, 167, 69));
         holdResumeBtn = createStyledButton("Hold/Resume", new Color(255, 193, 7));
         JButton hangupBtn = createStyledButton("Hangup", new Color(220, 53, 69));
 
+        // Store button references
+        this.pickBtn = pickBtn;
+        this.hangupBtn = hangupBtn;
+
         pickBtn.addActionListener(_ -> doPick());
         holdResumeBtn.addActionListener(_ -> doHoldResume());
         hangupBtn.addActionListener(_ -> doHangup());
 
-        controlPanel.add(pickBtn);
-        controlPanel.add(holdResumeBtn);
-        controlPanel.add(hangupBtn);
+        buttonPanel.add(pickBtn);
+        buttonPanel.add(holdResumeBtn);
+        buttonPanel.add(hangupBtn);
+
+        // Status label
+        statusLabel = new JLabel("Select a call to perform actions", SwingConstants.CENTER);
+        statusLabel.setFont(new Font("SansSerif", Font.ITALIC, 10));
+        statusLabel.setForeground(Color.GRAY);
+        statusLabel.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
+
+        controlPanel.add(buttonPanel, BorderLayout.CENTER);
+        controlPanel.add(statusLabel, BorderLayout.SOUTH);
 
         // Add control panel at top
         add(controlPanel, BorderLayout.NORTH);
@@ -204,26 +255,26 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
 
     private CallRegistry.CallInfo selectedInfo() {
         int r = table.getSelectedRow();
-        if (r >= 0) return model.getAt(r);
-        // Fallback to newest connected/talking call
-        for (int i = 0; i < model.getRowCount(); i++) {
-            CallRegistry.CallInfo ci = model.getAt(i);
-            if (ci != null && ("CONNECTED".equalsIgnoreCase(ci.state) || "TALKING".equalsIgnoreCase(ci.state))) {
-                table.setRowSelectionInterval(i, i);
+        if (r >= 0 && r < model.getRowCount()) {
+            CallRegistry.CallInfo ci = model.getAt(r);
+            if (ci != null) {
                 return ci;
             }
         }
-        // If no connected call, return first call
-        if (model.getRowCount() > 0) {
-            table.setRowSelectionInterval(0, 0);
-            return model.getAt(0);
-        }
+        // No valid selection - return null, don't auto-select
         return null;
     }
 
     private void doPick() {
         CallRegistry.CallInfo ci = selectedInfo();
-        if (ci == null) return;
+        if (ci == null) {
+            statusLabel.setText("Please select a call to pick up");
+            statusLabel.setForeground(Color.RED);
+            return;
+        }
+
+        statusLabel.setText("Picking up call from " + (ci.number != null ? ci.number : "Unknown") + "...");
+        statusLabel.setForeground(Color.BLUE);
 
         // Automatically put any existing active calls on hold before picking up new call
         List<CallRegistry.CallInfo> allCalls = CallRegistry.getInstance().snapshot();
@@ -244,52 +295,53 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         boolean ok = CallRegistry.getInstance().pickCall(ci.call);
         if (ok) {
             startTalkTimer(ci.call);
+            statusLabel.setText("✓ Call picked up successfully");
+            statusLabel.setForeground(new Color(40, 167, 69)); // Green
             System.out.println("PICK: Successfully picked up call from " + ci.number);
         } else {
+            statusLabel.setText("✗ Failed to pick up call");
+            statusLabel.setForeground(Color.RED);
             System.out.println("PICK: Failed to pick up call");
         }
+
+        // Clear status after 3 seconds
+        Timer timer = new Timer(3000, _ -> {
+            SwingUtilities.invokeLater(() -> updateButtonStates());
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 
     private void doHangup() {
         CallRegistry.CallInfo ci = selectedInfo();
-        if (ci == null) return;
+        if (ci == null) {
+            statusLabel.setText("Please select a call to hang up");
+            statusLabel.setForeground(Color.RED);
+            return;
+        }
 
-        System.out.println("HANGUP: Attempting to hang up call: " + ci.call + ", state: " + ci.state);
+        statusLabel.setText("Hanging up call...");
+        statusLabel.setForeground(Color.BLUE);
 
-        // Stop any active timers
         stopTalkTimer(ci.call);
-        stopHoldTimer(ci.call);
-
-        // Check if call is on hold - some telephony systems require resuming held calls before disconnecting
-        String state = ci.state != null ? ci.state.toLowerCase() : "";
-        boolean wasHeld = state.contains("hold") || state.contains("on hold");
-
-        if (wasHeld) {
-            System.out.println("HANGUP: Call was on hold, attempting resume before disconnect");
-            // Try to resume the call first (some systems require this for proper disconnection)
-            boolean resumeOk = CallRegistry.getInstance().resumeCall(ci.call);
-            if (resumeOk) {
-                System.out.println("HANGUP: Successfully resumed held call for disconnection");
-                // Small delay to allow resume to complete
-                try { Thread.sleep(100); } catch (InterruptedException e) { /* ignore */ }
-            } else {
-                System.out.println("HANGUP: Failed to resume held call, proceeding with direct disconnect");
-            }
-        }
-
-        // Attempt to disconnect the call
-        boolean disconnectOk = CallRegistry.getInstance().disconnectCall(ci.call);
-
-        if (disconnectOk) {
-            System.out.println("HANGUP: Successfully disconnected call from telephony system");
+        boolean ok = CallRegistry.getInstance().disconnectCall(ci.call);
+        if (ok) {
+            CallRegistry.getInstance().remove(ci.call);
+            statusLabel.setText("✓ Call hung up successfully");
+            statusLabel.setForeground(new Color(40, 167, 69)); // Green
+            System.out.println("HANGUP: Successfully hung up call");
         } else {
-            System.out.println("HANGUP: Failed to disconnect call from telephony system, but removing from UI");
+            statusLabel.setText("✗ Failed to hang up call");
+            statusLabel.setForeground(Color.RED);
+            System.out.println("HANGUP: Failed to hang up call");
         }
 
-        // Always remove from registry and UI, regardless of disconnection success
-        // This ensures the call disappears from the app as the user expects
-        CallRegistry.getInstance().remove(ci.call);
-        System.out.println("HANGUP: Call removed from UI registry");
+        // Clear status after 3 seconds
+        Timer timer = new Timer(3000, _ -> {
+            SwingUtilities.invokeLater(() -> updateButtonStates());
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 
     private void doHoldResume() {
@@ -322,32 +374,89 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         } else {
             holdResumeBtn.setText("Hold/Resume");
         }
+        updateButtonStates();
+    }
+
+    private void updateButtonStates() {
+        CallRegistry.CallInfo ci = selectedInfo();
+        boolean hasSelection = (ci != null);
+
+        if (hasSelection && ci.state != null) {
+            String state = ci.state.toLowerCase();
+            String number = ci.number != null ? ci.number : "Unknown";
+            String address = ci.address != null ? ci.address : "Unknown";
+
+            // Update status label with call information
+            statusLabel.setText("Selected: " + number + " → " + address + " (" + ci.state + ")");
+            statusLabel.setForeground(Color.BLACK);
+
+            // Pick button: enabled for ringing/alerting calls
+            pickBtn.setEnabled(state.contains("alerting") || state.contains("created") || state.contains("ringing"));
+
+            // Hold/Resume button: enabled for connected/talking or held calls
+            holdResumeBtn.setEnabled(state.contains("connected") || state.contains("talking") ||
+                                   state.contains("hold") || state.contains("on hold"));
+
+            // Hangup button: enabled for most active calls
+            hangupBtn.setEnabled(!state.contains("disconnected") && !state.contains("idle"));
+        } else {
+            // No selection - disable all buttons and show message
+            statusLabel.setText("Select a call to perform actions");
+            statusLabel.setForeground(Color.GRAY);
+
+            pickBtn.setEnabled(false);
+            holdResumeBtn.setEnabled(false);
+            hangupBtn.setEnabled(false);
+        }
     }
 
     private void doHold() {
         CallRegistry.CallInfo ci = selectedInfo();
-        if (ci == null) return;
+        if (ci == null) {
+            statusLabel.setText("Please select a call to hold");
+            statusLabel.setForeground(Color.RED);
+            return;
+        }
+
+        statusLabel.setText("Putting call on hold...");
+        statusLabel.setForeground(Color.BLUE);
 
         stopTalkTimer(ci.call);
         startHoldTimer(ci.call);
         boolean ok = CallRegistry.getInstance().holdCall(ci.call);
         if (ok) {
             CallRegistry.getInstance().addOrUpdate(ci.call, ci.number, "HOLD", ci.address);
+            statusLabel.setText("✓ Call put on hold");
+            statusLabel.setForeground(new Color(255, 193, 7)); // Yellow/Orange
             System.out.println("HOLD: Successfully put call on hold");
         } else {
+            statusLabel.setText("✗ Failed to put call on hold");
+            statusLabel.setForeground(Color.RED);
             System.out.println("HOLD: Failed to put call on hold");
             // If hold failed, restart talk timer
             startTalkTimer(ci.call);
         }
         updateHoldResumeButtonText();
+
+        // Clear status after 3 seconds
+        Timer timer = new Timer(3000, _ -> {
+            SwingUtilities.invokeLater(() -> updateButtonStates());
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 
     private void doResume() {
         CallRegistry.CallInfo ci = selectedInfo();
         if (ci == null) {
+            statusLabel.setText("Please select a call to resume");
+            statusLabel.setForeground(Color.RED);
             System.out.println("RESUME UI: No call selected");
             return;
         }
+
+        statusLabel.setText("Resuming call...");
+        statusLabel.setForeground(Color.BLUE);
 
         System.out.println("RESUME UI: Selected call: " + ci.call + ", state: " + ci.state + ", wasHeld: " + ci.wasHeld);
 
@@ -427,6 +536,8 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             stopHoldTimer(ci.call);
             startTalkTimer(ci.call);
             CallRegistry.getInstance().addOrUpdate(ci.call, ci.number, "CONNECTED", ci.address);
+            statusLabel.setText("✓ Call resumed successfully");
+            statusLabel.setForeground(new Color(40, 167, 69)); // Green
             System.out.println("RESUME UI: Successfully resumed call");
         } else {
             // If resume fails, try park retrieval methods first, then direct dial
@@ -443,6 +554,8 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             }
             // Show informative message if all attempts fail
             if (ci.wasHeld) {
+                statusLabel.setText("✗ Resume failed - Cisco held calls become invalid");
+                statusLabel.setForeground(Color.RED);
                 JOptionPane.showMessageDialog(this,
                     "Resume failed - Cisco held calls become invalid.\n" +
                     "Please resume the call in Jabber.",
@@ -451,6 +564,13 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             }
         }
         updateHoldResumeButtonText();
+
+        // Clear status after 5 seconds for resume operations
+        Timer timer = new Timer(5000, _ -> {
+            SwingUtilities.invokeLater(() -> updateButtonStates());
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 
     private void startTalkTimer(Call call) {
@@ -458,7 +578,17 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         stopTalkTimer(call); // Stop any existing timer
         callStartTimes.put(call, System.currentTimeMillis());
         Timer timer = new Timer(1000, _ -> {
-            model.fireTableDataChanged(); // Refresh display every second
+            // Only update the time columns instead of refreshing entire table
+            SwingUtilities.invokeLater(() -> {
+                int rowCount = model.getRowCount();
+                for (int i = 0; i < rowCount; i++) {
+                    CallRegistry.CallInfo ci = model.getAt(i);
+                    if (ci != null && call.equals(ci.call)) {
+                        model.fireTableRowsUpdated(i, i);
+                        break;
+                    }
+                }
+            });
         });
         talkTimers.put(call, timer);
         timer.start();
@@ -483,7 +613,17 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         stopHoldTimer(call); // Stop any existing hold timer
         holdStartTimes.put(call, System.currentTimeMillis());
         Timer timer = new Timer(1000, _ -> {
-            model.fireTableDataChanged(); // Refresh display every second
+            // Only update the time columns instead of refreshing entire table
+            SwingUtilities.invokeLater(() -> {
+                int rowCount = model.getRowCount();
+                for (int i = 0; i < rowCount; i++) {
+                    CallRegistry.CallInfo ci = model.getAt(i);
+                    if (ci != null && call.equals(ci.call)) {
+                        model.fireTableRowsUpdated(i, i);
+                        break;
+                    }
+                }
+            });
         });
         holdTimers.put(call, timer);
         timer.start();
