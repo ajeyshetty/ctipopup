@@ -193,12 +193,22 @@ public class JTAPICallerInfo implements CallObserver {
                             callCaller.put(call, callingNumber);
                             LOGGER.fine("ConnCreatedEv observed caller=" + callingNumber + " call=" + call);
                             
-                            // Only set CREATED if this is a new call or if it's not already ALERTING (for outbound calls)
+                            // Only set CREATED if this is a new call or if it's not already CONNECTED (for outbound calls)
                             CallRegistry.CallInfo existingInfo = CallRegistry.getInstance().snapshot().stream()
                                 .filter(info -> info.call.equals(call))
                                 .findFirst().orElse(null);
                             
-                            if (existingInfo == null || !"ALERTING".equals(existingInfo.state)) {
+                            writeLog("ConnCreatedEv: callingNumber=" + callingNumber + ", existingState=" + 
+                                    (existingInfo != null ? existingInfo.state : "null"));
+                            
+                            if (existingInfo == null) {
+                                // This is a completely new call
+                                try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CREATED", this.monitoredAddress); } catch (Throwable _ignore) {}
+                            } else if ("CONNECTED".equals(existingInfo.state)) {
+                                // Call is already CONNECTED (outbound call), don't override
+                                writeLog("ConnCreatedEv: Call already CONNECTED (outbound), not overriding");
+                            } else if (!"ALERTING".equals(existingInfo.state)) {
+                                // Call is not ALERTING or CONNECTED, safe to update
                                 try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CREATED", this.monitoredAddress); } catch (Throwable _ignore) {}
                             } else {
                                 writeLog("ConnCreatedEv: Call already in ALERTING state, not overriding");
@@ -351,16 +361,19 @@ public class JTAPICallerInfo implements CallObserver {
                                 int connectionCount = connections != null ? connections.length : 0;
                                 writeLog("TermConnActiveEv - connection count: " + connectionCount);
                                 
-                                if (isOutbound || connectionCount <= 1) {
-                                    writeLog("TermConnActiveEv - not setting CONNECTED (outbound or single connection)");
-                                    // Don't update state for outbound calls or calls with single connection
+                                if (isOutbound) {
+                                    writeLog("TermConnActiveEv - outbound call, no state change (keep CONNECTED)");
+                                    try {
+                                        CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CONNECTED", this.monitoredAddress);
+                                    } catch (Throwable _ignore) {}
                                 } else {
+                                    // For inbound calls, check manuallyPickedUp
                                     // Check if this call was manually picked up
                                     CallRegistry.CallInfo callInfo = CallRegistry.getInstance().snapshot().stream()
                                         .filter(info -> info.call.equals(call))
                                         .findFirst().orElse(null);
                                     boolean manuallyPickedUp = callInfo != null && callInfo.manuallyPickedUp;
-                                    writeLog("TermConnActiveEv - manuallyPickedUp: " + manuallyPickedUp);
+                                    writeLog("TermConnActiveEv - manuallyPickedUp: " + manuallyPickedUp + ", connectionCount: " + connectionCount);
                                     
                                     if (manuallyPickedUp) {
                                         writeLog("TermConnActiveEv - inbound call manually picked up, setting CONNECTED");
@@ -455,7 +468,8 @@ public class JTAPICallerInfo implements CallObserver {
                                 .filter(info -> info.call.equals(call))
                                 .findFirst().orElse(null);
                             boolean manuallyPickedUp = callInfo != null && callInfo.manuallyPickedUp;
-                            writeLog("ConnConnectedEv - manuallyPickedUp: " + manuallyPickedUp);
+                            String currentState = callInfo != null ? callInfo.state : "null";
+                            writeLog("ConnConnectedEv - manuallyPickedUp: " + manuallyPickedUp + ", currentState: " + currentState);
                             
                             if (!isOutbound && !manuallyPickedUp) {
                                 // This is an inbound call that was NOT manually picked up - keep it in ALERTING state
@@ -466,50 +480,15 @@ public class JTAPICallerInfo implements CallObserver {
                                 // This call was manually picked up - allow CONNECTED state
                                 stateToSet = "CONNECTED";
                                 writeLog("ConnConnectedEv - allowing CONNECTED state (manually picked up)");
+                            } else if (isOutbound) {
+                                // For outbound calls, set to CONNECTED immediately when dialing starts
+                                // Always push to CONNECTED here; CallRegistry will block downgrades later
+                                stateToSet = "CONNECTED";
+                                writeLog("Outbound call ConnConnectedEv - forcing CONNECTED state (outbound call initiated)");
                             } else {
-                                // For outbound calls, be more conservative about setting CONNECTED
-                                Address connAddr = conn != null ? conn.getAddress() : null;
-                                String connAddrName = connAddr != null ? connAddr.getName() : null;
-                                
-                                // If this connection address matches our monitored address, it's the originating side
-                                if (connAddrName != null && this.monitoredAddress != null && 
-                                    connAddrName.equalsIgnoreCase(this.monitoredAddress)) {
-                                    // For originating connections, keep ALERTING until we're sure the call is established
-                                    stateToSet = "ALERTING";
-                                    writeLog("Outbound call originating connection - keeping ALERTING state");
-                                } else if (finalCallingNumber != null && !finalCallingNumber.equals(this.monitoredAddress)) {
-                                    // This is clearly the destination connection (different number than monitored address)
-                                    // For outbound calls, add a delay to simulate ringing before setting CONNECTED
-                                    writeLog("Outbound call destination connection - scheduling CONNECTED after delay");
-                                    
-                                    // Schedule the state update after a delay
-                                    javax.swing.Timer timer = new javax.swing.Timer(2000, new java.awt.event.ActionListener() {
-                                        public void actionPerformed(java.awt.event.ActionEvent e) {
-                                            try {
-                                                CallRegistry.getInstance().addOrUpdate(call, finalCallingNumber, "CONNECTED", JTAPICallerInfo.this.monitoredAddress);
-                                                writeLog("Outbound call destination connection - delayed CONNECTED state set");
-                                            } catch (Throwable ignore) {}
-                                        }
-                                    });
-                                    timer.setRepeats(false);
-                                    timer.start();
-                                    
-                                    // Keep ALERTING state for now
-                                    stateToSet = "ALERTING";
-                                    writeLog("Outbound call destination connection - keeping ALERTING during delay");
-                                } else {
-                                    // Uncertain case - keep current state or set ALERTING
-                                    CallRegistry.CallInfo existingInfo = CallRegistry.getInstance().snapshot().stream()
-                                        .filter(info -> info.call.equals(call))
-                                        .findFirst().orElse(null);
-                                    if (existingInfo != null && "ALERTING".equals(existingInfo.state)) {
-                                        stateToSet = "ALERTING"; // Preserve ALERTING state
-                                        writeLog("Outbound call uncertain connection - preserving ALERTING state");
-                                    } else {
-                                        stateToSet = "ALERTING"; // Changed from CONNECTED to ALERTING for safety
-                                        writeLog("Outbound call uncertain connection - setting ALERTING state");
-                                    }
-                                }
+                                // Fallback for unknown cases
+                                stateToSet = "ALERTING";
+                                writeLog("ConnConnectedEv - fallback to ALERTING state");
                             }
                             
                             // Always update call registry with the determined state, regardless of URL template
@@ -672,39 +651,28 @@ public class JTAPICallerInfo implements CallObserver {
                 return true;
             }
 
-            // Check connections for origination clues
-            Connection[] connections = call.getConnections();
-            if (connections != null) {
-                for (Connection conn : connections) {
-                    if (conn != null) {
-                        try {
-                            Address connAddr = conn.getAddress();
-                            if (connAddr != null) {
-                                String connAddrName = connAddr.getName();
-                                if (connAddrName != null && connAddrName.equalsIgnoreCase(this.monitoredAddress)) {
-                                    // If one of the connections is our monitored address and calling number is different,
-                                    // this could be either inbound or outbound - need to check direction
-                                    if (!callingNumber.equalsIgnoreCase(this.monitoredAddress)) {
-                                        // The calling number is different from monitored address but one connection is monitored address
-                                        // This suggests it's an inbound call (external caller to monitored address)
-                                        writeLog("isOutboundCall: false (external caller to monitored address) - callingNumber=" + callingNumber + " connAddr=" + connAddrName);
-                                        return false;
-                                    }
-                                    writeLog("isOutboundCall: true (monitored address in connections) - connAddr=" + connAddrName);
-                                    return true;
-                                }
-                            }
-                        } catch (Exception e) {
-                            // ignore
-                        }
-                    }
+            // For destination connections in outbound calls, check if we have an existing outbound call
+            CallRegistry.CallInfo existingInfo = CallRegistry.getInstance().snapshot().stream()
+                .filter(info -> info.call.equals(call))
+                .findFirst().orElse(null);
+            
+            if (existingInfo != null) {
+                // Check if the calling number matches the original number (outbound call)
+                // For outbound calls: callingNumber == originalNumber (both are originating address)
+                // For inbound calls: callingNumber != originalNumber (callingNumber is remote, originalNumber is originating)
+                if (existingInfo.originalNumber != null && callingNumber.equalsIgnoreCase(existingInfo.originalNumber)) {
+                    writeLog("isOutboundCall: true (calling number matches original number) - callingNumber=" + callingNumber + " originalNumber=" + existingInfo.originalNumber);
+                    return true;
                 }
             }
-        } catch (Exception e) {
-            // ignore
-        }
 
-        return false;
+            // Default to false for safety - treat as inbound unless clearly outbound
+            writeLog("isOutboundCall: false (default - treating as inbound for safety) - callingNumber=" + callingNumber);
+            return false;
+        } catch (Exception e) {
+            writeLog("isOutboundCall: exception - " + e.getMessage());
+            return false;
+        }
     }
 
     // GUI popup removed for production; use system notifications or external caller if needed.

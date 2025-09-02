@@ -821,3 +821,777 @@
 2025-09-02 16:44:01 Event: TermConnDroppedEv CSFaxshetty
 2025-09-02 16:44:01 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
 2025-09-02 16:44:01 Event: CallInvalidEv
+2025-09-02 16:44:57 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 16:45:14 Event: CallActiveEv
+2025-09-02 16:45:14 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:45:14 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629360)->ACTIVE]->INITIATED
+2025-09-02 16:45:14 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:45:14 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 16:45:14 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:45:14 Outbound call originating connection - keeping ALERTING state
+2025-09-02 16:45:14 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:45:14 Skipping screen pop for outbound call: 81027226
+2025-09-02 16:45:14 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:45:14 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 16:45:14 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629360)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 16:45:14 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 16:45:14 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629360)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629360)->ACTIVE]->INITIATED
+2025-09-02 16:45:14 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:45:14 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 16:45:14 TermConnActiveEv - connection count: 1
+2025-09-02 16:45:14 TermConnActiveEv - not setting CONNECTED (outbound or single connection)
+2025-09-02 16:45:14 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 16:45:14 ConnCreatedEv: Call already in ALERTING state, not overriding
+2025-09-02 16:45:14 Event: ConnCreatedEv 6156003240::2
+2025-09-02 16:45:14 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629360)->ACTIVE]->ESTABLISHED
+2025-09-02 16:45:14 isOutboundCall: false (external caller to monitored address) - callingNumber=6156003240 connAddr=81027226
+2025-09-02 16:45:14 ConnConnectedEv - isOutboundCall result: false for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 16:45:14 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:45:14 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 16:45:14 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 16:45:51 Event: ConnDisconnectedEv 6156003240::2
+2025-09-02 16:45:51 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 16:45:51 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:45:51 Event: CallInvalidEv
+2025-09-02 16:45:55 Event: CallActiveEv
+2025-09-02 16:45:55 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:45:55 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629362)->ACTIVE]->INITIATED
+2025-09-02 16:45:55 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:45:55 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 16:45:55 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:45:55 Outbound call originating connection - keeping ALERTING state
+2025-09-02 16:45:55 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:45:55 Skipping screen pop for outbound call: 81027226
+2025-09-02 16:45:55 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:45:55 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 16:45:55 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629362)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 16:45:55 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 16:45:55 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629362)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629362)->ACTIVE]->INITIATED
+2025-09-02 16:45:55 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:45:55 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 16:45:55 TermConnActiveEv - connection count: 1
+2025-09-02 16:45:55 TermConnActiveEv - not setting CONNECTED (outbound or single connection)
+2025-09-02 16:45:55 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 16:45:56 ConnCreatedEv: Call already in ALERTING state, not overriding
+2025-09-02 16:45:56 Event: ConnCreatedEv 6156003240::2
+2025-09-02 16:45:56 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629362)->ACTIVE]->ESTABLISHED
+2025-09-02 16:45:56 isOutboundCall: false (external caller to monitored address) - callingNumber=6156003240 connAddr=81027226
+2025-09-02 16:45:56 ConnConnectedEv - isOutboundCall result: false for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 16:45:56 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:45:56 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 16:45:56 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 16:48:09 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 16:48:16 Event: CallActiveEv
+2025-09-02 16:48:16 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:48:16 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629365)->ACTIVE]->INITIATED
+2025-09-02 16:48:16 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:48:16 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 16:48:16 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:48:16 Outbound call originating connection - keeping ALERTING state
+2025-09-02 16:48:16 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:48:16 Skipping screen pop for outbound call: 81027226
+2025-09-02 16:48:16 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:48:16 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 16:48:16 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629365)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 16:48:16 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 16:48:16 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629365)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629365)->ACTIVE]->INITIATED
+2025-09-02 16:48:16 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:48:16 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 16:48:16 TermConnActiveEv - connection count: 1
+2025-09-02 16:48:16 TermConnActiveEv - not setting CONNECTED (outbound or single connection)
+2025-09-02 16:48:16 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 16:48:16 ConnCreatedEv: Call already in ALERTING state, not overriding
+2025-09-02 16:48:16 Event: ConnCreatedEv 6156003240::2
+2025-09-02 16:48:16 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629365)->ACTIVE]->ESTABLISHED
+2025-09-02 16:48:16 isOutboundCall: false (external caller to monitored address) - callingNumber=6156003240 connAddr=81027226
+2025-09-02 16:48:16 ConnConnectedEv - isOutboundCall result: false for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 16:48:16 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:48:16 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 16:48:16 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 16:48:27 Event: ConnDisconnectedEv 6156003240::2
+2025-09-02 16:48:27 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 16:48:27 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:48:27 Event: CallInvalidEv
+2025-09-02 16:50:39 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 16:50:53 Event: CallActiveEv
+2025-09-02 16:50:53 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:50:53 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629368)->ACTIVE]->INITIATED
+2025-09-02 16:50:53 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:50:53 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 16:50:53 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:50:53 Outbound call ConnConnectedEv - setting CONNECTED state (remote party answered)
+2025-09-02 16:50:53 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:50:53 Skipping screen pop for outbound call: 81027226
+2025-09-02 16:50:53 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:50:53 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 16:50:53 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629368)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 16:50:53 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 16:50:53 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629368)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629368)->ACTIVE]->INITIATED
+2025-09-02 16:50:53 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:50:53 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 16:50:53 TermConnActiveEv - connection count: 1
+2025-09-02 16:50:53 TermConnActiveEv - not setting CONNECTED (outbound or single connection)
+2025-09-02 16:50:53 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 16:50:54 Event: ConnCreatedEv 6156003240::2
+2025-09-02 16:50:54 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629368)->ACTIVE]->ESTABLISHED
+2025-09-02 16:50:54 isOutboundCall: false (external caller to monitored address) - callingNumber=6156003240 connAddr=81027226
+2025-09-02 16:50:54 ConnConnectedEv - isOutboundCall result: false for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 16:50:54 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:50:54 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 16:50:54 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 16:51:18 Event: ConnDisconnectedEv 6156003240::2
+2025-09-02 16:51:18 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 16:51:18 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:51:18 Event: CallInvalidEv
+2025-09-02 16:51:46 Event: CallActiveEv
+2025-09-02 16:51:46 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:51:46 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:51:46 Event: ConnCreatedEv 96155702834::2
+2025-09-02 16:51:46 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5984313)->ACTIVE]->ESTABLISHED
+2025-09-02 16:51:46 isOutboundCall: false (external caller to monitored address) - callingNumber=96155702834 connAddr=81027226
+2025-09-02 16:51:46 ConnConnectedEv - isOutboundCall result: false for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 16:51:46 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:51:46 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 16:51:46 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 16:51:47 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:51:47 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 16:51:47 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 16:51:52 Event: CiscoCallInfoChangedEv
+2025-09-02 16:51:52 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984313)->ACTIVE]->ESTABLISHED
+2025-09-02 16:51:52 isOutboundCall: false (external caller to monitored address) - callingNumber=96155702834 connAddr=81027226
+2025-09-02 16:51:52 ConnConnectedEv - isOutboundCall result: false for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 16:51:52 ConnConnectedEv - manuallyPickedUp: true
+2025-09-02 16:51:52 ConnConnectedEv - allowing CONNECTED state (manually picked up)
+2025-09-02 16:51:52 isOutboundCall: false (external caller to monitored address) - callingNumber=96155702834 connAddr=81027226
+2025-09-02 16:51:52 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-09-02 16:51:52 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:51:52 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984313)->ACTIVE]->ESTABLISHED]->TALKING
+2025-09-02 16:51:52 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 16:51:52 TermConnActiveEv - call=(P1-axshetty) GCID=(2,5984313)->ACTIVE, callingNumber=96155702834, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984313)->ACTIVE]->ESTABLISHED
+2025-09-02 16:51:52 isOutboundCall: false (external caller to monitored address) - callingNumber=96155702834 connAddr=81027226
+2025-09-02 16:51:52 TermConnActiveEv - isOutboundCall result: false for callingNumber: 96155702834
+2025-09-02 16:51:52 TermConnActiveEv - connection count: 2
+2025-09-02 16:51:52 TermConnActiveEv - manuallyPickedUp: true
+2025-09-02 16:51:52 TermConnActiveEv - inbound call manually picked up, setting CONNECTED
+2025-09-02 16:51:52 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 16:51:56 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 16:51:56 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 16:51:56 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:51:56 Event: CallInvalidEv
+2025-09-02 16:52:31 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 16:52:42 Event: CallActiveEv
+2025-09-02 16:52:42 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:52:42 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:52:42 Event: ConnCreatedEv 96155702834::2
+2025-09-02 16:52:42 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5984314)->ACTIVE]->ESTABLISHED
+2025-09-02 16:52:42 isOutboundCall: true (existing call originated from monitored address) - existingAddress=81027226
+2025-09-02 16:52:42 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 16:52:42 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:52:42 Outbound call ConnConnectedEv - setting CONNECTED state (remote party answered)
+2025-09-02 16:52:42 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 16:52:42 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:52:42 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 16:52:42 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 16:52:52 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 16:52:52 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 16:52:53 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:52:53 Event: CallInvalidEv
+2025-09-02 16:53:11 Event: CallActiveEv
+2025-09-02 16:53:11 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:53:11 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:53:11 Event: ConnCreatedEv 96155702834::2
+2025-09-02 16:53:11 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5984316)->ACTIVE]->ESTABLISHED
+2025-09-02 16:53:11 isOutboundCall: true (existing call originated from monitored address) - existingAddress=81027226
+2025-09-02 16:53:11 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 16:53:11 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:53:11 Outbound call ConnConnectedEv - setting CONNECTED state (remote party answered)
+2025-09-02 16:53:11 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 16:53:11 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:53:11 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 16:53:11 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 16:53:16 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 16:53:16 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 16:53:16 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:53:16 Event: CallInvalidEv
+2025-09-02 16:53:32 Event: CallActiveEv
+2025-09-02 16:53:32 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:53:32 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629371)->ACTIVE]->INITIATED
+2025-09-02 16:53:32 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:53:32 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 16:53:32 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:53:32 Outbound call ConnConnectedEv - setting CONNECTED state (remote party answered)
+2025-09-02 16:53:32 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:53:32 Skipping screen pop for outbound call: 81027226
+2025-09-02 16:53:32 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:53:32 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 16:53:32 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629371)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 16:53:32 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 16:53:32 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629371)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629371)->ACTIVE]->INITIATED
+2025-09-02 16:53:32 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 16:53:32 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 16:53:32 TermConnActiveEv - connection count: 1
+2025-09-02 16:53:32 TermConnActiveEv - not setting CONNECTED (outbound or single connection)
+2025-09-02 16:53:32 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 16:53:33 Event: ConnCreatedEv 6156003240::2
+2025-09-02 16:53:33 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629371)->ACTIVE]->ESTABLISHED
+2025-09-02 16:53:33 isOutboundCall: true (existing call originated from monitored address) - existingAddress=81027226
+2025-09-02 16:53:33 ConnConnectedEv - isOutboundCall result: true for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 16:53:33 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:53:33 Outbound call ConnConnectedEv - setting CONNECTED state (remote party answered)
+2025-09-02 16:53:33 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 16:53:55 Event: ConnDisconnectedEv 6156003240::2
+2025-09-02 16:53:55 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 16:53:55 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:53:55 Event: CallInvalidEv
+2025-09-02 16:56:22 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 16:56:27 Event: CallActiveEv
+2025-09-02 16:56:27 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:56:27 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:56:27 Event: ConnCreatedEv 96155702834::2
+2025-09-02 16:56:27 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5984322)->ACTIVE]->ESTABLISHED
+2025-09-02 16:56:27 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 16:56:27 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 16:56:27 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:56:27 Outbound call ConnConnectedEv - setting CONNECTED state (remote party answered)
+2025-09-02 16:56:27 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 16:56:27 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:56:27 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 16:56:27 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 16:56:37 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 16:56:37 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 16:56:37 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:56:37 Event: CallInvalidEv
+2025-09-02 16:58:46 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 16:59:01 Event: CallActiveEv
+2025-09-02 16:59:01 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:59:01 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:59:01 Event: ConnCreatedEv 96155702834::2
+2025-09-02 16:59:01 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5984326)->ACTIVE]->ESTABLISHED
+2025-09-02 16:59:01 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 16:59:01 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 16:59:01 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 16:59:01 Outbound call ConnConnectedEv - setting CONNECTED state (remote party answered)
+2025-09-02 16:59:01 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 16:59:02 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:59:02 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 16:59:02 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 16:59:07 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 16:59:07 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 16:59:07 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 16:59:07 Event: CallInvalidEv
+2025-09-02 17:00:06 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 17:00:08 Event: CallActiveEv
+2025-09-02 17:00:08 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:00:08 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:00:08 Event: ConnCreatedEv 96155702834::2
+2025-09-02 17:00:08 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5984331)->ACTIVE]->ESTABLISHED
+2025-09-02 17:00:08 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:00:08 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:00:08 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:00:08 ConnConnectedEv - remote connection state: 49 (CONNECTED=3)
+2025-09-02 17:00:08 Outbound call ConnConnectedEv - keeping ALERTING state (remote party not yet answered)
+2025-09-02 17:00:08 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 17:00:09 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:00:09 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:00:09 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 17:00:18 Event: CiscoCallInfoChangedEv
+2025-09-02 17:00:18 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984331)->ACTIVE]->ESTABLISHED
+2025-09-02 17:00:18 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:00:18 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:00:18 ConnConnectedEv - manuallyPickedUp: true
+2025-09-02 17:00:18 ConnConnectedEv - allowing CONNECTED state (manually picked up)
+2025-09-02 17:00:18 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:00:18 Skipping screen pop for outbound call: 96155702834
+2025-09-02 17:00:18 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:00:18 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984331)->ACTIVE]->ESTABLISHED]->TALKING
+2025-09-02 17:00:18 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 17:00:18 TermConnActiveEv - call=(P1-axshetty) GCID=(2,5984331)->ACTIVE, callingNumber=96155702834, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984331)->ACTIVE]->ESTABLISHED
+2025-09-02 17:00:18 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:00:18 TermConnActiveEv - isOutboundCall result: true for callingNumber: 96155702834
+2025-09-02 17:00:18 TermConnActiveEv - connection count: 2
+2025-09-02 17:00:18 TermConnActiveEv - not setting CONNECTED (outbound call)
+2025-09-02 17:00:18 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 17:00:19 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 17:00:19 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:00:19 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:00:19 Event: CallInvalidEv
+2025-09-02 17:00:41 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 17:00:43 Event: CallActiveEv
+2025-09-02 17:00:43 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:00:43 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:00:43 Event: ConnCreatedEv 96155702834::2
+2025-09-02 17:00:43 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5984332)->ACTIVE]->ESTABLISHED
+2025-09-02 17:00:43 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:00:43 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:00:43 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:00:43 ConnConnectedEv - remote connection state: 49 (CONNECTED=3)
+2025-09-02 17:00:43 Outbound call ConnConnectedEv - keeping ALERTING state (remote party not yet answered)
+2025-09-02 17:00:43 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 17:00:44 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:00:44 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:00:44 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 17:00:49 Event: CiscoCallInfoChangedEv
+2025-09-02 17:00:49 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984332)->ACTIVE]->ESTABLISHED
+2025-09-02 17:00:49 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:00:49 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:00:49 ConnConnectedEv - manuallyPickedUp: true
+2025-09-02 17:00:49 ConnConnectedEv - allowing CONNECTED state (manually picked up)
+2025-09-02 17:00:49 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:00:49 Skipping screen pop for outbound call: 96155702834
+2025-09-02 17:00:49 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:00:49 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984332)->ACTIVE]->ESTABLISHED]->TALKING
+2025-09-02 17:00:49 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 17:00:49 TermConnActiveEv - call=(P1-axshetty) GCID=(2,5984332)->ACTIVE, callingNumber=96155702834, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984332)->ACTIVE]->ESTABLISHED
+2025-09-02 17:00:49 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:00:49 TermConnActiveEv - isOutboundCall result: true for callingNumber: 96155702834
+2025-09-02 17:00:49 TermConnActiveEv - connection count: 2
+2025-09-02 17:00:49 TermConnActiveEv - not setting CONNECTED (outbound call)
+2025-09-02 17:00:49 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 17:00:59 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 17:00:59 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:00:59 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:00:59 Event: CallInvalidEv
+2025-09-02 17:01:09 Event: CallActiveEv
+2025-09-02 17:01:09 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:01:09 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629383)->ACTIVE]->INITIATED
+2025-09-02 17:01:09 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:01:09 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 17:01:09 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:01:09 Outbound call ConnConnectedEv - keeping ALERTING state (remote party not yet answered)
+2025-09-02 17:01:09 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:01:09 Skipping screen pop for outbound call: 81027226
+2025-09-02 17:01:09 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:01:09 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:01:09 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629383)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 17:01:09 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 17:01:09 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629383)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629383)->ACTIVE]->INITIATED
+2025-09-02 17:01:09 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:01:09 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 17:01:09 TermConnActiveEv - connection count: 1
+2025-09-02 17:01:09 TermConnActiveEv - not setting CONNECTED (outbound call)
+2025-09-02 17:01:09 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 17:01:10 ConnCreatedEv: Call already in ALERTING state, not overriding
+2025-09-02 17:01:10 Event: ConnCreatedEv 6156003240::2
+2025-09-02 17:01:10 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629383)->ACTIVE]->ESTABLISHED
+2025-09-02 17:01:10 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:01:10 ConnConnectedEv - isOutboundCall result: true for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 17:01:10 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:01:10 ConnConnectedEv - remote connection state: 51 (CONNECTED=3)
+2025-09-02 17:01:10 Outbound call ConnConnectedEv - keeping ALERTING state (remote party not yet answered)
+2025-09-02 17:01:10 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 17:01:46 Event: ConnDisconnectedEv 6156003240::2
+2025-09-02 17:01:46 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:01:46 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:01:46 Event: CallInvalidEv
+2025-09-02 17:01:51 Event: CallActiveEv
+2025-09-02 17:01:51 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:01:51 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629384)->ACTIVE]->INITIATED
+2025-09-02 17:01:51 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:01:51 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 17:01:51 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:01:51 Outbound call ConnConnectedEv - keeping ALERTING state (remote party not yet answered)
+2025-09-02 17:01:51 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:01:51 Skipping screen pop for outbound call: 81027226
+2025-09-02 17:01:51 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:01:51 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:01:51 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629384)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 17:01:51 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 17:01:51 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629384)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629384)->ACTIVE]->INITIATED
+2025-09-02 17:01:51 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:01:51 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 17:01:51 TermConnActiveEv - connection count: 1
+2025-09-02 17:01:51 TermConnActiveEv - not setting CONNECTED (outbound call)
+2025-09-02 17:01:51 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 17:01:52 ConnCreatedEv: Call already in ALERTING state, not overriding
+2025-09-02 17:01:52 Event: ConnCreatedEv 6156003240::2
+2025-09-02 17:01:52 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629384)->ACTIVE]->ESTABLISHED
+2025-09-02 17:01:52 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:01:52 ConnConnectedEv - isOutboundCall result: true for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 17:01:52 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:01:52 ConnConnectedEv - remote connection state: 51 (CONNECTED=3)
+2025-09-02 17:01:52 Outbound call ConnConnectedEv - keeping ALERTING state (remote party not yet answered)
+2025-09-02 17:01:52 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 17:02:09 Event: ConnDisconnectedEv 6156003240::2
+2025-09-02 17:02:09 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:02:09 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:02:09 Event: CallInvalidEv
+2025-09-02 17:02:39 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 17:02:58 Event: CallActiveEv
+2025-09-02 17:02:58 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:02:58 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:02:58 Event: ConnCreatedEv 96155702834::2
+2025-09-02 17:02:58 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5984342)->ACTIVE]->ESTABLISHED
+2025-09-02 17:02:58 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:02:58 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:02:58 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:02:58 Outbound call ConnConnectedEv - setting ALERTING state (waiting for remote answer)
+2025-09-02 17:02:58 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 17:02:58 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:02:58 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:02:58 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 17:03:03 Event: CiscoCallInfoChangedEv
+2025-09-02 17:03:03 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984342)->ACTIVE]->ESTABLISHED
+2025-09-02 17:03:03 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:03:03 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:03:03 ConnConnectedEv - manuallyPickedUp: true
+2025-09-02 17:03:03 ConnConnectedEv - allowing CONNECTED state (manually picked up)
+2025-09-02 17:03:03 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:03:03 Skipping screen pop for outbound call: 96155702834
+2025-09-02 17:03:03 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:03:03 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984342)->ACTIVE]->ESTABLISHED]->TALKING
+2025-09-02 17:03:03 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 17:03:03 TermConnActiveEv - call=(P1-axshetty) GCID=(2,5984342)->ACTIVE, callingNumber=96155702834, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984342)->ACTIVE]->ESTABLISHED
+2025-09-02 17:03:03 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:03:04 TermConnActiveEv - isOutboundCall result: true for callingNumber: 96155702834
+2025-09-02 17:03:04 TermConnActiveEv - connection count: 2
+2025-09-02 17:03:04 TermConnActiveEv - outbound call, setting CONNECTED (remote party answered)
+2025-09-02 17:03:04 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 17:03:06 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 17:03:06 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:03:06 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:03:06 Event: CallInvalidEv
+2025-09-02 17:03:12 Event: CallActiveEv
+2025-09-02 17:03:12 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:03:12 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629388)->ACTIVE]->INITIATED
+2025-09-02 17:03:12 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:03:12 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 17:03:12 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:03:12 Outbound call ConnConnectedEv - setting ALERTING state (waiting for remote answer)
+2025-09-02 17:03:12 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:03:12 Skipping screen pop for outbound call: 81027226
+2025-09-02 17:03:12 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:03:12 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:03:12 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629388)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 17:03:12 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 17:03:12 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629388)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629388)->ACTIVE]->INITIATED
+2025-09-02 17:03:12 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:03:12 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 17:03:12 TermConnActiveEv - connection count: 1
+2025-09-02 17:03:12 TermConnActiveEv - outbound call, setting CONNECTED (remote party answered)
+2025-09-02 17:03:12 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 17:03:13 Event: ConnCreatedEv 6156003240::2
+2025-09-02 17:03:13 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629388)->ACTIVE]->ESTABLISHED
+2025-09-02 17:03:13 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:03:13 ConnConnectedEv - isOutboundCall result: true for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 17:03:13 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:03:13 Outbound call ConnConnectedEv - setting ALERTING state (waiting for remote answer)
+2025-09-02 17:03:13 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 17:03:37 Event: ConnDisconnectedEv 6156003240::2
+2025-09-02 17:03:37 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:03:37 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:03:37 Event: CallInvalidEv
+2025-09-02 17:06:04 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 17:06:05 Event: CallActiveEv
+2025-09-02 17:06:05 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:06:05 Event: ConnCreatedEv 96155702834::2
+2025-09-02 17:06:05 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:06:05 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5984354)->ACTIVE]->ESTABLISHED
+2025-09-02 17:06:05 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:06:05 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:06:05 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:06:05 Outbound call ConnConnectedEv - setting CONNECTED state (outbound call initiated)
+2025-09-02 17:06:05 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 17:06:05 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:06:05 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:06:05 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 17:06:09 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 17:06:09 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:06:09 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:06:09 Event: CallInvalidEv
+2025-09-02 17:09:20 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 17:09:25 Event: CallActiveEv
+2025-09-02 17:09:25 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:09:25 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:09:25 Event: ConnCreatedEv 96155702834::2
+2025-09-02 17:09:25 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5984361)->ACTIVE]->ESTABLISHED
+2025-09-02 17:09:25 isOutboundCall: true (call originated from monitored address) - existingAddress=81027226 originalNumber=81027226
+2025-09-02 17:09:25 ConnConnectedEv - isOutboundCall result: true for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:09:25 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:09:25 Outbound call ConnConnectedEv - setting CONNECTED state (outbound call initiated)
+2025-09-02 17:09:25 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 17:09:25 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:09:25 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:09:25 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 17:09:36 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 17:09:36 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:09:36 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:09:36 Event: CallInvalidEv
+2025-09-02 17:11:23 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 17:11:36 Event: CallActiveEv
+2025-09-02 17:11:36 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:11:36 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:11:36 Event: ConnCreatedEv 96155702834::2
+2025-09-02 17:11:36 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5984373)->ACTIVE]->ESTABLISHED
+2025-09-02 17:11:36 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 17:11:36 ConnConnectedEv - isOutboundCall result: false for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:11:36 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:11:36 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 17:11:36 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 17:11:37 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:11:37 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:11:37 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 17:11:42 Event: CiscoCallInfoChangedEv
+2025-09-02 17:11:42 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984373)->ACTIVE]->ESTABLISHED
+2025-09-02 17:11:42 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 17:11:42 ConnConnectedEv - isOutboundCall result: false for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:11:42 ConnConnectedEv - manuallyPickedUp: true
+2025-09-02 17:11:42 ConnConnectedEv - allowing CONNECTED state (manually picked up)
+2025-09-02 17:11:42 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 17:11:42 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-09-02 17:11:43 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:11:43 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984373)->ACTIVE]->ESTABLISHED]->TALKING
+2025-09-02 17:11:43 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 17:11:43 TermConnActiveEv - call=(P1-axshetty) GCID=(2,5984373)->ACTIVE, callingNumber=96155702834, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5984373)->ACTIVE]->ESTABLISHED
+2025-09-02 17:11:43 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 17:11:43 TermConnActiveEv - isOutboundCall result: false for callingNumber: 96155702834
+2025-09-02 17:11:43 TermConnActiveEv - connection count: 2
+2025-09-02 17:11:43 TermConnActiveEv - manuallyPickedUp: true, connectionCount: 2
+2025-09-02 17:11:43 TermConnActiveEv - inbound call manually picked up, setting CONNECTED
+2025-09-02 17:11:43 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 17:11:54 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 17:11:54 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:11:54 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:11:54 Event: CallInvalidEv
+2025-09-02 17:12:01 Event: CallActiveEv
+2025-09-02 17:12:01 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:12:01 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629397)->ACTIVE]->INITIATED
+2025-09-02 17:12:01 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:12:01 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 17:12:01 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:12:01 Outbound call ConnConnectedEv - setting CONNECTED state (outbound call initiated)
+2025-09-02 17:12:01 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:12:01 Skipping screen pop for outbound call: 81027226
+2025-09-02 17:12:01 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:12:01 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:12:01 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629397)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 17:12:01 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 17:12:01 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629397)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629397)->ACTIVE]->INITIATED
+2025-09-02 17:12:01 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:12:01 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 17:12:01 TermConnActiveEv - connection count: 1
+2025-09-02 17:12:01 TermConnActiveEv - outbound call already CONNECTED, no change needed
+2025-09-02 17:12:01 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 17:12:02 Event: ConnCreatedEv 6156003240::2
+2025-09-02 17:12:02 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629397)->ACTIVE]->ESTABLISHED
+2025-09-02 17:12:02 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=6156003240
+2025-09-02 17:12:02 ConnConnectedEv - isOutboundCall result: false for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 17:12:02 ConnConnectedEv - manuallyPickedUp: false
+2025-09-02 17:12:02 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 17:12:02 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 17:12:15 Event: ConnDisconnectedEv 6156003240::2
+2025-09-02 17:12:15 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:12:15 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:12:15 Event: CallInvalidEv
+2025-09-02 17:15:48 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 17:56:41 Event: CallActiveEv
+2025-09-02 17:56:41 ConnCreatedEv: callingNumber=81027226, existingState=null
+2025-09-02 17:56:41 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:56:41 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:56:41 ConnCreatedEv: callingNumber=96155702834, existingState=CREATED
+2025-09-02 17:56:41 Event: ConnCreatedEv 96155702834::2
+2025-09-02 17:56:41 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5985862)->ACTIVE]->ESTABLISHED
+2025-09-02 17:56:41 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 17:56:41 ConnConnectedEv - isOutboundCall result: false for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:56:41 ConnConnectedEv - manuallyPickedUp: false, currentState: CREATED
+2025-09-02 17:56:41 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 17:56:41 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 17:56:41 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:56:41 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:56:41 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 17:56:45 Event: CiscoCallInfoChangedEv
+2025-09-02 17:56:45 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5985862)->ACTIVE]->ESTABLISHED
+2025-09-02 17:56:45 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 17:56:45 ConnConnectedEv - isOutboundCall result: false for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 17:56:45 ConnConnectedEv - manuallyPickedUp: true, currentState: CONNECTED
+2025-09-02 17:56:45 ConnConnectedEv - allowing CONNECTED state (manually picked up)
+2025-09-02 17:56:45 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 17:56:45 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-09-02 17:56:47 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:56:47 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5985862)->ACTIVE]->ESTABLISHED]->TALKING
+2025-09-02 17:56:47 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 17:56:47 TermConnActiveEv - call=(P1-axshetty) GCID=(2,5985862)->ACTIVE, callingNumber=96155702834, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5985862)->ACTIVE]->ESTABLISHED
+2025-09-02 17:56:47 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 17:56:47 TermConnActiveEv - isOutboundCall result: false for callingNumber: 96155702834
+2025-09-02 17:56:47 TermConnActiveEv - connection count: 2
+2025-09-02 17:56:47 TermConnActiveEv - manuallyPickedUp: true, connectionCount: 2
+2025-09-02 17:56:47 TermConnActiveEv - inbound call manually picked up, setting CONNECTED
+2025-09-02 17:56:47 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 17:56:49 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 17:56:49 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:56:49 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:56:49 Event: CallInvalidEv
+2025-09-02 17:57:04 Event: CallActiveEv
+2025-09-02 17:57:04 ConnCreatedEv: callingNumber=81027226, existingState=null
+2025-09-02 17:57:04 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:57:04 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629636)->ACTIVE]->INITIATED
+2025-09-02 17:57:04 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:57:04 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 17:57:04 ConnConnectedEv - manuallyPickedUp: false, currentState: CREATED
+2025-09-02 17:57:04 Outbound call ConnConnectedEv - setting CONNECTED state (outbound call initiated)
+2025-09-02 17:57:04 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:57:04 Skipping screen pop for outbound call: 81027226
+2025-09-02 17:57:04 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:57:04 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 17:57:04 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629636)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 17:57:04 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 17:57:04 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629636)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629636)->ACTIVE]->INITIATED
+2025-09-02 17:57:04 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 17:57:04 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 17:57:04 TermConnActiveEv - connection count: 1
+2025-09-02 17:57:04 TermConnActiveEv - outbound call already CONNECTED, no change needed
+2025-09-02 17:57:04 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 17:57:05 ConnCreatedEv: callingNumber=6156003240, existingState=CONNECTED
+2025-09-02 17:57:05 ConnCreatedEv: Call already CONNECTED (outbound), not overriding
+2025-09-02 17:57:05 Event: ConnCreatedEv 6156003240::2
+2025-09-02 17:57:05 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629636)->ACTIVE]->ESTABLISHED
+2025-09-02 17:57:05 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=6156003240
+2025-09-02 17:57:05 ConnConnectedEv - isOutboundCall result: false for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 17:57:05 ConnConnectedEv - manuallyPickedUp: false, currentState: CONNECTED
+2025-09-02 17:57:05 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 17:57:05 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 17:57:21 Event: ConnDisconnectedEv 6156003240::2
+2025-09-02 17:57:21 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 17:57:21 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 17:57:21 Event: CallInvalidEv
+2025-09-02 18:19:03 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 18:19:12 Event: CallActiveEv
+2025-09-02 18:19:12 ConnCreatedEv: callingNumber=81027226, existingState=null
+2025-09-02 18:19:12 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:19:12 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:19:12 ConnCreatedEv: callingNumber=96155702834, existingState=CREATED
+2025-09-02 18:19:12 Event: ConnCreatedEv 96155702834::2
+2025-09-02 18:19:12 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5987515)->ACTIVE]->ESTABLISHED
+2025-09-02 18:19:12 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 18:19:12 ConnConnectedEv - isOutboundCall result: false for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 18:19:12 ConnConnectedEv - manuallyPickedUp: false, currentState: CREATED
+2025-09-02 18:19:12 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 18:19:12 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 18:19:13 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:19:13 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 18:19:13 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 18:19:18 Event: CiscoCallInfoChangedEv
+2025-09-02 18:19:18 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5987515)->ACTIVE]->ESTABLISHED
+2025-09-02 18:19:18 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 18:19:18 ConnConnectedEv - isOutboundCall result: false for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 18:19:18 ConnConnectedEv - manuallyPickedUp: true, currentState: CONNECTED
+2025-09-02 18:19:18 ConnConnectedEv - allowing CONNECTED state (manually picked up)
+2025-09-02 18:19:18 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 18:19:18 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-09-02 18:19:19 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:19:19 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5987515)->ACTIVE]->ESTABLISHED]->TALKING
+2025-09-02 18:19:19 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 18:19:19 TermConnActiveEv - call=(P1-axshetty) GCID=(2,5987515)->ACTIVE, callingNumber=96155702834, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5987515)->ACTIVE]->ESTABLISHED
+2025-09-02 18:19:19 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 18:19:19 TermConnActiveEv - isOutboundCall result: false for callingNumber: 96155702834
+2025-09-02 18:19:19 TermConnActiveEv - connection count: 2
+2025-09-02 18:19:19 TermConnActiveEv - manuallyPickedUp: true, connectionCount: 2
+2025-09-02 18:19:19 TermConnActiveEv - inbound call manually picked up, setting CONNECTED
+2025-09-02 18:19:19 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 18:19:42 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 18:19:42 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 18:19:42 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:19:42 Event: CallInvalidEv
+2025-09-02 18:20:07 Event: CallActiveEv
+2025-09-02 18:20:07 ConnCreatedEv: callingNumber=81027226, existingState=null
+2025-09-02 18:20:07 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:20:07 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629864)->ACTIVE]->INITIATED
+2025-09-02 18:20:07 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 18:20:07 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 18:20:07 ConnConnectedEv - manuallyPickedUp: false, currentState: CREATED
+2025-09-02 18:20:07 Outbound call ConnConnectedEv - setting CONNECTED state (outbound call initiated)
+2025-09-02 18:20:07 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 18:20:07 Skipping screen pop for outbound call: 81027226
+2025-09-02 18:20:07 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:20:07 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 18:20:07 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629864)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 18:20:07 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 18:20:07 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629864)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629864)->ACTIVE]->INITIATED
+2025-09-02 18:20:07 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 18:20:07 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 18:20:07 TermConnActiveEv - connection count: 1
+2025-09-02 18:20:07 TermConnActiveEv - outbound call already CONNECTED, no change needed
+2025-09-02 18:20:07 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 18:20:07 ConnCreatedEv: callingNumber=6156003240, existingState=CONNECTED
+2025-09-02 18:20:07 ConnCreatedEv: Call already CONNECTED (outbound), not overriding
+2025-09-02 18:20:07 Event: ConnCreatedEv 6156003240::2
+2025-09-02 18:20:07 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629864)->ACTIVE]->ESTABLISHED
+2025-09-02 18:20:07 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=6156003240
+2025-09-02 18:20:07 ConnConnectedEv - isOutboundCall result: false for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 18:20:07 ConnConnectedEv - manuallyPickedUp: false, currentState: CONNECTED
+2025-09-02 18:20:07 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 18:20:07 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 18:20:37 Event: ConnDisconnectedEv 6156003240::2
+2025-09-02 18:20:37 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 18:20:37 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:20:37 Event: CallInvalidEv
+2025-09-02 18:24:17 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}
+2025-09-02 18:24:39 Event: CallActiveEv
+2025-09-02 18:24:39 ConnCreatedEv: callingNumber=81027226, existingState=null
+2025-09-02 18:24:39 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:24:39 Event: ConnInProgressEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:24:39 ConnCreatedEv: callingNumber=96155702834, existingState=CREATED
+2025-09-02 18:24:39 Event: ConnCreatedEv 96155702834::2
+2025-09-02 18:24:39 ConnConnectedEv - callingNumber=96155702834 conn=[96155702834::2/(P1-axshetty) GCID=(2,5987938)->ACTIVE]->ESTABLISHED
+2025-09-02 18:24:39 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 18:24:39 ConnConnectedEv - isOutboundCall result: false for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 18:24:39 ConnConnectedEv - manuallyPickedUp: false, currentState: CREATED
+2025-09-02 18:24:39 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 18:24:39 Skipping connected open: connection address=96155702834 monitored=81027226
+2025-09-02 18:24:39 Event: ConnAlertingEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:24:39 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 18:24:39 Event: TermConnRingingEv CSFaxshetty
+2025-09-02 18:24:44 Event: CiscoCallInfoChangedEv
+2025-09-02 18:24:44 ConnConnectedEv - callingNumber=96155702834 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5987938)->ACTIVE]->ESTABLISHED
+2025-09-02 18:24:44 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 18:24:44 ConnConnectedEv - isOutboundCall result: false for callingNumber: 96155702834 monitoredAddress: 81027226
+2025-09-02 18:24:44 ConnConnectedEv - manuallyPickedUp: true, currentState: CONNECTED
+2025-09-02 18:24:44 ConnConnectedEv - allowing CONNECTED state (manually picked up)
+2025-09-02 18:24:44 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 18:24:44 Opening URL: https://salesassistant.lkqcorp.com/customers/96155702834
+2025-09-02 18:24:45 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:24:45 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5987938)->ACTIVE]->ESTABLISHED]->TALKING
+2025-09-02 18:24:45 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 18:24:45 TermConnActiveEv - call=(P1-axshetty) GCID=(2,5987938)->ACTIVE, callingNumber=96155702834, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(2,5987938)->ACTIVE]->ESTABLISHED
+2025-09-02 18:24:45 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=96155702834
+2025-09-02 18:24:45 TermConnActiveEv - isOutboundCall result: false for callingNumber: 96155702834
+2025-09-02 18:24:45 TermConnActiveEv - connection count: 2
+2025-09-02 18:24:45 TermConnActiveEv - manuallyPickedUp: true, connectionCount: 2
+2025-09-02 18:24:45 TermConnActiveEv - inbound call manually picked up, setting CONNECTED
+2025-09-02 18:24:45 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 18:24:54 Event: ConnDisconnectedEv 96155702834::2
+2025-09-02 18:24:54 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 18:24:54 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:24:54 Event: CallInvalidEv
+2025-09-02 18:25:02 Event: CallActiveEv
+2025-09-02 18:25:02 ConnCreatedEv: callingNumber=81027226, existingState=null
+2025-09-02 18:25:02 Event: ConnCreatedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:25:02 ConnConnectedEv - callingNumber=81027226 conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629926)->ACTIVE]->INITIATED
+2025-09-02 18:25:02 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 18:25:02 ConnConnectedEv - isOutboundCall result: true for callingNumber: 81027226 monitoredAddress: 81027226
+2025-09-02 18:25:02 ConnConnectedEv - manuallyPickedUp: false, currentState: CREATED
+2025-09-02 18:25:02 Outbound call ConnConnectedEv - forcing CONNECTED state (outbound call initiated)
+2025-09-02 18:25:02 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 18:25:02 Skipping screen pop for outbound call: 81027226
+2025-09-02 18:25:02 Event: ConnConnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:25:02 Event: TermConnCreatedEv CSFaxshetty
+2025-09-02 18:25:02 TermConnActiveEv terminal=CSFaxshetty tc=[CSFaxshetty/[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629926)->ACTIVE]->INITIATED]->TALKING
+2025-09-02 18:25:02 TermConnActiveEv - termName=CSFaxshetty, connName=81027226, monitoredAddress=81027226, addressMatches=true
+2025-09-02 18:25:02 TermConnActiveEv - call=(P1-axshetty) GCID=(15,9629926)->ACTIVE, callingNumber=81027226, conn=[81027226:Cluster DN Presence Allowed:1/(P1-axshetty) GCID=(15,9629926)->ACTIVE]->INITIATED
+2025-09-02 18:25:02 isOutboundCall: true (calling number matches monitored address) - 81027226 == 81027226
+2025-09-02 18:25:02 TermConnActiveEv - isOutboundCall result: true for callingNumber: 81027226
+2025-09-02 18:25:02 TermConnActiveEv - connection count: 1
+2025-09-02 18:25:02 TermConnActiveEv - outbound call, no state change (keep CONNECTED)
+2025-09-02 18:25:02 Event: TermConnActiveEv CSFaxshetty
+2025-09-02 18:25:03 ConnCreatedEv: callingNumber=6156003240, existingState=CONNECTED
+2025-09-02 18:25:03 ConnCreatedEv: Call already CONNECTED (outbound), not overriding
+2025-09-02 18:25:03 Event: ConnCreatedEv 6156003240::2
+2025-09-02 18:25:03 ConnConnectedEv - callingNumber=6156003240 conn=[6156003240::2/(P1-axshetty) GCID=(15,9629926)->ACTIVE]->ESTABLISHED
+2025-09-02 18:25:03 isOutboundCall: false (default - treating as inbound for safety) - callingNumber=6156003240
+2025-09-02 18:25:03 ConnConnectedEv - isOutboundCall result: false for callingNumber: 6156003240 monitoredAddress: 81027226
+2025-09-02 18:25:03 ConnConnectedEv - manuallyPickedUp: false, currentState: CONNECTED
+2025-09-02 18:25:03 Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)
+2025-09-02 18:25:03 Skipping connected open: connection address=6156003240 monitored=81027226
+2025-09-02 18:25:37 Event: ConnDisconnectedEv 6156003240::2
+2025-09-02 18:25:37 Event: TermConnDroppedEv CSFaxshetty
+2025-09-02 18:25:37 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
+2025-09-02 18:25:37 Event: CallInvalidEv

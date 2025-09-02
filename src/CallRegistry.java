@@ -120,9 +120,11 @@ public class CallRegistry {
                     // Carry over held/original info from previous Call mapping
                     info.wasHeld = adoptInfo.wasHeld;
                     if (adoptInfo.originalNumber != null) info.originalNumber = adoptInfo.originalNumber;
+                    // Reset manuallyPickedUp for new call
+                    info.manuallyPickedUp = false;
                     calls.remove(adoptKey);
             System.out.println("REGISTRY: Adopted previous CallInfo by GCID. wasHeld=" + info.wasHeld +
-                ", originalNumber=" + info.originalNumber + ", from=" + adoptKey + ")");
+                ", originalNumber=" + info.originalNumber + ", manuallyPickedUp=" + info.manuallyPickedUp + ", from=" + adoptKey + ")");
                 } else if (trackerVal != null && trackerVal) {
                     // Fallback: use tracker if present
                     info.wasHeld = true;
@@ -135,9 +137,52 @@ public class CallRegistry {
                 for (Listener l : listeners) try { l.onCallAdded(info); } catch (Exception ignore) {}
             } else {
                 System.out.println("REGISTRY: Updating EXISTING CallInfo for " + call + " - state: " + state + ", wasHeld: " + info.wasHeld);
+                // Normalize incoming state and prevent unintended downgrades (e.g., CONNECTED -> ALERTING/CREATED)
+                String newState = state != null ? state : info.state;
+                // Normalize synonyms
+                if (newState != null) {
+                    String s = newState.toUpperCase();
+                    if ("TALKING".equals(s)) newState = "CONNECTED";
+                    if ("RINGING".equals(s)) newState = "ALERTING";
+                }
+
+                String currentState = info.state;
+                // State ranking for downgrade checks
+                java.util.function.Function<String, Integer> rank = st -> {
+                    if (st == null) return -1;
+                    String s = st.toUpperCase();
+                    if ("CREATED".equals(s)) return 0;
+                    if ("ALERTING".equals(s)) return 1;
+                    if ("CONNECTED".equals(s)) return 2;
+                    if ("HOLD".equals(s)) return 3; // treat HOLD as highest to allow transitions via special rule below
+                    return 0;
+                };
+
+                boolean allowUpdate = true;
+                if (currentState != null && newState != null) {
+                    String cur = currentState.toUpperCase();
+                    String nxt = newState.toUpperCase();
+                    // Allow HOLD <-> CONNECTED transitions freely
+                    boolean holdConnectTransition =
+                        ("HOLD".equals(cur) && "CONNECTED".equals(nxt)) ||
+                        ("CONNECTED".equals(cur) && "HOLD".equals(nxt));
+
+                    if (!holdConnectTransition) {
+                        // Prevent downgrade from CONNECTED/HOLD to ALERTING/CREATED
+                        if (rank.apply(nxt) < rank.apply(cur)) {
+                            allowUpdate = false;
+                            System.out.println("REGISTRY: Preventing state downgrade from " + currentState + " to " + newState);
+                        }
+                    }
+                }
+
+                // Apply number/address updates regardless
                 info.number = number != null ? number : info.number;
-                info.state = state != null ? state : info.state;
                 info.address = address != null ? address : info.address;
+
+                if (allowUpdate) {
+                    info.state = newState;
+                }
                 info.lastSeen = System.currentTimeMillis();
                 System.out.println("REGISTRY: After update - wasHeld: " + info.wasHeld + ", originalNumber: " + info.originalNumber);
                 for (Listener l : listeners) try { l.onCallUpdated(info); } catch (Exception ignore) {}
@@ -270,7 +315,6 @@ public class CallRegistry {
     public boolean disconnectCall(Call call) {
         if (call == null) return false;
         // Robust disconnect: try disconnects, attempt unhold on terminal connections first
-        CallInfo info = calls.get(call);
         List<String> targets = Arrays.asList("drop","disconnect","release","clear","hangup","end","terminate","cancel");
 
         java.util.function.Predicate<String> isDisconnectName = name -> {
