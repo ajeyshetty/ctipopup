@@ -252,35 +252,161 @@ public class CallRegistry {
     // Best-effort: attempt to disconnect/hangup a call.
     public boolean disconnectCall(Call call) {
         if (call == null) return false;
-        try {
-            // Try CallControlCall.drop or disconnect-like methods via reflection
-            Method[] m = call.getClass().getMethods();
-            for (Method mm : m) {
-                String n = mm.getName().toLowerCase();
-                if (n.equals("drop") || n.contains("disconnect") || n.equals("release") || n.equals("clear")) {
-                    mm.setAccessible(true);
-                    mm.invoke(call);
-                    return true;
-                }
-            }
-            // Fallback: attempt to disconnect each Connection
-            Connection[] conns = call.getConnections();
-            if (conns != null) {
-                for (Connection c : conns) {
-                    Method[] cm = c.getClass().getMethods();
-                    for (Method mm : cm) {
-                        String n = mm.getName().toLowerCase();
-                        if (n.equals("disconnect") || n.equals("drop") || n.equals("release") || n.equals("clear")) {
+        // Robust disconnect: try disconnects, attempt unhold on terminal connections first
+        CallInfo info = calls.get(call);
+        List<String> targets = Arrays.asList("drop","disconnect","release","clear","hangup","end","terminate","cancel");
+
+        java.util.function.Predicate<String> isDisconnectName = name -> {
+            if (name == null) return false;
+            String n = name.toLowerCase();
+            for (String t : targets) if (n.equals(t) || n.contains(t)) return true;
+            return false;
+        };
+
+        // Try multiple attempts: unhold -> disconnect -> poll state
+        int attempts = 3;
+        for (int attempt = 0; attempt < attempts; attempt++) {
+            try {
+                // 1) Try to clear held state on terminal connections (setHeld(false), unhold, answer)
+                try {
+                    Connection[] conns = call.getConnections();
+                    if (conns != null) {
+                        for (Connection c : conns) {
+                            try {
+                                TerminalConnection[] tcs = c.getTerminalConnections();
+                                if (tcs != null) {
+                                    for (TerminalConnection tc : tcs) {
+                                        Method[] tcm = tc.getClass().getMethods();
+                                        for (Method mm : tcm) {
+                                            String name = mm.getName().toLowerCase();
+                                            try {
+                                                if (name.equals("setheld") && mm.getParameterCount() == 1 && mm.getParameterTypes()[0] == boolean.class) {
+                                                    mm.setAccessible(true);
+                                                    mm.invoke(tc, false);
+                                                } else if ((name.contains("unhold") || name.contains("retrieve") || name.equals("answer") || name.equals("offhook")) && mm.getParameterCount() == 0) {
+                                                    mm.setAccessible(true);
+                                                    mm.invoke(tc);
+                                                }
+                                            } catch (Exception _e) {
+                                                // ignore per-method failures
+                                            }
+                                        }
+                                    }
+                                }
+                            } catch (Exception _e) { }
+                        }
+                    }
+                } catch (Exception ignore) {}
+
+                // 2) Try disconnect on call-level
+                Method[] m = call.getClass().getMethods();
+                for (Method mm : m) {
+                    String n = mm.getName();
+                    if (isDisconnectName.test(n)) {
+                        try {
                             mm.setAccessible(true);
-                            mm.invoke(c);
-                            return true;
+                            if (mm.getParameterCount() == 0) {
+                                mm.invoke(call);
+                            } else if (mm.getParameterCount() == 1 && mm.getParameterTypes()[0] == java.lang.String.class) {
+                                mm.invoke(call, "");
+                            } else {
+                                continue;
+                            }
+                        } catch (Exception e) {
+                            // try next method
                         }
                     }
                 }
+
+                // 3) Try connection-level disconnects
+                Connection[] conns = call.getConnections();
+                if (conns != null) {
+                    for (Connection c : conns) {
+                        Method[] cm = c.getClass().getMethods();
+                        for (Method mm : cm) {
+                            String n = mm.getName();
+                            if (isDisconnectName.test(n)) {
+                                try {
+                                    mm.setAccessible(true);
+                                    if (mm.getParameterCount() == 0) {
+                                        mm.invoke(c);
+                                    } else if (mm.getParameterCount() == 1 && mm.getParameterTypes()[0] == java.lang.String.class) {
+                                        mm.invoke(c, "");
+                                    } else {
+                                        continue;
+                                    }
+                                } catch (Exception e) {
+                                    // ignore
+                                }
+                            }
+                        }
+
+                        // Try terminal-level disconnects (after attempted unhold)
+                        try {
+                            TerminalConnection[] tcs = c.getTerminalConnections();
+                            if (tcs != null) {
+                                for (TerminalConnection tc : tcs) {
+                                    Method[] tcm = tc.getClass().getMethods();
+                                    for (Method mm : tcm) {
+                                        String name = mm.getName();
+                                        if (isDisconnectName.test(name)) {
+                                            try {
+                                                mm.setAccessible(true);
+                                                if (mm.getParameterCount() == 0) {
+                                                    mm.invoke(tc);
+                                                } else if (mm.getParameterCount() == 1 && mm.getParameterTypes()[0] == java.lang.String.class) {
+                                                    mm.invoke(tc, "");
+                                                }
+                                            } catch (Exception _e) {
+                                                // ignore
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } catch (Exception ignore) {}
+                    }
+                }
+
+                // 4) Poll for state change to DISCONNECTED (JTAPI numeric value commonly 4)
+                boolean disconnected = false;
+                int checks = 8; // ~8 * 200ms = 1.6s
+                for (int i = 0; i < checks; i++) {
+                    try {
+                        int st = call.getState();
+                        if (st == 4) { // DISCONNECTED
+                            disconnected = true;
+                            break;
+                        }
+                        // If there are no connections, treat as disconnected
+                        Connection[] afterConns = call.getConnections();
+                        if (afterConns == null || afterConns.length == 0) {
+                            disconnected = true;
+                            break;
+                        }
+                    } catch (Exception e) {
+                        // if we can't read state, continue polling
+                    }
+                    try { Thread.sleep(200); } catch (InterruptedException _ie) { Thread.currentThread().interrupt(); }
+                }
+
+                if (disconnected) {
+                    // Clean up trackers for ended call
+                    try {
+                        String callId = getCallId(call);
+                        heldCallTracker.remove(callId);
+                        originalNumberTracker.remove(callId);
+                    } catch (Exception ignore) {}
+                    return true;
+                }
+
+            } catch (Exception e) {
+                // continue to next attempt
             }
-        } catch (Exception e) {
-            // ignore
+            // small backoff before retrying
+            try { Thread.sleep(150); } catch (InterruptedException _ie) { Thread.currentThread().interrupt(); }
         }
+
         return false;
     }
 

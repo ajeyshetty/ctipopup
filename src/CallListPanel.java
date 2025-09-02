@@ -338,12 +338,119 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         statusLabel.setForeground(Color.BLUE);
 
         stopTalkTimer(ci.call);
+
+        // If this was a Cisco-held call that became INVALID, inform the user and offer to try resume+hangup.
+        try {
+            int callState = ci.call.getState();
+            if (ci.wasHeld && callState == Call.INVALID) {
+                // Show options to user
+                Object[] options = {"Attempt resume then hangup","Show resume instructions","Cancel"};
+                int choice = JOptionPane.showOptionDialog(this,
+                    "This call was placed on hold by Cisco and is now in an INVALID state.\n" +
+                    "A normal hangup may not disconnect the remote party (hold music may continue).\n\n" +
+                    "Choose 'Attempt resume then hangup' to try to retrieve the call and then hang up,\n" +
+                    "or 'Show resume instructions' for manual steps (e.g., resume in Jabber).",
+                    "Hangup on Held Call",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.WARNING_MESSAGE,
+                    null,
+                    options,
+                    options[0]);
+
+                if (choice == 0) {
+                    statusLabel.setText("Attempting resume then hangup...");
+                    statusLabel.setForeground(Color.BLUE);
+                    // Try to resume first
+                    boolean resumed = CallRegistry.getInstance().resumeCall(ci.call);
+                    if (resumed) {
+                        // Now attempt disconnect on the (now resumed) call
+                        boolean ok2 = CallRegistry.getInstance().disconnectCall(ci.call);
+                        if (ok2) {
+                            // Wait for provider to reflect disconnected state
+                            boolean disconnected = false;
+                            try {
+                                for (int attempt = 0; attempt < 8; attempt++) {
+                                    try { if (ci.call.getState() == Call.INVALID || ci.call.getState() == 4) { disconnected = true; break; } } catch (Exception _e) {}
+                                    Thread.sleep(250);
+                                }
+                            } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
+
+                            if (disconnected) {
+                                CallRegistry.getInstance().remove(ci.call);
+                                statusLabel.setText("✓ Call hung up after resume");
+                                statusLabel.setForeground(new Color(40, 167, 69));
+                            } else {
+                                statusLabel.setText("✗ Hangup invoked but call still active");
+                                statusLabel.setForeground(Color.RED);
+                            }
+                        } else {
+                            statusLabel.setText("✗ Disconnect after resume failed");
+                            statusLabel.setForeground(Color.RED);
+                        }
+                    } else {
+                        // Resume failed - offer to open instructions or attempt direct dial fallback
+                        statusLabel.setText("✗ Resume failed - cannot hangup Cisco-held call");
+                        statusLabel.setForeground(Color.RED);
+                        JOptionPane.showMessageDialog(this,
+                            "Unable to retrieve the Cisco-held call programmatically.\n" +
+                            "Please resume the call in Jabber or the phone and hang up there,\n" +
+                            "or contact your telephony administrator to clear the park/hold.",
+                            "Resume Failed",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else if (choice == 1) {
+                    // Show instructions
+                    JOptionPane.showMessageDialog(this,
+                        "Cisco held calls often must be resumed in Jabber or via the phone UI.\n\n" +
+                        "1) Open Jabber and locate the held call.\n" +
+                        "2) Resume the call, then hang up.\n" +
+                        "3) If unavailable, contact your telephony admin to clear the parked call.",
+                        "Resume Instructions",
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+                // Clear status after 4 seconds and refresh buttons
+                Timer timer = new Timer(4000, _ -> { SwingUtilities.invokeLater(() -> updateButtonStates()); });
+                timer.setRepeats(false);
+                timer.start();
+                return;
+            }
+        } catch (Exception e) {
+            // ignore and continue to attempt normal disconnect
+        }
+
         boolean ok = CallRegistry.getInstance().disconnectCall(ci.call);
         if (ok) {
-            CallRegistry.getInstance().remove(ci.call);
-            statusLabel.setText("✓ Call hung up successfully");
-            statusLabel.setForeground(new Color(40, 167, 69)); // Green
-            System.out.println("HANGUP: Successfully hung up call");
+            // Give the provider a short moment to update call state and ensure the disconnect actually completed.
+            boolean disconnected = false;
+            try {
+                for (int attempt = 0; attempt < 10; attempt++) {
+                    try {
+                        int state = ci.call.getState();
+                        if (state == Call.INVALID || state == 4) { // 4 == DISCONNECTED in common JTAPI implementations
+                            disconnected = true;
+                            break;
+                        }
+                    } catch (Exception e) {
+                        // ignore and retry
+                    }
+                    Thread.sleep(200);
+                }
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+
+            if (disconnected) {
+                CallRegistry.getInstance().remove(ci.call);
+                statusLabel.setText("✓ Call hung up successfully");
+                statusLabel.setForeground(new Color(40, 167, 69)); // Green
+                System.out.println("HANGUP: Successfully hung up call");
+            } else {
+                // The provider reported success via reflection but the call still appears active (often occurs for held/parked calls).
+                // Keep the call in the UI so the user can attempt resume/retry, and show a helpful message.
+                statusLabel.setText("✗ Hangup attempted but call still active (may be on hold)");
+                statusLabel.setForeground(Color.RED);
+                System.out.println("HANGUP: Hangup invoked but call still active - not removing from UI");
+            }
         } else {
             statusLabel.setText("✗ Failed to hang up call");
             statusLabel.setForeground(Color.RED);
