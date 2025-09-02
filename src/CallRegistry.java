@@ -21,6 +21,9 @@ public class CallRegistry {
         public volatile String originalNumber;
         public volatile String originalAddress;
         public volatile boolean wasHeld = false;
+        
+        // Track if call was manually picked up via UI
+        public volatile boolean manuallyPickedUp = false;
 
         public CallInfo(Call call, String number, String state, String address) {
             this.call = call;
@@ -201,8 +204,9 @@ public class CallRegistry {
                                     if (n.contains("answer") || n.contains("pickup") || n.contains("pickup") || n.contains("pickupcall") || n.contains("pickUp")) {
                                                         mm.setAccessible(true);
                                                         mm.invoke(tc);
-                                                        // mark this call as connected
+                                                        // mark this call as connected and manually picked up
                                                         setState(call, "CONNECTED");
+                                                        markManuallyPickedUp(call);
                                                         // best-effort: hold other connected calls
                                                         synchronized (calls) {
                                                             for (Call other : new ArrayList<>(calls.keySet())) {
@@ -230,6 +234,7 @@ public class CallRegistry {
                     mm.setAccessible(true);
                     mm.invoke(call);
                     setState(call, "CONNECTED");
+                    markManuallyPickedUp(call);
                     synchronized (calls) {
                         for (Call other : new ArrayList<>(calls.keySet())) {
                             if (!other.equals(call)) {
@@ -247,6 +252,18 @@ public class CallRegistry {
             // ignore, return false below
         }
         return false;
+    }
+
+    // Mark a call as manually picked up via UI
+    private void markManuallyPickedUp(Call call) {
+        if (call == null) return;
+        synchronized (calls) {
+            CallInfo info = calls.get(call);
+            if (info != null) {
+                info.manuallyPickedUp = true;
+                System.out.println("REGISTRY: Marked call as manually picked up: " + call);
+            }
+        }
     }
 
     // Best-effort: attempt to disconnect/hangup a call.

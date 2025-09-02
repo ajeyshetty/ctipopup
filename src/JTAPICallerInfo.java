@@ -355,11 +355,26 @@ public class JTAPICallerInfo implements CallObserver {
                                     writeLog("TermConnActiveEv - not setting CONNECTED (outbound or single connection)");
                                     // Don't update state for outbound calls or calls with single connection
                                 } else {
-                                    writeLog("TermConnActiveEv - inbound call, setting CONNECTED");
-                                    // For inbound calls, set CONNECTED immediately
-                                    try { 
-                                        CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CONNECTED", this.monitoredAddress); 
-                                    } catch (Throwable _ignore) {}
+                                    // Check if this call was manually picked up
+                                    CallRegistry.CallInfo callInfo = CallRegistry.getInstance().snapshot().stream()
+                                        .filter(info -> info.call.equals(call))
+                                        .findFirst().orElse(null);
+                                    boolean manuallyPickedUp = callInfo != null && callInfo.manuallyPickedUp;
+                                    writeLog("TermConnActiveEv - manuallyPickedUp: " + manuallyPickedUp);
+                                    
+                                    if (manuallyPickedUp) {
+                                        writeLog("TermConnActiveEv - inbound call manually picked up, setting CONNECTED");
+                                        try { 
+                                            CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CONNECTED", this.monitoredAddress); 
+                                        } catch (Throwable _ignore) {}
+                                    } else {
+                                        writeLog("TermConnActiveEv - inbound call, keeping ALERTING (requires manual pickup)");
+                                        // For inbound calls, keep them in ALERTING state until manually picked up
+                                        // The UI will set them to CONNECTED only when manually picked up via pickCall()
+                                        try { 
+                                            CallRegistry.getInstance().addOrUpdate(call, callingNumber, "ALERTING", this.monitoredAddress); 
+                                        } catch (Throwable _ignore) {}
+                                    }
                                 }
                                 
                                 // Only process screen pop if we have a valid URL template
@@ -428,10 +443,31 @@ public class JTAPICallerInfo implements CallObserver {
                             final String finalCallingNumber = callingNumber;
                             
                             // Determine the appropriate state based on call type and connection
-                            String stateToSet = "CONNECTED";
+                            String stateToSet = "ALERTING"; // Default to ALERTING for safety
                             
-                            // For outbound calls, be more conservative about setting CONNECTED
-                            if (isOutboundCall(call, finalCallingNumber)) {
+                            // For inbound calls, do NOT automatically set to CONNECTED
+                            // They should remain in ALERTING/RINGING until manually picked up via UI
+                            boolean isOutbound = isOutboundCall(call, finalCallingNumber);
+                            writeLog("ConnConnectedEv - isOutboundCall result: " + isOutbound + " for callingNumber: " + finalCallingNumber + " monitoredAddress: " + this.monitoredAddress);
+                            
+                            // Check if this call was manually picked up
+                            CallRegistry.CallInfo callInfo = CallRegistry.getInstance().snapshot().stream()
+                                .filter(info -> info.call.equals(call))
+                                .findFirst().orElse(null);
+                            boolean manuallyPickedUp = callInfo != null && callInfo.manuallyPickedUp;
+                            writeLog("ConnConnectedEv - manuallyPickedUp: " + manuallyPickedUp);
+                            
+                            if (!isOutbound && !manuallyPickedUp) {
+                                // This is an inbound call that was NOT manually picked up - keep it in ALERTING state
+                                // The UI will set it to CONNECTED only when manually picked up
+                                stateToSet = "ALERTING";
+                                writeLog("Inbound call ConnConnectedEv - keeping ALERTING state (requires manual pickup)");
+                            } else if (manuallyPickedUp) {
+                                // This call was manually picked up - allow CONNECTED state
+                                stateToSet = "CONNECTED";
+                                writeLog("ConnConnectedEv - allowing CONNECTED state (manually picked up)");
+                            } else {
+                                // For outbound calls, be more conservative about setting CONNECTED
                                 Address connAddr = conn != null ? conn.getAddress() : null;
                                 String connAddrName = connAddr != null ? connAddr.getName() : null;
                                 
@@ -470,8 +506,8 @@ public class JTAPICallerInfo implements CallObserver {
                                         stateToSet = "ALERTING"; // Preserve ALERTING state
                                         writeLog("Outbound call uncertain connection - preserving ALERTING state");
                                     } else {
-                                        stateToSet = "CONNECTED";
-                                        writeLog("Outbound call uncertain connection - setting CONNECTED state");
+                                        stateToSet = "ALERTING"; // Changed from CONNECTED to ALERTING for safety
+                                        writeLog("Outbound call uncertain connection - setting ALERTING state");
                                     }
                                 }
                             }
@@ -618,26 +654,26 @@ public class JTAPICallerInfo implements CallObserver {
      * @return true if the call is outbound, false if inbound or unknown
      */
     private boolean isOutboundCall(Call call, String callingNumber) {
-        if (call == null || callingNumber == null || this.monitoredAddress == null) return false;
+        if (call == null || callingNumber == null || this.monitoredAddress == null) {
+            writeLog("isOutboundCall: false (null params) - call=" + call + " callingNumber=" + callingNumber + " monitoredAddress=" + this.monitoredAddress);
+            return false;
+        }
 
         try {
-            // Check if the call has multiple connections (typical for outbound calls)
-            Connection[] connections = call.getConnections();
-            if (connections != null && connections.length > 1) {
-                return true;
-            }
-
-            // If the calling number matches our monitored address, it's likely an outbound call
+            // Primary check: if the calling number matches our monitored address, it's an outbound call
             if (callingNumber.equalsIgnoreCase(this.monitoredAddress)) {
+                writeLog("isOutboundCall: true (calling number matches monitored address) - " + callingNumber + " == " + this.monitoredAddress);
                 return true;
             }
 
             // Additional check: if the calling number contains our monitored address
             if (callingNumber.toLowerCase().contains(this.monitoredAddress.toLowerCase())) {
+                writeLog("isOutboundCall: true (calling number contains monitored address) - " + callingNumber + " contains " + this.monitoredAddress);
                 return true;
             }
 
             // Check connections for origination clues
+            Connection[] connections = call.getConnections();
             if (connections != null) {
                 for (Connection conn : connections) {
                     if (conn != null) {
@@ -646,6 +682,15 @@ public class JTAPICallerInfo implements CallObserver {
                             if (connAddr != null) {
                                 String connAddrName = connAddr.getName();
                                 if (connAddrName != null && connAddrName.equalsIgnoreCase(this.monitoredAddress)) {
+                                    // If one of the connections is our monitored address and calling number is different,
+                                    // this could be either inbound or outbound - need to check direction
+                                    if (!callingNumber.equalsIgnoreCase(this.monitoredAddress)) {
+                                        // The calling number is different from monitored address but one connection is monitored address
+                                        // This suggests it's an inbound call (external caller to monitored address)
+                                        writeLog("isOutboundCall: false (external caller to monitored address) - callingNumber=" + callingNumber + " connAddr=" + connAddrName);
+                                        return false;
+                                    }
+                                    writeLog("isOutboundCall: true (monitored address in connections) - connAddr=" + connAddrName);
                                     return true;
                                 }
                             }
