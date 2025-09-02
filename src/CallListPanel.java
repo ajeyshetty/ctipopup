@@ -37,6 +37,9 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
     // Store the current service state
     private boolean currentServiceState = false;
 
+    // Coalesced UI refresh flag to avoid redundant updates during bursts
+    private volatile boolean uiRefreshScheduled = false;
+
     public CallListPanel() {
         super(new BorderLayout());
         model = new CallTableModel(this);
@@ -57,10 +60,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         table.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 // Only update UI when selection actually changes
-                SwingUtilities.invokeLater(() -> {
-                    updateHoldResumeButtonText();
-                    updateButtonStates();
-                });
+                requestUiRefresh();
             }
         });
 
@@ -244,6 +244,20 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
 
         // Update button text after loading initial calls
         updateHoldResumeButtonText();
+    }
+
+    // Schedule a single UI refresh on the EDT, coalescing multiple rapid calls
+    private void requestUiRefresh() {
+        if (uiRefreshScheduled) return;
+        uiRefreshScheduled = true;
+        SwingUtilities.invokeLater(() -> {
+            try {
+                updateHoldResumeButtonText();
+                updateButtonStates();
+            } finally {
+                uiRefreshScheduled = false;
+            }
+        });
     }
 
     private JButton createStyledButton(String text, Color color) {
@@ -818,7 +832,111 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             }
         });
 
+        // Fast single-key shortcuts for speed juggling
+        // Enter -> smart action (Pick/Resume/Hold)
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke("ENTER"), "smartAction");
+        actionMap.put("smartAction", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                CallRegistry.CallInfo ci = selectedInfo();
+                if (ci == null || ci.state == null) { doPick(); return; }
+                String s = ci.state.toLowerCase();
+                if (s.contains("hold")) {
+                    doResume();
+                } else if (s.contains("alerting") || s.contains("created") || s.contains("ringing")) {
+                    doPick();
+                } else if (s.contains("connected") || s.contains("talking")) {
+                    doHold();
+                } else {
+                    doPick();
+                }
+            }
+        });
+
+        // Space -> Hold/Resume (without Ctrl)
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke("SPACE"), "holdResumeQuick");
+        actionMap.put("holdResumeQuick", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) { doHoldResume(); }
+        });
+
+        // H -> Hangup quick
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke('H'), "hangupQuick");
+        actionMap.put("hangupQuick", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) { doHangup(); }
+        });
+
+        // R -> Answer next ringing call
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke('R'), "answerNextRinging");
+        actionMap.put("answerNextRinging", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                int idx = findNextRingingRow(-1);
+                if (idx >= 0) { selectRow(idx); doPick(); }
+            }
+        });
+
+        // Tab / Shift+Tab -> Navigate rows quickly
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke("TAB"), "nextRow");
+        actionMap.put("nextRow", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) { selectNextRow(); }
+        });
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke("shift TAB"), "prevRow");
+        actionMap.put("prevRow", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) { selectPrevRow(); }
+        });
+
+        // Number keys 1-9 -> jump to row 1..9
+        for (int i = 1; i <= 9; i++) {
+            final int rowIdx = i - 1;
+            String actionName = "jumpRow" + i;
+            inputMap.put(javax.swing.KeyStroke.getKeyStroke(Character.forDigit(i, 10)), actionName);
+            actionMap.put(actionName, new javax.swing.AbstractAction() {
+                public void actionPerformed(java.awt.event.ActionEvent e) { selectRow(rowIdx); }
+            });
+        }
+
         // Double-click on table for pick - already implemented in mouse listener
+    }
+
+    // Helper: select specific row safely and ensure visibility
+    private void selectRow(int rowIdx) {
+        int rowCount = model.getRowCount();
+        if (rowIdx < 0 || rowIdx >= rowCount) return;
+        table.getSelectionModel().setSelectionInterval(rowIdx, rowIdx);
+        java.awt.Rectangle rect = table.getCellRect(rowIdx, 0, true);
+        table.scrollRectToVisible(rect);
+        requestUiRefresh();
+    }
+
+    // Helper: find next ringing row after startIdx; -1 to start from top
+    private int findNextRingingRow(int startIdx) {
+        int n = model.getRowCount();
+        for (int i = Math.max(0, startIdx + 1); i < n; i++) {
+            try {
+                CallRegistry.CallInfo ci = model.getAt(i);
+                if (ci != null && ci.state != null) {
+                    String s = ci.state.toLowerCase();
+                    if (s.contains("alerting") || s.contains("created") || s.contains("ringing")) {
+                        return i;
+                    }
+                }
+            } catch (Exception ignore) {}
+        }
+        return -1;
+    }
+
+    private void selectNextRow() {
+        int sel = table.getSelectedRow();
+        int count = model.getRowCount();
+        if (count == 0) return;
+        int next = (sel + 1) % count;
+        selectRow(next);
+    }
+
+    private void selectPrevRow() {
+        int sel = table.getSelectedRow();
+        int count = model.getRowCount();
+        if (count == 0) return;
+        int prev = (sel - 1 + count) % count;
+        selectRow(prev);
     }
 
     // Method to update dial button state based on service running status
@@ -1202,7 +1320,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             if ("CONNECTED".equalsIgnoreCase(info.state) || "TALKING".equalsIgnoreCase(info.state)) {
                 startTalkTimer(info.call);
             }
-            updateHoldResumeButtonText();
+            requestUiRefresh();
         });
     }
 
@@ -1218,7 +1336,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             } else {
                 stopTalkTimer(info.call);
             }
-            updateHoldResumeButtonText();
+            requestUiRefresh();
         });
     }
 
@@ -1232,7 +1350,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             totalTalkTime.remove(info.call);
             totalHoldTime.remove(info.call);
             model.remove(info);
-            updateHoldResumeButtonText();
+            requestUiRefresh();
         });
     }
 
