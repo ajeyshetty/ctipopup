@@ -64,25 +64,6 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             }
         });
 
-        // Add mouse listener for double-click to pick up calls
-        table.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                if (e.getClickCount() == 2) { // Double-click
-                    int row = table.rowAtPoint(e.getPoint());
-                    if (row >= 0) {
-                        table.setRowSelectionInterval(row, row);
-                        CallRegistry.CallInfo ci = model.getAt(row);
-                        if (ci != null && ("ALERTING".equalsIgnoreCase(ci.state) ||
-                                          "CREATED".equalsIgnoreCase(ci.state) ||
-                                          "RINGING".equalsIgnoreCase(ci.state))) {
-                            doPick();
-                        }
-                    }
-                }
-            }
-        });
-
         // Set column widths - adjust for new time columns
         table.getColumnModel().getColumn(0).setPreferredWidth(100); // From
         table.getColumnModel().getColumn(1).setPreferredWidth(100); // To
@@ -234,12 +215,12 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
                             if (s.contains("hold")) {
                                 // Held call -> resume
                                 doResume();
-                            } else if (s.contains("connected") || s.contains("talking")) {
-                                // Active call -> hold
-                                doHold();
                             } else if (s.contains("alerting") || s.contains("created") || s.contains("ringing")) {
                                 // Ringing call -> pick
                                 doPick();
+                            } else if (s.contains("connected") || s.contains("talking")) {
+                                // Active call -> hold
+                                doHold();
                             }
                         } else {
                             doPick(); // Default to pick if state unknown

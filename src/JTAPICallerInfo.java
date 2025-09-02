@@ -215,9 +215,15 @@ public class JTAPICallerInfo implements CallObserver {
                                     }
                                 }
                                 if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty() && !urlOpened.contains(call)) {
-                                    openUrlWithNumber(this.urlTemplate, callingNumber);
-                                    urlOpened.add(call);
-                                    try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "ALERTING", this.monitoredAddress); } catch (Throwable _ignore) {}
+                                    // Skip screen pop for outbound calls
+                                    if (!isOutboundCall(call, callingNumber)) {
+                                        openUrlWithNumber(this.urlTemplate, callingNumber);
+                                        urlOpened.add(call);
+                                        try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "ALERTING", this.monitoredAddress); } catch (Throwable _ignore) {}
+                                    } else {
+                                        writeLog("Skipping screen pop for outbound call: " + callingNumber);
+                                        urlOpened.add(call); // Mark as opened to prevent future attempts
+                                    }
                                 }
                             }
                         } catch (Exception e) {
@@ -250,9 +256,15 @@ public class JTAPICallerInfo implements CallObserver {
                                     }
                                 } catch (Exception _ignore) {}
                                 if (!urlOpened.contains(call)) {
-                                    openUrlWithNumber(this.urlTemplate, callingNumber);
-                                    urlOpened.add(call);
-                                    try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "ALERTING", this.monitoredAddress); } catch (Throwable _ignore) {}
+                                    // Skip screen pop for outbound calls
+                                    if (!isOutboundCall(call, callingNumber)) {
+                                        openUrlWithNumber(this.urlTemplate, callingNumber);
+                                        urlOpened.add(call);
+                                        try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "ALERTING", this.monitoredAddress); } catch (Throwable _ignore) {}
+                                    } else {
+                                        writeLog("Skipping screen pop for outbound call: " + callingNumber);
+                                        urlOpened.add(call); // Mark as opened to prevent future attempts
+                                    }
                                 } else {
                                     System.out.println("URL already opened for call: " + call);
                                 }
@@ -293,9 +305,15 @@ public class JTAPICallerInfo implements CallObserver {
                                 }
                                 if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty()) {
                                     if (!urlOpened.contains(call)) {
-                                        openUrlWithNumber(this.urlTemplate, callingNumber);
-                                        urlOpened.add(call);
-                                        try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CONNECTED", this.monitoredAddress); } catch (Throwable _ignore) {}
+                                        // Skip screen pop for outbound calls
+                                        if (!isOutboundCall(call, callingNumber)) {
+                                            openUrlWithNumber(this.urlTemplate, callingNumber);
+                                            urlOpened.add(call);
+                                            try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CONNECTED", this.monitoredAddress); } catch (Throwable _ignore) {}
+                                        } else {
+                                            writeLog("Skipping screen pop for outbound call: " + callingNumber);
+                                            urlOpened.add(call); // Mark as opened to prevent future attempts
+                                        }
                                     } else {
                                         System.out.println("URL already opened for call: " + call);
                                     }
@@ -331,8 +349,14 @@ public class JTAPICallerInfo implements CallObserver {
                                     }
                                 } catch (Exception _ignore) {}
                                 if (!urlOpened.contains(call)) {
-                                    openUrlWithNumber(this.urlTemplate, callingNumber);
-                                    urlOpened.add(call);
+                                    // Skip screen pop for outbound calls
+                                    if (!isOutboundCall(call, callingNumber)) {
+                                        openUrlWithNumber(this.urlTemplate, callingNumber);
+                                        urlOpened.add(call);
+                                    } else {
+                                        writeLog("Skipping screen pop for outbound call: " + callingNumber);
+                                        urlOpened.add(call); // Mark as opened to prevent future attempts
+                                    }
                                 } else {
                                     System.out.println("URL already opened for call: " + call);
                                 }
@@ -440,5 +464,55 @@ public class JTAPICallerInfo implements CallObserver {
             System.err.println("Failed to write log: " + e.getMessage());
         }
     }
+
+    /**
+     * Determines if a call is outbound (originated from this terminal)
+     * @param call The call to check
+     * @param callingNumber The calling number associated with the call
+     * @return true if the call is outbound, false if inbound or unknown
+     */
+    private boolean isOutboundCall(Call call, String callingNumber) {
+        if (call == null || callingNumber == null || this.monitoredAddress == null) return false;
+
+        try {
+            // If the calling number matches our monitored address, it's likely an outbound call
+            if (callingNumber.equalsIgnoreCase(this.monitoredAddress)) {
+                writeLog("Detected outbound call: calling number matches monitored address");
+                return true;
+            }
+
+            // Additional check: if the calling number contains our monitored address
+            if (callingNumber.toLowerCase().contains(this.monitoredAddress.toLowerCase())) {
+                writeLog("Detected potential outbound call: calling number contains monitored address");
+                return true;
+            }
+
+            // Check connections for origination clues
+            Connection[] connections = call.getConnections();
+            if (connections != null) {
+                for (Connection conn : connections) {
+                    if (conn != null) {
+                        try {
+                            Address connAddr = conn.getAddress();
+                            if (connAddr != null) {
+                                String connAddrName = connAddr.getName();
+                                if (connAddrName != null && connAddrName.equalsIgnoreCase(this.monitoredAddress)) {
+                                    writeLog("Detected outbound call: connection address matches monitored address");
+                                    return true;
+                                }
+                            }
+                        } catch (Exception e) {
+                            writeLog("Error checking connection address: " + e.getMessage());
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            writeLog("Error determining if call is outbound: " + e.getMessage());
+        }
+
+        return false;
+    }
+
     // GUI popup removed for production; use system notifications or external caller if needed.
 }
