@@ -2,12 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.telephony.*;
+import javax.telephony.events.*;
 import java.io.*;
 import java.net.*;
 import java.nio.file.*;
 import java.util.Properties;
 
-public class JTAPIGui {
+public class JTAPIGui implements ProviderObserver {
     private JFrame frame;
     private JTextField userField;
     private JPasswordField passField;
@@ -494,6 +495,7 @@ public class JTAPIGui {
             try {
                 JtapiPeer peer = JtapiPeerFactory.getJtapiPeer(null);
                 provider = peer.getProvider(providerStringFinal);
+                provider.addObserver(this); // Add provider observer to listen for state changes
                 connectionSuccessful = true;
                 
                 if ("ALL".equalsIgnoreCase(phoneFinal)) {
@@ -508,6 +510,8 @@ public class JTAPIGui {
                     }
                     subscriptionSuccessful = true;
                     updateStatus("Connected: Subscribed to ALL (" + (all != null ? all.length : 0) + " addresses)", new Color(40, 167, 69));
+                    // Notify CallListPanel that service state changed
+                    SwingUtilities.invokeLater(() -> notifyServiceStateChanged());
                 } else {
                     try {
                         Address a = provider.getAddress(phoneFinal);
@@ -515,6 +519,8 @@ public class JTAPIGui {
                         a.addCallObserver(addrListener);
                         subscriptionSuccessful = true;
                         updateStatus("Connected: Subscribed to " + a.getName(), new Color(40, 167, 69));
+                        // Notify CallListPanel that service state changed
+                        SwingUtilities.invokeLater(() -> notifyServiceStateChanged());
                     } catch (Exception ex) {
                         updateStatus("Disconnected: Failed to subscribe to '" + phoneFinal + "' - " + ex.getMessage(), new Color(220, 53, 69));
                         try {
@@ -528,6 +534,8 @@ public class JTAPIGui {
                                         subscriptionSuccessful = true;
                                         foundFuzzy = true;
                                         updateStatus("Connected: Subscribed fuzzy to " + av.getName(), new Color(40, 167, 69));
+                                        // Notify CallListPanel that service state changed
+                                        SwingUtilities.invokeLater(() -> notifyServiceStateChanged());
                                         break; // Exit after first successful fuzzy match
                                     }
                                 } catch (Exception e) {
@@ -564,6 +572,7 @@ public class JTAPIGui {
                     // Clean up provider if subscription failed
                     if (connectionSuccessful && !subscriptionSuccessful && provider != null) {
                         try {
+                            provider.removeObserver(this);
                             provider.shutdown();
                         } catch (Exception e) {
                             // Ignore shutdown errors
@@ -579,6 +588,7 @@ public class JTAPIGui {
                 // Clean up provider on connection failure
                 if (provider != null) {
                     try {
+                        provider.removeObserver(this);
                         provider.shutdown();
                     } catch (Exception e) {
                         // Ignore shutdown errors
@@ -603,12 +613,38 @@ public class JTAPIGui {
         stopBtn.setEnabled(false);
         if (provider != null) {
             try {
+                provider.removeObserver(this); // Remove provider observer
                 provider.shutdown();
                 updateStatus("Disconnected: Service stopped manually", new Color(220, 53, 69));
             } catch (Exception e) {
                 updateStatus("Disconnected: Failed to stop provider - " + e.getMessage(), new Color(220, 53, 69));
             }
             provider = null;
+        }
+        // Notify CallListPanel that service state changed
+        notifyServiceStateChanged();
+    }
+
+    // Method to check if the JTAPI service is currently running
+    public boolean isServiceRunning() {
+        return provider != null && provider.getState() == Provider.IN_SERVICE;
+    }
+
+    // Method to get the current provider (for dialing functionality)
+    public Provider getProvider() {
+        return provider;
+    }
+
+    // Method to notify CallListPanel of service state changes
+    private void notifyServiceStateChanged() {
+        // This will be called when service starts/stops to update dial button state
+        if (tabbedPane != null && tabbedPane.getTabCount() > 0) {
+            for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+                Component comp = tabbedPane.getComponentAt(i);
+                if (comp instanceof CallListPanel) {
+                    ((CallListPanel) comp).updateServiceState(isServiceRunning());
+                }
+            }
         }
     }
 
@@ -789,6 +825,29 @@ public class JTAPIGui {
         } catch (Exception e) {
             System.out.println("OUTBOUND: Exception creating call: " + e.getMessage());
             return false;
+        }
+    }
+
+    // ProviderObserver implementation
+    @Override
+    public void providerChangedEvent(ProvEv[] events) {
+        for (ProvEv event : events) {
+            if (event instanceof ProvInServiceEv) {
+                System.out.println("Provider is now IN SERVICE");
+                SwingUtilities.invokeLater(() -> {
+                    notifyServiceStateChanged();
+                });
+            } else if (event instanceof ProvOutOfServiceEv) {
+                System.out.println("Provider is now OUT OF SERVICE");
+                SwingUtilities.invokeLater(() -> {
+                    notifyServiceStateChanged();
+                });
+            } else if (event instanceof ProvShutdownEv) {
+                System.out.println("Provider has shut down");
+                SwingUtilities.invokeLater(() -> {
+                    notifyServiceStateChanged();
+                });
+            }
         }
     }
 }

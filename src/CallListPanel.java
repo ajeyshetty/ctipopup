@@ -28,13 +28,21 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
     private JButton holdResumeBtn;
     private JButton pickBtn;
     private JButton hangupBtn;
+    private JButton conferenceBtn;
+    private JButton transferBtn;
+    private JButton dialBtn;
     // Status label for user feedback
     private JLabel statusLabel;
+
+    // Store the current service state
+    private boolean currentServiceState = false;
 
     public CallListPanel() {
         super(new BorderLayout());
         model = new CallTableModel(this);
         table = new JTable(model);
+
+        // ... existing constructor code ...
 
         // Configure table appearance
         table.setFillsViewportHeight(true);
@@ -88,31 +96,56 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         controlPanel.setBackground(new Color(240, 240, 240));
         controlPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-        // Button panel
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        // Button panel with enhanced layout
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 5));
         buttonPanel.setBackground(new Color(240, 240, 240));
 
+        // Primary action buttons (left side)
         JButton pickBtn = createStyledButton("Pick", new Color(40, 167, 69));
-        holdResumeBtn = createStyledButton("Hold/Resume", new Color(255, 193, 7));
         JButton hangupBtn = createStyledButton("Hangup", new Color(220, 53, 69));
+
+        // Secondary action buttons (middle)
+        JButton holdResumeBtn = createStyledButton("Hold", new Color(255, 193, 7));
+        JButton conferenceBtn = createStyledButton("Conference", new Color(23, 162, 184));
+        JButton transferBtn = createStyledButton("Transfer", new Color(108, 117, 125));
+
+        // Utility buttons (right side)
+        JButton dialBtn = createStyledButton("Dial", new Color(52, 58, 64));
 
         // Store button references
         this.pickBtn = pickBtn;
         this.hangupBtn = hangupBtn;
+        this.holdResumeBtn = holdResumeBtn;
+        this.conferenceBtn = conferenceBtn;
+        this.transferBtn = transferBtn;
+        this.dialBtn = dialBtn;
 
+        // Add action listeners
         pickBtn.addActionListener(_ -> doPick());
         holdResumeBtn.addActionListener(_ -> doHoldResume());
         hangupBtn.addActionListener(_ -> doHangup());
+        conferenceBtn.addActionListener(_ -> doConference());
+        transferBtn.addActionListener(_ -> doTransfer());
+        dialBtn.addActionListener(_ -> toggleDialer());
 
+        // Add buttons to panel with logical grouping
         buttonPanel.add(pickBtn);
-        buttonPanel.add(holdResumeBtn);
         buttonPanel.add(hangupBtn);
+        buttonPanel.add(javax.swing.Box.createHorizontalStrut(15)); // Visual separator
+        buttonPanel.add(holdResumeBtn);
+        buttonPanel.add(conferenceBtn);
+        buttonPanel.add(transferBtn);
+        buttonPanel.add(javax.swing.Box.createHorizontalStrut(15)); // Visual separator
+        buttonPanel.add(dialBtn);
 
         // Status label
         statusLabel = new JLabel("Select a call to perform actions", SwingConstants.CENTER);
         statusLabel.setFont(new Font("SansSerif", Font.ITALIC, 10));
         statusLabel.setForeground(Color.GRAY);
         statusLabel.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
+
+        // Add keyboard shortcuts for better usability
+        setupKeyboardShortcuts();
 
         controlPanel.add(buttonPanel, BorderLayout.CENTER);
         controlPanel.add(statusLabel, BorderLayout.SOUTH);
@@ -377,6 +410,357 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
         updateButtonStates();
     }
 
+    private void doConference() {
+        CallRegistry.CallInfo ci = selectedInfo();
+        if (ci == null) {
+            statusLabel.setText("Please select a call to conference");
+            statusLabel.setForeground(Color.RED);
+            return;
+        }
+
+        // Show input dialog for conference target
+        String target = JOptionPane.showInputDialog(this,
+            "Enter number to conference with:",
+            "Conference Call",
+            JOptionPane.QUESTION_MESSAGE);
+
+        if (target != null && !target.trim().isEmpty()) {
+            boolean success = CallRegistry.getInstance().conferenceCall(ci.call, target.trim());
+            if (success) {
+                statusLabel.setText("Conference initiated with " + target);
+                statusLabel.setForeground(Color.GREEN);
+            } else {
+                statusLabel.setText("Conference failed - operation not supported");
+                statusLabel.setForeground(Color.RED);
+            }
+        }
+    }
+
+    private void doTransfer() {
+        CallRegistry.CallInfo ci = selectedInfo();
+        if (ci == null) {
+            statusLabel.setText("Please select a call to transfer");
+            statusLabel.setForeground(Color.RED);
+            return;
+        }
+
+        // Show input dialog for transfer target
+        String target = JOptionPane.showInputDialog(this,
+            "Enter number to transfer to:",
+            "Transfer Call",
+            JOptionPane.QUESTION_MESSAGE);
+
+        if (target != null && !target.trim().isEmpty()) {
+            boolean success = CallRegistry.getInstance().transferCall(ci.call, target.trim());
+            if (success) {
+                statusLabel.setText("Call transferred to " + target);
+                statusLabel.setForeground(Color.GREEN);
+            } else {
+                statusLabel.setText("Transfer failed - operation not supported");
+                statusLabel.setForeground(Color.RED);
+            }
+        }
+    }
+
+    private void toggleDialer() {
+        // Toggle dialer panel visibility
+        if (dialerPanel == null) {
+            createDialerPanel();
+        }
+
+        boolean isVisible = dialerPanel.isVisible();
+        dialerPanel.setVisible(!isVisible);
+
+        // Update button text
+        dialBtn.setText(isVisible ? "Dial" : "Hide Dialer");
+
+        // Revalidate and repaint to show/hide the dialer
+        revalidate();
+        repaint();
+    }
+
+    private JPanel dialerPanel;
+    private JTextField dialNumberField;
+
+    private void createDialerPanel() {
+        dialerPanel = new JPanel(new BorderLayout(5, 5));
+        dialerPanel.setBorder(BorderFactory.createTitledBorder("Dialer"));
+        dialerPanel.setBackground(new Color(250, 250, 250));
+
+        // Number input field
+        dialNumberField = new JTextField(15);
+        dialNumberField.setFont(new Font("SansSerif", Font.BOLD, 14));
+        dialNumberField.setHorizontalAlignment(JTextField.CENTER);
+
+        // Dial pad buttons
+        JPanel dialPad = new JPanel(new GridLayout(4, 3, 3, 3));
+        dialPad.setBackground(new Color(250, 250, 250));
+
+        String[] buttons = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#"};
+        for (String btn : buttons) {
+            JButton dialBtn = createDialPadButton(btn);
+            dialPad.add(dialBtn);
+        }
+
+        // Control buttons
+        JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+        controlPanel.setBackground(new Color(250, 250, 250));
+
+        JButton callBtn = createStyledButton("Call", new Color(40, 167, 69));
+        JButton clearBtn = createStyledButton("Clear", new Color(108, 117, 125));
+
+        callBtn.addActionListener(_ -> doDial());
+        clearBtn.addActionListener(_ -> dialNumberField.setText(""));
+
+        controlPanel.add(callBtn);
+        controlPanel.add(clearBtn);
+
+        // Add keyboard shortcut for Enter key
+        dialNumberField.addActionListener(_ -> doDial());
+
+        // Layout
+        JPanel inputPanel = new JPanel(new BorderLayout());
+        inputPanel.setBackground(new Color(250, 250, 250));
+        inputPanel.add(dialNumberField, BorderLayout.CENTER);
+
+        dialerPanel.add(inputPanel, BorderLayout.NORTH);
+        dialerPanel.add(dialPad, BorderLayout.CENTER);
+        dialerPanel.add(controlPanel, BorderLayout.SOUTH);
+
+        // Add to main panel (initially hidden)
+        add(dialerPanel, BorderLayout.SOUTH);
+        dialerPanel.setVisible(false);
+    }
+
+    private JButton createDialPadButton(String text) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("SansSerif", Font.BOLD, 16));
+        button.setBackground(Color.WHITE);
+        button.setForeground(Color.BLACK);
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createRaisedBevelBorder());
+        button.setPreferredSize(new Dimension(45, 45));
+
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                button.setBackground(new Color(240, 240, 240));
+            }
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                button.setBackground(Color.WHITE);
+            }
+        });
+
+        button.addActionListener(_ -> {
+            String current = dialNumberField.getText();
+            dialNumberField.setText(current + text);
+            dialNumberField.requestFocus();
+        });
+
+        return button;
+    }
+
+    private void doDial() {
+        String number = dialNumberField.getText().trim();
+        if (number.isEmpty()) {
+            statusLabel.setText("Please enter a number to dial");
+            statusLabel.setForeground(Color.RED);
+            return;
+        }
+
+        // Check if service is running
+        if (!isServiceRunning()) {
+            statusLabel.setText("Cannot dial - JTAPI service is not running");
+            statusLabel.setForeground(Color.RED);
+            return;
+        }
+
+        try {
+            // Method 1: Try Cisco Jabber URI scheme (ciscotel://)
+            if (dialWithJabberURI(number)) {
+                statusLabel.setText("Dialing " + number + " via Jabber...");
+                statusLabel.setForeground(Color.BLUE);
+            }
+            // Method 2: Try standard tel: URI (works with many softphones)
+            else if (dialWithTelURI(number)) {
+                statusLabel.setText("Dialing " + number + " via system...");
+                statusLabel.setForeground(Color.BLUE);
+            }
+            // Method 3: Try JTAPI direct dialing (fallback)
+            else if (dialWithJTAPI(number)) {
+                statusLabel.setText("Dialing " + number + " via JTAPI...");
+                statusLabel.setForeground(Color.BLUE);
+            }
+            else {
+                statusLabel.setText("Failed to dial " + number + " - no dialing method available");
+                statusLabel.setForeground(Color.RED);
+            }
+        } catch (Exception e) {
+            statusLabel.setText("Failed to dial " + number + ": " + e.getMessage());
+            statusLabel.setForeground(Color.RED);
+        }
+
+        // Clear the dial field after attempting to dial
+        dialNumberField.setText("");
+    }
+
+    // Method to dial using Cisco Jabber URI scheme
+    private boolean dialWithJabberURI(String number) {
+        try {
+            // Cisco Jabber uses ciscotel:// URI scheme
+            String jabberURI = "ciscotel://" + number;
+            java.awt.Desktop.getDesktop().browse(new java.net.URI(jabberURI));
+            return true;
+        } catch (Exception e) {
+            // Jabber not available or URI scheme not supported
+            return false;
+        }
+    }
+
+    // Method to dial using standard tel: URI
+    private boolean dialWithTelURI(String number) {
+        try {
+            // Standard tel: URI works with many softphones and system handlers
+            String telURI = "tel:" + number;
+            java.awt.Desktop.getDesktop().browse(new java.net.URI(telURI));
+            return true;
+        } catch (Exception e) {
+            // tel: URI not supported by system
+            return false;
+        }
+    }
+
+    // Method to dial using JTAPI (requires running service)
+    private boolean dialWithJTAPI(String number) {
+        try {
+            // Get the main JTAPIGui instance to access the provider
+            // This is a simplified approach - in production you'd want better integration
+            java.awt.Frame[] frames = java.awt.Frame.getFrames();
+            for (java.awt.Frame frame : frames) {
+                if (frame.getClass().getSimpleName().equals("JTAPIGui")) {
+                    // Use reflection to call the method safely
+                    try {
+                        java.lang.reflect.Method isRunningMethod = frame.getClass().getMethod("isServiceRunning");
+                        Boolean isRunning = (Boolean) isRunningMethod.invoke(frame);
+                        if (isRunning) {
+                            // Use the existing dialCall method from CallRegistry
+                            return CallRegistry.getInstance().dialCall(number);
+                        }
+                    } catch (Exception e) {
+                        // Method not found or invocation failed
+                    }
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            System.err.println("JTAPI dialing failed: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Method to check if JTAPI service is running
+    private boolean isServiceRunning() {
+        // Try to get the actual service state from JTAPIGui
+        try {
+            java.awt.Frame[] frames = java.awt.Frame.getFrames();
+            for (java.awt.Frame frame : frames) {
+                if (frame.getClass().getSimpleName().equals("JTAPIGui")) {
+                    java.lang.reflect.Method isRunningMethod = frame.getClass().getMethod("isServiceRunning");
+                    Boolean isRunning = (Boolean) isRunningMethod.invoke(frame);
+                    return isRunning != null ? isRunning : false;
+                }
+            }
+        } catch (Exception e) {
+            // Fall back to stored state if reflection fails
+            System.out.println("Failed to get service state via reflection: " + e.getMessage());
+        }
+        // Fall back to stored state
+        return currentServiceState;
+    }
+
+    private void setupKeyboardShortcuts() {
+        // Get the input map for keyboard shortcuts
+        javax.swing.InputMap inputMap = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        javax.swing.ActionMap actionMap = getActionMap();
+
+        // Pick call - Ctrl+P
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke("ctrl P"), "pickCall");
+        actionMap.put("pickCall", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                doPick();
+            }
+        });
+
+        // Hangup call - Ctrl+H
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke("ctrl H"), "hangupCall");
+        actionMap.put("hangupCall", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                doHangup();
+            }
+        });
+
+        // Hold/Resume call - Ctrl+Space
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke("ctrl SPACE"), "holdResumeCall");
+        actionMap.put("holdResumeCall", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                doHoldResume();
+            }
+        });
+
+        // Conference call - Ctrl+C
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke("ctrl C"), "conferenceCall");
+        actionMap.put("conferenceCall", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                doConference();
+            }
+        });
+
+        // Transfer call - Ctrl+T
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke("ctrl T"), "transferCall");
+        actionMap.put("transferCall", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                doTransfer();
+            }
+        });
+
+        // Toggle dialer - Ctrl+D
+        inputMap.put(javax.swing.KeyStroke.getKeyStroke("ctrl D"), "toggleDialer");
+        actionMap.put("toggleDialer", new javax.swing.AbstractAction() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                toggleDialer();
+            }
+        });
+
+        // Double-click on table for pick - already implemented in mouse listener
+    }
+
+    // Method to update dial button state based on service running status
+    public void updateServiceState(boolean isServiceRunning) {
+        // Store the current service state
+        this.currentServiceState = isServiceRunning;
+        System.out.println("Service state updated: " + isServiceRunning);
+
+        if (dialBtn != null) {
+            dialBtn.setEnabled(isServiceRunning);
+            System.out.println("Dial button enabled: " + isServiceRunning);
+            if (!isServiceRunning) {
+                // Hide dialer if service is stopped
+                if (dialerPanel != null && dialerPanel.isVisible()) {
+                    toggleDialer();
+                }
+            }
+        }
+        // Update status message
+        if (statusLabel != null) {
+            if (!isServiceRunning) {
+                statusLabel.setText("Service not running - Start service to enable dialing");
+                statusLabel.setForeground(Color.ORANGE);
+            } else if (selectedInfo() == null) {
+                statusLabel.setText("Select a call to perform actions");
+                statusLabel.setForeground(Color.GRAY);
+            }
+        }
+    }
+
     private void updateButtonStates() {
         CallRegistry.CallInfo ci = selectedInfo();
         boolean hasSelection = (ci != null);
@@ -399,6 +783,15 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
 
             // Hangup button: enabled for most active calls
             hangupBtn.setEnabled(!state.contains("disconnected") && !state.contains("idle"));
+
+            // Conference button: enabled for active connected calls
+            conferenceBtn.setEnabled(state.contains("connected") || state.contains("talking"));
+
+            // Transfer button: enabled for active connected calls
+            transferBtn.setEnabled(state.contains("connected") || state.contains("talking"));
+
+            // Dial button: enabled when service is running
+            dialBtn.setEnabled(isServiceRunning());
         } else {
             // No selection - disable all buttons and show message
             statusLabel.setText("Select a call to perform actions");
@@ -407,6 +800,9 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
             pickBtn.setEnabled(false);
             holdResumeBtn.setEnabled(false);
             hangupBtn.setEnabled(false);
+            conferenceBtn.setEnabled(false);
+            transferBtn.setEnabled(false);
+            dialBtn.setEnabled(isServiceRunning()); // Dial enabled only when service is running
         }
     }
 

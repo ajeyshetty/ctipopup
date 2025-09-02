@@ -318,6 +318,78 @@ public class CallRegistry {
         return false;
     }
 
+    // Best-effort: conference call with target number. Tries common conference methods.
+    public boolean conferenceCall(Call call, String target) {
+        if (call == null || target == null) return false;
+        try {
+            Method[] m = call.getClass().getMethods();
+            for (Method mm : m) {
+                String n = mm.getName().toLowerCase();
+                if ((n.contains("conference") || n.contains("join") || n.contains("merge")) &&
+                    mm.getParameterCount() == 1 && mm.getParameterTypes()[0] == java.lang.String.class) {
+                    mm.setAccessible(true);
+                    mm.invoke(call, target);
+                    return true;
+                }
+            }
+            // Try call-control style: some implementations expose conference on a connection
+            Connection[] conns = call.getConnections();
+            if (conns != null) {
+                for (Connection c : conns) {
+                    Method[] cm = c.getClass().getMethods();
+                    for (Method mm : cm) {
+                        String n = mm.getName().toLowerCase();
+                        if ((n.contains("conference") || n.contains("join") || n.contains("merge")) &&
+                            mm.getParameterCount() == 1 && mm.getParameterTypes()[0] == java.lang.String.class) {
+                            mm.setAccessible(true);
+                            mm.invoke(c, target);
+                            return true;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // ignore
+        }
+        return false;
+    }
+
+    // Best-effort: dial/make a new call to target number.
+    public boolean dialCall(String target) {
+        if (target == null || target.trim().isEmpty()) return false;
+        try {
+            // Get the provider and create a new call
+            javax.telephony.Provider provider = getProvider();
+            if (provider == null) return false;
+
+            // Create a new call
+            Call call = provider.createCall();
+            if (call == null) return false;
+
+            // Get the monitored address
+            javax.telephony.Address[] addresses = provider.getAddresses();
+            if (addresses == null || addresses.length == 0) return false;
+
+            // Use the first address (typically the monitored extension)
+            javax.telephony.Address originatingAddress = addresses[0];
+
+            // Connect the call
+            call.connect(provider.getTerminals()[0], originatingAddress, target);
+
+            return true;
+        } catch (Exception e) {
+            System.err.println("Failed to dial call: " + e.getMessage());
+        }
+        return false;
+    }
+
+    // Helper method to get the JTAPI provider (you may need to store this reference)
+    private javax.telephony.Provider getProvider() {
+        // This is a placeholder - you'll need to pass the provider reference
+        // or store it when initializing the CallRegistry
+        return null; // TODO: Implement proper provider access
+    }
+
     // Best-effort: attempt to place a call on hold.
     public boolean holdCall(Call call) {
         if (call == null) return false;
