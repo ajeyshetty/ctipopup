@@ -186,9 +186,9 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
                         if ("HOLD".equalsIgnoreCase(ci.state)) {
                             stateText = "ON HOLD";
                         } else if ("CONNECTED".equalsIgnoreCase(ci.state) || "TALKING".equalsIgnoreCase(ci.state)) {
-                            stateText = "TALKING";
+                            stateText = "TALKING"; // Always show TALKING for established calls
                         } else if ("ALERTING".equalsIgnoreCase(ci.state) || "CREATED".equalsIgnoreCase(ci.state) || "RINGING".equalsIgnoreCase(ci.state)) {
-                            stateText = "RINGING";
+                            stateText = "RINGING"; // Show RINGING for calls in progress
                         } else {
                             stateText = ci.state != null ? ci.state : "";
                         }
@@ -1101,6 +1101,7 @@ public class CallListPanel extends JPanel implements CallRegistry.Listener {
 
     @Override
     public void onCallUpdated(CallRegistry.CallInfo info) {
+        System.out.println("UI: onCallUpdated - call=" + info.call + ", state=" + info.state + ", number=" + info.number + ", address=" + info.address);
         SwingUtilities.invokeLater(() -> {
             model.addOrUpdate(info);
             if ("CONNECTED".equalsIgnoreCase(info.state) || "TALKING".equalsIgnoreCase(info.state)) {

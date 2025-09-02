@@ -373,8 +373,20 @@ public class CallRegistry {
             // Use the first address (typically the monitored extension)
             javax.telephony.Address originatingAddress = addresses[0];
 
+            // Add a CallObserver to track call state changes
+            try {
+                JTAPICallerInfo callObserver = new JTAPICallerInfo(null, "CONNECTED", originatingAddress.getName());
+                call.addObserver(callObserver);
+                System.out.println("DIAL: Added CallObserver to outbound call");
+            } catch (Exception e) {
+                System.err.println("DIAL: Failed to add CallObserver: " + e.getMessage());
+            }
+
             // Connect the call
             call.connect(provider.getTerminals()[0], originatingAddress, target);
+
+            // Add to registry so it appears in the UI - set ALERTING for outbound calls since they start dialing immediately
+            addOrUpdate(call, target, "ALERTING", originatingAddress.getName());
 
             return true;
         } catch (Exception e) {
@@ -383,11 +395,10 @@ public class CallRegistry {
         return false;
     }
 
-    // Helper method to get the JTAPI provider (you may need to store this reference)
+    // Helper method to get the JTAPI provider
     private javax.telephony.Provider getProvider() {
-        // This is a placeholder - you'll need to pass the provider reference
-        // or store it when initializing the CallRegistry
-        return null; // TODO: Implement proper provider access
+        // Get the provider from JTAPIGui
+        return JTAPIGui.getCurrentProvider();
     }
 
     // Best-effort: attempt to place a call on hold.

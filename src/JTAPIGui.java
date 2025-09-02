@@ -30,6 +30,11 @@ public class JTAPIGui implements ProviderObserver {
     private static volatile boolean urlPopEnabled = true;
     public static boolean isUrlPopEnabled() { return urlPopEnabled; }
 
+    // Public static method to get the current provider for outbound calls
+    public static Provider getCurrentProvider() {
+        return INSTANCE != null ? INSTANCE.provider : null;
+    }
+
     private static final String CONFIG_DIR = System.getProperty("user.home") + "/.jtapi_config";
     private static final String CONFIG_FILE = CONFIG_DIR + "/config.properties";
 
@@ -783,6 +788,17 @@ public class JTAPIGui implements ProviderObserver {
             if (call != null) {
                 System.out.println("OUTBOUND: Call created successfully: " + call);
                 
+                // Add a CallObserver to track call state changes for outbound calls
+                try {
+                    JTAPICallerInfo callObserver = new JTAPICallerInfo(INSTANCE.urlField.getText().trim(), 
+                                                                     INSTANCE.triggerCombo.getSelectedItem().toString(), 
+                                                                     address.getName());
+                    call.addObserver(callObserver);
+                    System.out.println("OUTBOUND: Added CallObserver to outbound call");
+                } catch (Exception e) {
+                    System.out.println("OUTBOUND: Failed to add CallObserver: " + e.getMessage());
+                }
+                
                 // Try to initiate the call
                 try {
                     // Try to connect the call
@@ -815,8 +831,8 @@ public class JTAPIGui implements ProviderObserver {
                     }
                 }
                 
-                // Add to registry so it appears in the UI
-                CallRegistry.getInstance().addOrUpdate(call, phoneNumber, "CREATED", address.getName());
+                // Add to registry so it appears in the UI - set ALERTING for outbound calls since they start dialing immediately
+                CallRegistry.getInstance().addOrUpdate(call, phoneNumber, "ALERTING", address.getName());
                 return true;
             } else {
                 System.out.println("OUTBOUND: Failed to create call");

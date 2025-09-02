@@ -153,9 +153,27 @@ public class JTAPICallerInfo implements CallObserver {
                         Connection innerConn = tc != null ? tc.getConnection() : null;
                         Call call = innerConn != null ? innerConn.getCall() : null;
                         if (call != null) {
-                            try {
-                                CallRegistry.getInstance().addOrUpdate(call, null, "RINGING", termName);
-                            } catch (Throwable _ignore) {}
+                            // Get calling number to check if this is an outbound call
+                            String callingNumber = callCaller.get(call);
+                            if (callingNumber == null) {
+                                Address a = innerConn != null ? innerConn.getAddress() : null;
+                                callingNumber = a != null ? a.getName() : null;
+                            }
+                            
+                            // For outbound calls, only update to RINGING if the ringing terminal is not the monitored terminal
+                            // (outbound calls don't ring at the originating terminal)
+                            boolean shouldUpdateRinging = true;
+                            if (isOutboundCall(call, callingNumber) && termName != null && 
+                                this.monitoredAddress != null && termName.equalsIgnoreCase(this.monitoredAddress)) {
+                                shouldUpdateRinging = false;
+                                writeLog("CallCtlTermConnRingingEv - outbound call ringing at originating terminal, not updating state");
+                            }
+                            
+                            if (shouldUpdateRinging) {
+                                try {
+                                    CallRegistry.getInstance().addOrUpdate(call, null, "RINGING", termName);
+                                } catch (Throwable _ignore) {}
+                            }
                         }
                     } catch (Exception e) {
                         String err = "Failed to handle CallCtlTermConnRingingEv: " + e.getMessage();
@@ -174,7 +192,17 @@ public class JTAPICallerInfo implements CallObserver {
                             Call call = conn.getCall();
                             callCaller.put(call, callingNumber);
                             LOGGER.fine("ConnCreatedEv observed caller=" + callingNumber + " call=" + call);
-                            try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CREATED", this.monitoredAddress); } catch (Throwable _ignore) {}
+                            
+                            // Only set CREATED if this is a new call or if it's not already ALERTING (for outbound calls)
+                            CallRegistry.CallInfo existingInfo = CallRegistry.getInstance().snapshot().stream()
+                                .filter(info -> info.call.equals(call))
+                                .findFirst().orElse(null);
+                            
+                            if (existingInfo == null || !"ALERTING".equals(existingInfo.state)) {
+                                try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CREATED", this.monitoredAddress); } catch (Throwable _ignore) {}
+                            } else {
+                                writeLog("ConnCreatedEv: Call already in ALERTING state, not overriding");
+                            }
                         }
                     } catch (Exception e) {
                         String err = "Failed to handle ConnCreatedEv: " + e.getMessage();
@@ -243,6 +271,13 @@ public class JTAPICallerInfo implements CallObserver {
                             String msg = "ConnAlertingEv - callingNumber=" + callingNumber + " conn=" + conn;
                             System.out.println(msg);
                             writeLog(msg);
+                            
+                            // Always update call registry with ALERTING state, regardless of URL template
+                            try { 
+                                CallRegistry.getInstance().addOrUpdate(call, callingNumber, "ALERTING", this.monitoredAddress); 
+                            } catch (Throwable _ignore) {}
+                            
+                            // Only process screen pop if we have a valid URL template
                             if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty()) {
                                 try {
                                     if (this.monitoredAddress != null) {
@@ -251,7 +286,7 @@ public class JTAPICallerInfo implements CallObserver {
                                         if (connName == null || !connName.equalsIgnoreCase(this.monitoredAddress)) {
                                                 writeLog("Skipping alerting open: connection address=" + connName + " monitored=" + this.monitoredAddress);
                                                 // monitored address doesn't match — skip this event
-                                                continue;
+                                                return;
                                             }
                                     }
                                 } catch (Exception _ignore) {}
@@ -260,7 +295,6 @@ public class JTAPICallerInfo implements CallObserver {
                                     if (!isOutboundCall(call, callingNumber)) {
                                         openUrlWithNumber(this.urlTemplate, callingNumber);
                                         urlOpened.add(call);
-                                        try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "ALERTING", this.monitoredAddress); } catch (Throwable _ignore) {}
                                     } else {
                                         writeLog("Skipping screen pop for outbound call: " + callingNumber);
                                         urlOpened.add(call); // Mark as opened to prevent future attempts
@@ -296,6 +330,7 @@ public class JTAPICallerInfo implements CallObserver {
                                         || (connName != null && this.monitoredAddress != null && connName.equalsIgnoreCase(this.monitoredAddress))
                                         || (connName != null && this.monitoredAddress != null && connName.toLowerCase().contains(this.monitoredAddress.toLowerCase()));
                             } catch (Exception _ignore) { addressMatches = false; }
+                            writeLog("TermConnActiveEv - termName=" + termName + ", connName=" + connName + ", monitoredAddress=" + this.monitoredAddress + ", addressMatches=" + addressMatches);
                             if (addressMatches) {
                                 Call call = innerConn != null ? innerConn.getCall() : null;
                                 String callingNumber = call != null ? callCaller.get(call) : null;
@@ -303,13 +338,37 @@ public class JTAPICallerInfo implements CallObserver {
                                     Address a = innerConn != null ? innerConn.getAddress() : null;
                                     callingNumber = a != null ? a.getName() : null;
                                 }
+                                
+                                writeLog("TermConnActiveEv - call=" + call + ", callingNumber=" + callingNumber + ", conn=" + innerConn);
+                                
+                                // For outbound calls, don't set CONNECTED in TermConnActiveEv
+                                // Let the destination connection set CONNECTED when established
+                                boolean isOutbound = isOutboundCall(call, callingNumber);
+                                writeLog("TermConnActiveEv - isOutboundCall result: " + isOutbound + " for callingNumber: " + callingNumber);
+                                
+                                // Also check if call has multiple connections - if not, likely outbound call not fully connected
+                                Connection[] connections = call != null ? call.getConnections() : null;
+                                int connectionCount = connections != null ? connections.length : 0;
+                                writeLog("TermConnActiveEv - connection count: " + connectionCount);
+                                
+                                if (isOutbound || connectionCount <= 1) {
+                                    writeLog("TermConnActiveEv - not setting CONNECTED (outbound or single connection)");
+                                    // Don't update state for outbound calls or calls with single connection
+                                } else {
+                                    writeLog("TermConnActiveEv - inbound call, setting CONNECTED");
+                                    // For inbound calls, set CONNECTED immediately
+                                    try { 
+                                        CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CONNECTED", this.monitoredAddress); 
+                                    } catch (Throwable _ignore) {}
+                                }
+                                
+                                // Only process screen pop if we have a valid URL template
                                 if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty()) {
                                     if (!urlOpened.contains(call)) {
                                         // Skip screen pop for outbound calls
                                         if (!isOutboundCall(call, callingNumber)) {
                                             openUrlWithNumber(this.urlTemplate, callingNumber);
                                             urlOpened.add(call);
-                                            try { CallRegistry.getInstance().addOrUpdate(call, callingNumber, "CONNECTED", this.monitoredAddress); } catch (Throwable _ignore) {}
                                         } else {
                                             writeLog("Skipping screen pop for outbound call: " + callingNumber);
                                             urlOpened.add(call); // Mark as opened to prevent future attempts
@@ -329,13 +388,100 @@ public class JTAPICallerInfo implements CallObserver {
                             Connection conn = ((ConnConnectedEv) ev).getConnection();
                             Call call = conn != null ? conn.getCall() : null;
                             String callingNumber = call != null ? callCaller.get(call) : null;
+                            
+                            // For outbound calls, if we don't have a calling number stored,
+                            // check if this is an outbound call by comparing with monitored address
                             if (callingNumber == null) {
                                 Address fromAddr = conn != null ? conn.getAddress() : null;
-                                callingNumber = fromAddr != null ? fromAddr.getName() : null;
+                                String connAddrName = fromAddr != null ? fromAddr.getName() : null;
+                                
+                                // Check if this connection address matches our monitored address (outbound call)
+                                if (connAddrName != null && this.monitoredAddress != null && 
+                                    connAddrName.equalsIgnoreCase(this.monitoredAddress)) {
+                                    // This is likely an outbound call - try to get the dialed number
+                                    // For outbound calls, we need to look at the other connection in the call
+                                    Connection[] connections = call != null ? call.getConnections() : null;
+                                    if (connections != null) {
+                                        for (Connection c : connections) {
+                                            if (c != null && c != conn) {
+                                                Address destAddr = c.getAddress();
+                                                if (destAddr != null) {
+                                                    callingNumber = destAddr.getName();
+                                                    if (callingNumber != null) {
+                                                        writeLog("Detected outbound call destination: " + callingNumber);
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    callingNumber = connAddrName;
+                                }
                             }
+                            
                             String msg = "ConnConnectedEv - callingNumber=" + callingNumber + " conn=" + conn;
                             System.out.println(msg);
                             writeLog(msg);
+                            
+                            // Capture the callingNumber value for use in Timer (must be final)
+                            final String finalCallingNumber = callingNumber;
+                            
+                            // Determine the appropriate state based on call type and connection
+                            String stateToSet = "CONNECTED";
+                            
+                            // For outbound calls, be more conservative about setting CONNECTED
+                            if (isOutboundCall(call, finalCallingNumber)) {
+                                Address connAddr = conn != null ? conn.getAddress() : null;
+                                String connAddrName = connAddr != null ? connAddr.getName() : null;
+                                
+                                // If this connection address matches our monitored address, it's the originating side
+                                if (connAddrName != null && this.monitoredAddress != null && 
+                                    connAddrName.equalsIgnoreCase(this.monitoredAddress)) {
+                                    // For originating connections, keep ALERTING until we're sure the call is established
+                                    stateToSet = "ALERTING";
+                                    writeLog("Outbound call originating connection - keeping ALERTING state");
+                                } else if (finalCallingNumber != null && !finalCallingNumber.equals(this.monitoredAddress)) {
+                                    // This is clearly the destination connection (different number than monitored address)
+                                    // For outbound calls, add a delay to simulate ringing before setting CONNECTED
+                                    writeLog("Outbound call destination connection - scheduling CONNECTED after delay");
+                                    
+                                    // Schedule the state update after a delay
+                                    javax.swing.Timer timer = new javax.swing.Timer(2000, new java.awt.event.ActionListener() {
+                                        public void actionPerformed(java.awt.event.ActionEvent e) {
+                                            try {
+                                                CallRegistry.getInstance().addOrUpdate(call, finalCallingNumber, "CONNECTED", JTAPICallerInfo.this.monitoredAddress);
+                                                writeLog("Outbound call destination connection - delayed CONNECTED state set");
+                                            } catch (Throwable ignore) {}
+                                        }
+                                    });
+                                    timer.setRepeats(false);
+                                    timer.start();
+                                    
+                                    // Keep ALERTING state for now
+                                    stateToSet = "ALERTING";
+                                    writeLog("Outbound call destination connection - keeping ALERTING during delay");
+                                } else {
+                                    // Uncertain case - keep current state or set ALERTING
+                                    CallRegistry.CallInfo existingInfo = CallRegistry.getInstance().snapshot().stream()
+                                        .filter(info -> info.call.equals(call))
+                                        .findFirst().orElse(null);
+                                    if (existingInfo != null && "ALERTING".equals(existingInfo.state)) {
+                                        stateToSet = "ALERTING"; // Preserve ALERTING state
+                                        writeLog("Outbound call uncertain connection - preserving ALERTING state");
+                                    } else {
+                                        stateToSet = "CONNECTED";
+                                        writeLog("Outbound call uncertain connection - setting CONNECTED state");
+                                    }
+                                }
+                            }
+                            
+                            // Always update call registry with the determined state, regardless of URL template
+                            try { 
+                                CallRegistry.getInstance().addOrUpdate(call, finalCallingNumber, stateToSet, this.monitoredAddress); 
+                            } catch (Throwable _ignore) {}
+                            
+                            // Only process screen pop if we have a valid URL template
                             if (callingNumber != null && this.urlTemplate != null && !this.urlTemplate.isEmpty()) {
                                 try {
                                     if (this.monitoredAddress != null) {
@@ -344,7 +490,7 @@ public class JTAPICallerInfo implements CallObserver {
                                         if (connName == null || !connName.equalsIgnoreCase(this.monitoredAddress)) {
                                                 writeLog("Skipping connected open: connection address=" + connName + " monitored=" + this.monitoredAddress);
                                                 // monitored address doesn't match — skip this event
-                                                continue;
+                                                return;
                                             }
                                     }
                                 } catch (Exception _ignore) {}
@@ -475,20 +621,23 @@ public class JTAPICallerInfo implements CallObserver {
         if (call == null || callingNumber == null || this.monitoredAddress == null) return false;
 
         try {
+            // Check if the call has multiple connections (typical for outbound calls)
+            Connection[] connections = call.getConnections();
+            if (connections != null && connections.length > 1) {
+                return true;
+            }
+
             // If the calling number matches our monitored address, it's likely an outbound call
             if (callingNumber.equalsIgnoreCase(this.monitoredAddress)) {
-                writeLog("Detected outbound call: calling number matches monitored address");
                 return true;
             }
 
             // Additional check: if the calling number contains our monitored address
             if (callingNumber.toLowerCase().contains(this.monitoredAddress.toLowerCase())) {
-                writeLog("Detected potential outbound call: calling number contains monitored address");
                 return true;
             }
 
             // Check connections for origination clues
-            Connection[] connections = call.getConnections();
             if (connections != null) {
                 for (Connection conn : connections) {
                     if (conn != null) {
@@ -497,18 +646,17 @@ public class JTAPICallerInfo implements CallObserver {
                             if (connAddr != null) {
                                 String connAddrName = connAddr.getName();
                                 if (connAddrName != null && connAddrName.equalsIgnoreCase(this.monitoredAddress)) {
-                                    writeLog("Detected outbound call: connection address matches monitored address");
                                     return true;
                                 }
                             }
                         } catch (Exception e) {
-                            writeLog("Error checking connection address: " + e.getMessage());
+                            // ignore
                         }
                     }
                 }
             }
         } catch (Exception e) {
-            writeLog("Error determining if call is outbound: " + e.getMessage());
+            // ignore
         }
 
         return false;
