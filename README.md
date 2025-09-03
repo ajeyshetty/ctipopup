@@ -22,6 +22,7 @@ java -cp ".;out;lib\jtapi.jar" JTAPICallerInfo "cucm1;login=USER;passwd=PASS" "S
 Notes
 - Replace the provider string and address with values for your CUCM environment.
 - The program needs network access to the CUCM JTAPI service and correct credentials.
+ - For security, passwords are NOT persisted by the application. If "Remember Me" is enabled, only the username, CUCM host, and phone are stored locally; you must re-enter your password each run.
 
 CMD
 cd "c:\Users\axshetty\OneDrive - LKQ\Projects\CTIPopup-JTAPI\installer-inno"; powershell -NoProfile -ExecutionPolicy Bypass -File "c:\Users\axshetty\OneDrive - LKQ\Projects\CTIPopup-JTAPI\installer-inno\build_installer.ps1" -AutoDownload -Arch x64

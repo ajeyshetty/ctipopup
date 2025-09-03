@@ -261,10 +261,9 @@ public class JTAPIGui implements ProviderObserver {
             try (FileInputStream fis = new FileInputStream(configFile)) {
                 props.load(fis);
                 if (userField != null) userField.setText(props.getProperty("username", ""));
-                if (passField != null) passField.setText(props.getProperty("password", ""));
                 if (cucmHostField != null) cucmHostField.setText(props.getProperty("cucmHost", ""));
                 if (phoneField != null) phoneField.setText(props.getProperty("phone", ""));
-                if (props.containsKey("username") || props.containsKey("password") || props.containsKey("cucmHost") || props.containsKey("phone")) {
+                if (props.containsKey("username") || props.containsKey("cucmHost") || props.containsKey("phone")) {
                     rememberMeCheck.setSelected(true);
                 }
             } catch (IOException e) {
@@ -277,7 +276,6 @@ public class JTAPIGui implements ProviderObserver {
         if (!rememberMeCheck.isSelected()) return;
         Properties props = new Properties();
         if (userField != null) props.setProperty("username", userField.getText().trim());
-        if (passField != null) props.setProperty("password", new String(passField.getPassword()));
         if (cucmHostField != null) props.setProperty("cucmHost", cucmHostField.getText().trim());
     if (phoneField != null) props.setProperty("phone", phoneField.getText().trim());
 
