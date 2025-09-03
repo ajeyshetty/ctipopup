@@ -1871,3 +1871,4 @@
 2025-09-02 18:57:31 Event: TermConnDroppedEv CSFaxshetty
 2025-09-02 18:57:31 Event: ConnDisconnectedEv 81027226:Cluster DN Presence Allowed:1
 2025-09-02 18:57:31 Event: CallInvalidEv
+2025-09-02 19:13:08 JTAPICallerInfo init: trigger=CONNECTED monitoredAddress=81027226 urlTemplate=https://salesassistant.lkqcorp.com/customers/{number}

@@ -101,13 +101,22 @@ if (Test-Path (Join-Path $jreDir 'bin\java.exe')) {
 $repoRoot = (Resolve-Path (Join-Path $scriptDir "..")).Path
 
 # Copy ctippopup.jar
-$ctipJarSrc = Join-Path $repoRoot 'ctippopup.jar'
 $ctipJarDst = Join-Path $installerDir 'ctippopup.jar'
-if (Test-Path $ctipJarSrc) {
-    Copy-Item -Path $ctipJarSrc -Destination $ctipJarDst -Force
-    Write-Log "Copied ctippopup.jar"
+
+# Prefer the freshly built production JAR in dist if available
+$distJar = Join-Path $repoRoot 'dist\cti-popup-jtapi.jar'
+if (Test-Path $distJar) {
+    Copy-Item -Path $distJar -Destination $ctipJarDst -Force
+    Write-Log "Copied latest distribution JAR from dist as ctippopup.jar"
 } else {
-    Write-Log "Warning: ctippopup.jar not found at $ctipJarSrc"
+    # Fall back to any ctippopup.jar at repo root
+    $ctipJarSrc = Join-Path $repoRoot 'ctippopup.jar'
+    if (Test-Path $ctipJarSrc) {
+        Copy-Item -Path $ctipJarSrc -Destination $ctipJarDst -Force
+        Write-Log "Copied existing ctippopup.jar from repo root"
+    } else {
+        Write-Log "Warning: ctippopup.jar not found in dist or repo root; installer will include whatever is present in installer-inno folder"
+    }
 }
 
 # Copy jtapi.jar
